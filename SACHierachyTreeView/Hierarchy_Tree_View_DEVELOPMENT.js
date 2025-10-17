@@ -53,14 +53,14 @@
             const that = thatWidget?.[y];
             const tree = thisTree?.[y];
             const mapcanvas_divstr = thatMapcanvas_divstr?.[y];
-            
+
             // Only proceed if we have all required variables
             if (!that || !tree || !tree.$) {
                 console.warn("[defaultLevelFunction] required variables not ready yet");
                 return;
             }
 
-            const ITEM_HEIGHT = 40, MIN_HEIGHT = 88, EXTRA_PAD = 48;
+            const ITEM_HEIGHT = 40, MIN_HEIGHT = 88, EXTRA_PAD = 50;
             const itemList = tree.$().find(".sapMTreeItemBase");
             let displayedCount = 0;
 
@@ -1399,7 +1399,7 @@
                             let dynamicHeightCW = () => {
                                 const ITEM_HEIGHT = 40;
                                 const MIN_HEIGHT  = 88;
-                                const EXTRA_PAD   = 48;
+                                const EXTRA_PAD   = 50;
                                 const tree = this.byId && this.byId("Tree");
                                 if (!tree || !tree.$) {
                                     return;
