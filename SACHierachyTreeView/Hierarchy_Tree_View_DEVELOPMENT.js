@@ -95,7 +95,7 @@
 
             // Update panel styles in next frame
             requestAnimationFrame(() => {
-                that.style.overflowY = "auto";
+                // that.style.overflowY = "auto";
 
                 if (divCommonWidgetPanelWrapper?.style) {
                     divCommonWidgetPanelWrapper.style.visibility = "visible";
@@ -1435,7 +1435,7 @@
                                 }
 
                                 requestAnimationFrame(() => {
-                                    that.style.overflowY = "auto";
+                                    // that.style.overflowY = "auto";
                                     if (divCommonWidgetPanelWrapper?.style) {
                                         divCommonWidgetPanelWrapper.style.visibility = "visible";
                                         divCommonWidgetPanelWrapper.style.display = "";
