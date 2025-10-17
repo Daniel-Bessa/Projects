@@ -2774,6 +2774,7 @@
                                                 const i = indexById.get(id);
                                                 if (i != null) { hideIdx(i); setIconClose(labels[i]); }
                                                 }
+                                                dynamicHeightCW?.();
                                                 return;
                                             }
 
