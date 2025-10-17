@@ -1,0 +1,188 @@
+{
+  "name": "Side Navigation Menu Test - Do Not Use",
+  "description": "For Development Use Only - Testing Data Binding",
+  "eula": "",
+  "vendor": "Daniel Santos",
+  "license": "",
+  "id": "com.sap.side.navigation.menu.test",
+  "newInstancePrefix": "SideNavigationMenuTest",
+  "version": "2.5.2",
+  "icon": "",
+  "webcomponents": [
+    {
+      "kind": "main",
+      "tag": "com-sap-side-navigation-menu-test",
+      "url": "https://sac-dev-cw.novartis.net/cw/dev/side-navigation-menu-test/side-navigation-menu-test.js?v=1.0.2",
+      "integrity": "",
+      "ignoreIntegrity" : true
+    }
+  ],
+  "properties": {
+    "URLParameter": {
+      "type": "string",
+      "description": "The URL Parameter",
+      "default": ""
+    },
+    "AccessParameter": {
+      "type": "any",
+      "description": "Access Parameter",
+      "default": ""
+    },
+    "toggleAdminParameter": {
+      "type": "boolean",
+      "description": "The admin Parameter",
+      "default": true
+    },
+    "toggleSideParameter": {
+      "type": "boolean",
+      "description": "The side menu Parameter",
+      "default": true
+    },
+    "toggleMenu1Parameter": {
+      "type": "boolean",
+      "description": "The menu 1 Parameter",
+      "default": true
+    },
+    "toggleMenu2Parameter": {
+      "type": "boolean",
+      "description": "The menu 2 Parameter",
+      "default": true
+    },
+    "toggleMenu3Parameter": {
+      "type": "boolean",
+      "description": "The menu 3 Parameter",
+      "default": true
+    },
+    "toggleMenu4Parameter": {
+      "type": "boolean",
+      "description": "The menu 4 Parameter",
+      "default": true
+    }
+  },
+  "methods": {
+    "getID": {
+      "returnType": "string",
+      "description": "Return ID of option selected"
+    },
+    "isAdmin": {
+      "returnType": "any",
+      "description": "Return if user is Admin or Admin privileges"
+    },
+    "toggleAdmin": {
+      "returnType": "string",
+      "description": "Return a string to see the state of the toggle Admin button"
+    },
+    "getParameter": {
+      "description": "Get the Parameter from the URL",
+      "returnType": "string"
+    },
+    "setParameter": {
+      "description": "Sets the Parameter String to the URL",
+      "parameters": [
+        {
+          "name": "newParameter",
+          "type": "string",
+          "description": "Parameter String"
+        }
+      ],
+      "body": "this.URLParameter = newParameter;"
+    },
+    "toggleAdminMenu": {
+      "description": "hides or Shows Admin Menu",
+      "parameters": [
+        {
+          "name": "newToggleAdmin",
+          "type": "boolean",
+          "description": "toggle admin value"
+        }
+      ],
+      "body": "this.toggleAdminParameter = newToggleAdmin;"
+    },
+
+    "toggleSideNavigation": {
+      "description": "hides or Shows Side Navigation Menu",
+      "parameters": [
+        {
+          "name": "newToggleSideNav",
+          "type": "boolean",
+          "description": "toggle side navigation value"
+        }
+      ],
+      "body": "this.toggleSideParameter = newToggleSideNav;"
+    },
+
+    "toggleMenu1": {
+      "description": "hides or Shows Menu 1",
+      "parameters": [
+        {
+          "name": "newToggleMenu1",
+          "type": "boolean",
+          "description": "toggle Menu 1 value"
+        }
+      ],
+      "body": "this.toggleMenu1Parameter = newToggleMenu1;"
+    },
+
+    "toggleMenu2": {
+      "description": "hides or Shows Menu 2",
+      "parameters": [
+        {
+          "name": "newToggleMenu2",
+          "type": "boolean",
+          "description": "toggle Menu 2 value"
+        }
+      ],
+      "body": "this.toggleMenu2Parameter = newToggleMenu2;"
+    },
+
+    "toggleMenu3": {
+      "description": "hides or Shows Menu 3",
+      "parameters": [
+        {
+          "name": "newToggleMenu3",
+          "type": "boolean",
+          "description": "toggle Menu 3 value"
+        }
+      ],
+      "body": "this.toggleMenu3Parameter = newToggleMenu3;"
+    },
+
+    "toggleMenu4": {
+      "description": "hides or Shows Menu 4",
+      "parameters": [
+        {
+          "name": "newToggleMenu4",
+          "type": "boolean",
+          "description": "toggle Menu 4 value"
+        }
+      ],
+      "body": "this.toggleMenu4Parameter = newToggleMenu4;"
+    },
+
+    "setAccess": {
+      "description": "Sets the Access of the User",
+      "parameters": [
+        {
+          "name": "newAccess",
+          "type": "any",
+          "description": "Access String"
+        }
+      ],
+      "body": "this.AccessParameter = newAccess;"
+    }
+  },
+  "events": {
+    "onClick": {
+      "description": "Returns the option selected."
+    },
+    "onOpen": {
+      "description": "Event on the user opens the Menu"
+    },
+    "onClose": {
+      "description": "Event on the user closes the Menu"
+    },
+    "onToggleAdmin": {
+      "description": "Event that triggers when the user clicks on the show/hide Admin button"
+    }
+  }
+}
