@@ -1942,30 +1942,30 @@
                                         });
                                     
                                         const defaultLevel = Number(Default_Level) || 1;
-                                    
+
                                         // One paint-friendly pass
                                         requestAnimationFrame(() => {
                                         for (let i = 0; i < itemLis.length; i++) {
                                             const li  = itemLis[i];
                                             const lbl = labels[i];
                                             const id  = nodes[i]?.nodeUnique;
-                                    
+
                                             // Safe level read: prefer cache.levelOf, fallback to node[i].level
                                             const lvlFromCache = id != null ? cache.levelOf.get(id) : undefined;
                                             const lvl = (lvlFromCache ?? Number(nodes[i]?.level) ?? 0);
-                                    
+
                                             // Indentation: 0rem for level 1, +1rem per level
                                             const content = li.querySelector("div.sapMLIBContent");
                                             const labelWrapper = content?.parentNode?.firstChild;
                                             if (labelWrapper && Number.isFinite(lvl)) {
                                             labelWrapper.style.paddingLeft = `${Math.max(0, (lvl || 0) - 1)}rem`;
                                             }
-                                    
+
                                             // Visibility + icon state by defaultLevel
                                             const show = lvl && lvl <= defaultLevel;
                                             li.classList.toggle("displayed", !!show);
                                             li.classList.toggle("disabled", !show);
-                                    
+
                                             if (lbl) {
                                             const opened = show && lvl < defaultLevel; // parents open, boundary collapsed
                                             lbl.setAttribute("data-sap-ui-icon-content", opened ? data_sap_icon_open : data_sap_icon_close);
@@ -1973,6 +1973,7 @@
                                             lbl.classList.toggle("collapsed", !opened);
                                             }
                                         }
+                                        dynamicHeightCW?.();
                                         });
                                     })();
 
