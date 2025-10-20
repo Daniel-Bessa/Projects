@@ -51,24 +51,29 @@
     }
   ];
 
+  // ===========================
+  // STATE VARIABLES
+  // ===========================
   let _shadowRoot;
-  let ID = ""; //ID of option selected
-  let toggleAdminVar = "";
+  let ID = ""; // ID of option selected
   let _URLParameter_value = "";
   let previousURL = "";
-  let setParameter = "";
-  let toggleAdminMenu = "";
-  let toggleSideNav = "";
+  let _AccessParameter_value = "";
+
+  // Toggle parameters for menu state
   let _toggleAdminParameter = "";
+  let _toggleAdminParameterBefore = "";
   let _toggleSideParameter = "";
   let _toggleMenu1Parameter = "";
   let _toggleMenu2Parameter = "";
   let _toggleMenu3Parameter = "";
   let _toggleMenu4Parameter = "";
+
+  // Menu control functions
   let navBar;
   let openFunction;
   let closeFunction;
-  let firstMenuOpen
+  let firstMenuOpen;
   let firstMenuClose;
   let secondMenuOpen;
   let secondMenuClose;
@@ -76,9 +81,6 @@
   let thirdMenuClose;
   let fourthMenuOpen;
   let fourthMenuClose;
-  let adminAccess;
-  let _AccessParameter_value = "";
-  let _toggleAdminParameterBefore = "";
 
   let tmpl = document.createElement('template');
   tmpl.innerHTML = `
@@ -508,121 +510,31 @@
     }
     */
 
-    getID() {
-      //console.log("ID:"+ID);
-      return ID;
+    // ===========================
+    // GETTERS AND SETTERS
+    // ===========================
+    set AccessParameter(value) {
+      _AccessParameter_value = value;
     }
-
-    toggleAdmin() {
-      return toggleAdminVar;
-    }
-
-    getParameter() {
-      return _URLParameter_value;
-    }
-
-    get URLParameter() {
-      return _URLParameter_value;
-    }
-
-    set toggleAdminParameter(value) {
-      _toggleAdminParameter = value;
-    }
-    
-    get toggleAdminParameter() {
-      return _toggleAdminParameter;
-    }
-
-    set toggleSideParameter(value) {
-      _toggleSideParameter = value;
-    }
-    
-    get toggleSideParameter() {
-      return _toggleSideParameter;
-    }
-
-    set toggleMenu1Parameter(value) {
-      _toggleMenu1Parameter = value;
-    }
-    
-    get toggleMenu1Parameter() {
-      return _toggleMenu1Parameter;
-    }
-
-    set toggleMenu2Parameter(value) {
-      _toggleMenu2Parameter = value;
-    }
-    
-    get toggleMenu2Parameter() {
-      return _toggleMenu2Parameter;
-    }
-    
-    set toggleMenu3Parameter(value) {
-      _toggleMenu3Parameter = value;
-    }
-    
-    get toggleMenu3Parameter() {
-      return _toggleMenu3Parameter;
-    }
-
-    set toggleMenu4Parameter(value) {
-      _toggleMenu4Parameter = value;
-    }
-    
-    get toggleMenu4Parameter() {
-      return _toggleMenu4Parameter;
+    get AccessParameter() {
+      return _AccessParameter_value;
     }
 
     set URLParameter(value) {
       _URLParameter_value = value;
     }
-
-    get setParameter() {
-      return setParameter
+    get URLParameter() {
+      return _URLParameter_value;
     }
 
-    set setParameter(value){
-      setParameter = value;
-    }
-
-    get toggleAdminMenu() {
-      return toggleAdminMenu
-    }
-
-    set toggleAdminMenu(value){
-      toggleAdminMenu = value;
-    }
-
-    get toggleSideNav() {
-      return toggleSideNav
-    }
-
-    set toggleSideNav(value){
-      toggleSideNav = value;
-    }
-
-    get AccessParameter() {
-      return _AccessParameter_value;
-    }
-
-    set AccessParameter(value) {
-      _AccessParameter_value = value;
-    }
-
-    get setAccess() {
-      return setAccess
-    }
-
-    set setAccess(value){
-      setAccess = value;
+    getID() {
+      return ID;
     }
 
     static get observedAttributes() {
       return [
-        "setParameter",
-        "setAccess",
-        "toggleAdminMenu",
-        "toggleSideNav"
+        "AccessParameter",
+        "URLParameter"
       ];
     }
 
