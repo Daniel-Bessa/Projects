@@ -1,4 +1,56 @@
 (function()  {
+  // ===========================
+  // MENU CONFIGURATION DATA
+  // ===========================
+  const MENU_CONFIG = [
+    {
+      "text": "Sales Analytics",
+      "children": [
+        { "name": "Proxy Sales", "uid": "FC5030841BFB6B4DFB4C85F6C7F43068" },
+        { "name": "AI Performance", "uid": "BB9010841BFB53F0E8F6EAEFE0CA932E" }
+      ]
+    },
+    {
+      "text": "AI Sales Forecasting",
+      "children": [
+        { "name": "Sales Forecasting", "uid": "61309201F013FA429549454EF50F3B06" },
+        { "name": "Lifecycle", "uid": "AA783780A70F76CA7E8B80A9E6C757C7" },
+        { "name": "Competitors", "uid": "6BA87A01F01381CD8BBACF2D8E99BDD6" },
+        { "name": "Generics", "uid": "89809201F013A17E9A0A70468F5FCD75" },
+        { "name": "AI Scope", "uid": "5696F07AACC081BDC89EF07A4040F0E" },
+        { "name": "Sales Outliers", "uid": "90702D80F8E9136C5AE597B454F48CE2" }
+      ]
+    },
+    {
+      "text": "AI Cash Forecasting",
+      "children": [
+        { "name": "Cash Forecasting", "uid": "317816820C92BD2FD1E046A87F393039" },
+        { "name": "Cash Outliers", "uid": "7FC0FD822A6429EA4A0922852D2CB93F" }
+      ]
+    },
+    {
+      "text": "Business Input",
+      "children": [
+        { "name": "Price Analytics", "uid": "3B582A82D6B79ADF020C593651ADD9AF" },
+        { "name": "SKU Assumptions", "uid": "FB080F822E4AAA87F2BFDFBED09CF170" },
+        { "name": "Brand Events", "uid": "F4286D822A63B89DD8807713F6A192A0" },
+        { "name": "Run over Run Analytics", "uid": "66005804C15A3DBD5137A05F1AD177A9" },
+        { "name": "Workday Calendar", "uid": "ECF02E06DA31176301716B83B39E0563" }
+      ]
+    },
+    {
+      "text": "Admin",
+      "roles": "admin",
+      "children": [
+        { "name": "User Statistics", "uid": "44885E06DA30BA403C1A62486262E984" },
+        { "name": "AI Flex Launch pad", "uid": "E5E804069B094A7D0A00F91DFAFB725C" },
+        { "name": "Flatfile Uploads", "uid": "820056878CEAA9B770B7BDA7310D9253" },
+        { "name": "Single GX Scenario", "uid": "4F488C069B0AD4E924A034C96E2553AF" },
+        { "name": "Multi GX Scenario", "uid": "20C993035FB23F1CC46E42D5B3A44E8F" }
+      ]
+    }
+  ];
+
   let _shadowRoot;
   let ID = ""; //ID of option selected
   let toggleAdminVar = "";
