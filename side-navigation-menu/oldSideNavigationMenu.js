@@ -341,8 +341,8 @@
             </small>
           </div>
           <ul id="Menu1UL">
-            <li id="Menu1.Opt1"><a id="Menu1.link1" href="" target="ProxySales">Proxy Sales</a></li>
-            <li id="Menu1.Opt2"><a id="Menu1.link2" href="" target="AIPerformance">AI Performance</a></li>
+            <li id="Menu1.Opt1"><a id="Menu1.link1" href="" data-uid="FC5030841BFB6B4DFB4C85F6C7F43068" target="ProxySales">Proxy Sales</a></li>
+            <li id="Menu1.Opt2"><a id="Menu1.link2" href="" data-uid="BB9010841BFB53F0E8F6EAEFE0CA932E" target="AIPerformance">AI Performance</a></li>
             <!-- <li id="Menu1.Opt2"><a id="Menu1.link2" href="" target="ForecastAccuracy">Forecast Accuracy</a></li> -->
             <!-- <li id="Menu1.Opt3"><a id="Menu1.link3" href="" target="PVM">PVM</a></li> -->
             <!-- <li id="Menu1.Opt4"><a id="Menu1.link4" href="" target="ROPs">ROPs</a></li> -->
@@ -364,13 +364,13 @@
             </small>
           </div>
           <ul id="Menu2UL">
-            <li id="Menu2.Opt1"><a id="Menu2.link1" href="" target="SalesForecasting">Sales Forecasting</a></li>
+            <li id="Menu2.Opt1"><a id="Menu2.link1" href="" data-uid="61309201F013FA429549454EF50F3B06" target="SalesForecasting">Sales Forecasting</a></li>
             <!-- <li id="Menu2.Opt2"><a id="Menu2.link2" href="" target="Launches">Launches</a></li> -->
-            <li id="Menu2.Opt3"><a id="Menu2.link3" href="" target="Lifecycle">Lifecycle</a></li>
-            <li id="Menu2.Opt4"><a id="Menu2.link4" href="" target="Competitors">Competitors</a></li>
-            <li id="Menu2.Opt5"><a id="Menu2.link5" href="" target="Generics">Generics</a></li>
-            <li id="Menu2.Opt6"><a id="Menu2.link6" href="" target="AIScope">AI Scope</a></li>
-            <li id="Menu2.Opt7"><a id="Menu2.link7" href="" target="SalesOutliers">Sales Outliers</a></li>
+            <li id="Menu2.Opt3"><a id="Menu2.link3" href="" data-uid="AA783780A70F76CA7E8B80A9E6C757C7" target="Lifecycle">Lifecycle</a></li>
+            <li id="Menu2.Opt4"><a id="Menu2.link4" href="" data-uid="6BA87A01F01381CD8BBACF2D8E99BDD6" target="Competitors">Competitors</a></li>
+            <li id="Menu2.Opt5"><a id="Menu2.link5" href="" data-uid="89809201F013A17E9A0A70468F5FCD75" target="Generics">Generics</a></li>
+            <li id="Menu2.Opt6"><a id="Menu2.link6" href="" data-uid="5696F07AACC081BDC89EF07A4040F0E" target="AIScope">AI Scope</a></li>
+            <li id="Menu2.Opt7"><a id="Menu2.link7" href="" data-uid="90702D80F8E9136C5AE597B454F48CE2" target="SalesOutliers">Sales Outliers</a></li>
           </ul>
         </div>
 
@@ -389,8 +389,8 @@
             </small>
           </div>
           <ul id="Menu3UL">
-            <li id="Menu3.Opt1"><a id="Menu3.link1" href="" target="CashForecasting">Cash Forecasting</a></li>
-            <li id="Menu3.Opt2"><a id="Menu3.link2" href="" target="CashOutliers">Cash Outliers</a></li>
+            <li id="Menu3.Opt1"><a id="Menu3.link1" href="" data-uid="317816820C92BD2FD1E046A87F393039" target="CashForecasting">Cash Forecasting</a></li>
+            <li id="Menu3.Opt2"><a id="Menu3.link2" href="" data-uid="7FC0FD822A6429EA4A0922852D2CB93F" target="CashOutliers">Cash Outliers</a></li>
           </ul>
         </div>
         
@@ -410,13 +410,13 @@
           </div>
           <ul id="Menu4UL">
             <!-- <li id="Menu4.Opt1"><a id="Menu4.link1" href="" target="InputCheckpoint">Input Checkpoint</a></li> -->
-            <li id="Menu4.Opt2"><a id="Menu4.link2" href="" target="PriceAssumptions">Price Analytics</a></li>
-            <li id="Menu4.Opt7"><a id="Menu4.link7" href="" target="SKUAssumptions">SKU Assumptions</a></li>
-            <li id="Menu4.Opt3"><a id="Menu4.link3" href="" target="BrandEvents">Brand Events</a></li>
-            <li id="Menu4.Opt4"><a id="Menu4.link4" href="" target="RunAnalytics">Run over Run Analytics</a></li>
+            <li id="Menu4.Opt2"><a id="Menu4.link2" href="" data-uid="3B582A82D6B79ADF020C593651ADD9AF" target="PriceAssumptions">Price Analytics</a></li>
+            <li id="Menu4.Opt7"><a id="Menu4.link7" href="" data-uid="FB080F822E4AAA87F2BFDFBED09CF170" target="SKUAssumptions">SKU Assumptions</a></li>
+            <li id="Menu4.Opt3"><a id="Menu4.link3" href="" data-uid="F4286D822A63B89DD8807713F6A192A0" target="BrandEvents">Brand Events</a></li>
+            <li id="Menu4.Opt4"><a id="Menu4.link4" href="" data-uid="66005804C15A3DBD5137A05F1AD177A9" target="RunAnalytics">Run over Run Analytics</a></li>
             <!-- <li id="Menu4.Opt4"><a id="Menu4.link4" href="" target="Competitors">Competitors</a></li> -->
             <!-- <li id="Menu4.Opt5"><a id="Menu4.link5" href="" target="KeyDrivers">Key Drivers</a></li> -->
-            <li id="Menu4.Opt6"><a id="Menu4.link6" href="" target="WorkdayCalendar">Workday Calendar</a></li>
+            <li id="Menu4.Opt6"><a id="Menu4.link6" href="" data-uid="ECF02E06DA31176301716B83B39E0563" target="WorkdayCalendar">Workday Calendar</a></li>
           </ul>
         </div>
 
@@ -441,14 +441,14 @@
             </small>
           </div>
           <ul id="MenuAdminUL">
-            <li id="MenuAdmin.Opt1"><a id="MenuAdmin.link1" href="" target="UserStatistics">User Statistics</a></li>
-            <li id="MenuAdmin.Opt5"><a id="MenuAdmin.link2" href="" target="FlexiLaunchpad">AI Flex Launch pad</a></li>
+            <li id="MenuAdmin.Opt1"><a id="MenuAdmin.link1" href="" data-uid="44885E06DA30BA403C1A62486262E984" target="UserStatistics">User Statistics</a></li>
+            <li id="MenuAdmin.Opt5"><a id="MenuAdmin.link2" href="" data-uid="E5E804069B094A7D0A00F91DFAFB725C" target="FlexiLaunchpad">AI Flex Launch pad</a></li>
             <!-- <li id="MenuAdmin.Opt2"><a id="MenuAdmin.link2" href="" target="Cluster">Cluster</a></li> -->
-            <li id="MenuAdmin.Opt3"><a id="MenuAdmin.link3" href="" target="Flatfile">Flatfile Uploads</a></li>
+            <li id="MenuAdmin.Opt3"><a id="MenuAdmin.link3" href="" data-uid="820056878CEAA9B770B7BDA7310D9253" target="Flatfile">Flatfile Uploads</a></li>
             <!--<li id="MenuAdmin.Opt4"><a id="MenuAdmin.link4" href="" target="RunAnalytics">Run over Run Analytics</a></li>-->
-            
-            <li id="MenuAdmin.Opt5"><a id="MenuAdmin.link5" href="" target="SingleGX">Single GX Scenario</a></li>
-            <li id="MenuAdmin.Opt6"><a id="MenuAdmin.link6" href="" target="MultiGX">Multi GX Scenario</a></li>
+
+            <li id="MenuAdmin.Opt5"><a id="MenuAdmin.link5" href="" data-uid="4F488C069B0AD4E924A034C96E2553AF" target="SingleGX">Single GX Scenario</a></li>
+            <li id="MenuAdmin.Opt6"><a id="MenuAdmin.link6" href="" data-uid="20C993035FB23F1CC46E42D5B3A44E8F" target="MultiGX">Multi GX Scenario</a></li>
           </ul>
         </div>
       </nav>
@@ -1233,420 +1233,75 @@
     urlDefinedParameters = "/?url_api=true&view_id=appBuilding";
 
     // =========================================================================================================================
-    // =========================================================================================================================
-    
-    // let menu1_href1 = "2CB86107C80A55E359F9D229D4FE4F8C"; //Proxy Sales - Sales Outlook
-    // let menu1_href1 = "78D0008242D0C55256839C3C457B854B"; //Proxy Sales - Sales Outlook
-    let menu1_href1 = "FC5030841BFB6B4DFB4C85F6C7F43068"; //Proxy Sales - Sales Outlook
-    menu1_link1.setAttribute("href",urlWithoutID + '/aa/' + menu1_href1);
-    menu1_link1.onclick = function() {
-      let currentURL = urlWithoutID + '/aa/' + menu1_href1 + urlDefinedParameters + _URLParameter_value;
-      if (_URLParameter_value !== previousURL && previousURL !== ""){
-        var win = window.open(currentURL, "ProxySales");
-        win.location.reload(); 
-      }
-      previousURL = _URLParameter_value;
-    };
-
-    // let menu1_href2 = "549876079A03223EB3509FA8F67EFE3B"; // AI Performance
-    let menu1_href2 = "BB9010841BFB53F0E8F6EAEFE0CA932E"; // AI Performance
-    menu1_link2.setAttribute("href",urlWithoutID + '/aa/' + menu1_href2);
-    menu1_link2.onclick = function() {
-      let currentURL = urlWithoutID + '/aa/' + menu1_href2 + urlDefinedParameters + _URLParameter_value;
-      if (_URLParameter_value !== previousURL && previousURL !== ""){
-        var win = window.open(currentURL, "AIPerformance");
-        win.location.reload(); 
-      }
-      previousURL = _URLParameter_value;
-    };
-
-    // let menu1_href2 = "C888107C80F893D5BCBFB9A7D665542"; // Forecast Accuracy
-    // menu1_link2.setAttribute("href",urlWithoutID + '/aa/' + menu1_href2);
-    // menu1_link2.onclick = function() {
-    //   let currentURL = urlWithoutID + '/aa/' + menu1_href2 + urlDefinedParameters + _URLParameter_value;
-    //   if (_URLParameter_value !== previousURL && previousURL !== ""){
-    //     var win = window.open(currentURL, "ForecastAccuracy");
-    //     win.location.reload(); 
-    //   }
-    //   previousURL = _URLParameter_value;
-    // };
-
-
-    // let menu1_href3 = "22180E04DC8D1E73331D078436435475"; // PVM
-    // menu1_link3.setAttribute("href",urlWithoutID + '/aa/' + menu1_href3);
-    // menu1_link3.onclick = function() {
-    //   let currentURL = urlWithoutID + '/aa/' + menu1_href3 + urlDefinedParameters + _URLParameter_value;
-    //   if (_URLParameter_value !== previousURL && previousURL !== ""){
-    //     var win = window.open(currentURL, "PVM");
-    //     win.location.reload(); 
-    //   }
-    //   previousURL = _URLParameter_value;
-    // };
-
-    // let menu1_href4 = ""; // ROPs
-    // menu1_link4.setAttribute("href",urlWithoutID + '/aa/' + menu1_href4 );
-    // menu1_link4.onclick = function() {
-    //   let currentURL = urlWithoutID + '/aa/' + menu1_href4 + urlDefinedParameters + _URLParameter_value;
-    //   if (_URLParameter_value !== previousURL && previousURL !== ""){
-    //     var win = window.open(currentURL, "ROPs");
-    //     win.location.reload(); 
-    //   }
-    //   previousURL = _URLParameter_value;
-    // };
-
-    // =========================================================================================================================
+    // ============= Set href attributes and onclick handlers dynamically from MENU_CONFIG JSON ==============
     // =========================================================================================================================
 
-    let menu2_href1 = "61309201F013FA429549454EF50F3B06"; // Sales Forecasting
-    menu2_link1.setAttribute("href",urlWithoutID + '/aa/' + menu2_href1 + urlDefinedParameters + _URLParameter_value);
-    menu2_link1.onclick = function() {
-      let currentURL = urlWithoutID + '/aa/' + menu2_href1 + urlDefinedParameters + _URLParameter_value;
-      if (_URLParameter_value !== previousURL && previousURL !== ""){
-        var win = window.open(currentURL, "SalesForecasting");
-        win.location.reload(); 
-      }
-      previousURL = _URLParameter_value;
-    };
+    // Get all links with data-uid attributes
+    const allLinks = that._shadowRoot.querySelectorAll('a[data-uid]');
 
-    
+    allLinks.forEach(link => {
+      const uid = link.getAttribute('data-uid');
+      const target = link.getAttribute('target');
 
-    // let menu2_href2 = "13B80E820C93141256512A40A4C03163"; // Launches
-    // let menu2_href2 = "D8A016822158614F2370A4C8F4F604B6"; // Launches
-    // menu2_link2.setAttribute("href",urlWithoutID + '/aa/' + menu2_href2 + urlDefinedParameters + _URLParameter_value);
-    // // menu2_link2.setAttribute("href", "https://plai.gaia.novartis.net/componentsAnalysis?bu=232131032&frequency=1&isBrandGroupLevelForecast=false&activeScopeId=44&brands=60202&ai-version=45&variable-launches=2&activeTabLaunches=feature_plot&version=1%7C36%7C8&currency=2&ranges=2025-01-01T00%3A00%3A00.000Z%7C2025-05-01T00%3A00%3A00.000Z&launches-pt-treshold=1");
-    // menu2_link2.onclick = function() {
-    //   let currentURL = urlWithoutID + '/aa/' + menu2_href2 + urlDefinedParameters + _URLParameter_value;
-    //   if (_URLParameter_value !== previousURL && previousURL !== ""){
-    //     var win = window.open(currentURL, "Launches");
-    //     win.location.reload(); 
-    //   }
-    //   previousURL = _URLParameter_value;
-    // };
+      // Set href attribute
+      link.setAttribute("href", urlWithoutID + '/aa/' + uid);
 
-    let menu2_href3 = "AA783780A70F76CA7E8B80A9E6C757C7"; // Lifecycle
-    menu2_link3.setAttribute("href",urlWithoutID + '/aa/' + menu2_href3 + urlDefinedParameters + _URLParameter_value);
-    menu2_link3.onclick = function() {
-      let currentURL = urlWithoutID + '/aa/' + menu2_href3 + urlDefinedParameters + _URLParameter_value;
-      if (_URLParameter_value !== previousURL && previousURL !== ""){
-        var win = window.open(currentURL, "Lifecycle");
-        win.location.reload(); 
-      }
-      previousURL = _URLParameter_value;
-    };
-
-
-    let menu2_href4 = "6BA87A01F01381CD8BBACF2D8E99BDD6"; // Competitor
-    menu2_link4.setAttribute("href",urlWithoutID + '/aa/' + menu2_href4 + urlDefinedParameters + _URLParameter_value);
-    menu2_link4.onclick = function() {
-      let currentURL = urlWithoutID + '/aa/' + menu2_href4 + urlDefinedParameters + _URLParameter_value;
-      if (_URLParameter_value !== previousURL && previousURL !== ""){
-        var win = window.open(currentURL, "Competitors");
-        win.location.reload(); 
-      }
-      previousURL = _URLParameter_value;
-    };
-
-    let menu2_href5 = "89809201F013A17E9A0A70468F5FCD75"; // Generics
-    menu2_link5.setAttribute("href",urlWithoutID + '/aa/' + menu2_href5 + urlDefinedParameters + _URLParameter_value);
-    menu2_link5.onclick = function() {
-      let currentURL = urlWithoutID + '/aa/' + menu2_href5 + urlDefinedParameters + _URLParameter_value;
-      if (_URLParameter_value !== previousURL && previousURL !== ""){
-        var win = window.open(currentURL, "Generics");
-        win.location.reload(); 
-      }
-      previousURL = _URLParameter_value;
-    };
-
-    let menu2_href6 = "5696F07AACC081BDC89EF07A4040F0E"; // AI Scope
-    menu2_link6.setAttribute("href",urlWithoutID + '/aa/' + menu2_href6 + urlDefinedParameters + _URLParameter_value);
-    menu2_link6.onclick = function() {
-      let currentURL = urlWithoutID + '/aa/' + menu2_href6 + urlDefinedParameters + _URLParameter_value;
-      if (_URLParameter_value !== previousURL && previousURL !== ""){
-        var win = window.open(currentURL, "AIScope");
-        win.location.reload(); 
-      }
-      previousURL = _URLParameter_value;
-    };
-
-    let menu2_href7 = "90702D80F8E9136C5AE597B454F48CE2"; // Sales Outliers
-    menu2_link7.setAttribute("href",urlWithoutID + '/aa/' + menu2_href7 + urlDefinedParameters + _URLParameter_value);
-    menu2_link7.onclick = function() {
-      let currentURL = urlWithoutID + '/aa/' + menu2_href7 + urlDefinedParameters + _URLParameter_value;
-      if (_URLParameter_value !== previousURL && previousURL !== ""){
-        var win = window.open(currentURL, "SalesOutliers");
-        win.location.reload(); 
-      }
-      previousURL = _URLParameter_value;
-    };
-
-    // =========================================================================================================================
-    // =========================================================================================================================
- 
-    let menu3_href1 = "317816820C92BD2FD1E046A87F393039"; // Cash Forecasting
-    menu3_link1.setAttribute("href",urlWithoutID + '/aa/' + menu3_href1 + urlDefinedParameters + _URLParameter_value);
-    //menu3_link1.setAttribute("href", "https://plai.gaia.novartis.net/CashSummary?regions=2222111&account=1&period=0&ai-version=45&version=36&currency=2");
-    menu3_link1.onclick = function() {
-      let currentURL = urlWithoutID + '/aa/' + menu3_href1 + urlDefinedParameters + _URLParameter_value;
-      if (_URLParameter_value !== previousURL && previousURL !== ""){
-        var win = window.open(currentURL, "CashForecasting");
-        win.location.reload(); 
-      }
-      previousURL = _URLParameter_value;
-    };
-
-    let menu3_href2 = "7FC0FD822A6429EA4A0922852D2CB93F"; // Cash Outliers
-    menu3_link2.setAttribute("href",urlWithoutID + '/aa/' + menu3_href2 + urlDefinedParameters + _URLParameter_value);
-    menu3_link2.onclick = function() {
-      let currentURL = urlWithoutID + '/aa/' + menu3_href2 + urlDefinedParameters + _URLParameter_value;
-      if (_URLParameter_value !== previousURL && previousURL !== ""){
-        var win = window.open(currentURL, "CashOutliers");
-        win.location.reload(); 
-      }
-      previousURL = _URLParameter_value;
-    };
-
-    // =========================================================================================================================
-    // =========================================================================================================================
-
-    // let menu4_href1 = ""; // Input Checkpoint
-    // menu4_link1.setAttribute("href",urlWithoutID + '/aa/' + menu4_href1);
-    // menu4_link1.onclick = function() {
-    //   let currentURL = urlWithoutID + '/aa/' + menu4_href1 + urlDefinedParameters + _URLParameter_value;
-    //   if (_URLParameter_value !== previousURL && previousURL !== ""){
-    //     var win = window.open(currentURL, "InputCheckpoint");
-    //     win.location.reload(); 
-    //   }
-    //   previousURL = _URLParameter_value;
-    // };
-
-    // let menu4_href2 = "5D316F07AACD59DCE55CF2C5115CD607"; // Price Assumptions Old Price
-    // let menu4_href2 = "4A9833864AA513C570C7A90DA483571E"; // Price Assumptions - Old
-    let menu4_href2 = "3B582A82D6B79ADF020C593651ADD9AF"; // Price Assumptions
-    menu4_link2.setAttribute("href",urlWithoutID + '/aa/' + menu4_href2 + urlDefinedParameters + _URLParameter_value);
-    menu4_link2.onclick = function() {
-      let currentURL = urlWithoutID + '/aa/' + menu4_href2 + urlDefinedParameters + _URLParameter_value;
-      if (_URLParameter_value !== previousURL && previousURL !== ""){
-        var win = window.open(currentURL, "PriceAssumptions");
-        win.location.reload(); 
-      }
-      previousURL = _URLParameter_value;
-    };
-
-    let menu4_href3 = "F4286D822A63B89DD8807713F6A192A0"; // Brand Events
-    menu4_link3.setAttribute("href",urlWithoutID + '/aa/' + menu4_href3 + urlDefinedParameters + _URLParameter_value);
-    menu4_link3.onclick = function() {
-      let currentURL = urlWithoutID + '/aa/' + menu4_href3 + urlDefinedParameters + _URLParameter_value;
-      if (_URLParameter_value !== previousURL && previousURL !== ""){
-        var win = window.open(currentURL, "BrandEvents");
-        win.location.reload(); 
-      }
-      previousURL = _URLParameter_value;
-    };
-
-    let menu4_href4 = "66005804C15A3DBD5137A05F1AD177A9"; // Run over Run Analytics
-    menu4_link4.setAttribute("href",urlWithoutID + '/aa/' + menu4_href4 + urlDefinedParameters + _URLParameter_value);
-    menu4_link4.onclick = function() {
-      let currentURL = urlWithoutID + '/aa/' + menu4_href4 + urlDefinedParameters + _URLParameter_value;
-      if (_URLParameter_value !== previousURL && previousURL !== ""){
-        var win = window.open(currentURL, "RunAnalytics");
-        win.location.reload(); 
-      }
-      previousURL = _URLParameter_value;
-    };
-
-
-    
-
-    // let menu4_href4 = "F08895822A61FBAD211A2C68F4B1A4A2"; // Competitors
-    // menu4_link4.setAttribute("href",urlWithoutID + '/aa/' + menu4_href4 + urlDefinedParameters + _URLParameter_value);
-    // menu4_link4.onclick = function() {
-    //   let currentURL = urlWithoutID + '/aa/' + menu4_href4 + urlDefinedParameters + _URLParameter_value;
-    //   if (_URLParameter_value !== previousURL && previousURL !== ""){
-    //     var win = window.open(currentURL, "Competitors");
-    //     win.location.reload(); 
-    //   }
-    //   previousURL = _URLParameter_value;
-    // };
-
-    // let menu4_href5 = "488895822A656197B4B73B6551B27E42"; // Key Drivers
-    // menu4_link5.setAttribute("href",urlWithoutID + '/aa/' + menu4_href5 + urlDefinedParameters + _URLParameter_value);
-    // menu4_link5.onclick = function() {
-    //   let currentURL = urlWithoutID + '/aa/' + menu4_href5 + urlDefinedParameters + _URLParameter_value;
-    //   if (_URLParameter_value !== previousURL && previousURL !== ""){
-    //     var win = window.open(currentURL, "KeyDrivers");
-    //     win.location.reload(); 
-    //   }
-    //   previousURL = _URLParameter_value;
-    // };
-
-    let menu4_href6 = "ECF02E06DA31176301716B83B39E0563"; // Workday Calendar
-    menu4_link6.setAttribute("href",urlWithoutID + '/aa/' + menu4_href6 + urlDefinedParameters + _URLParameter_value);
-    menu4_link6.onclick = function() {
-      let currentURL = urlWithoutID + '/aa/' + menu4_href6 + urlDefinedParameters + _URLParameter_value;
-      if (_URLParameter_value !== previousURL && previousURL !== ""){
-        var win = window.open(currentURL, "WorkdayCalendar");
-        win.location.reload(); 
-      }
-      previousURL = _URLParameter_value;
-    };
-
-    let menu4_href7 = "FB080F822E4AAA87F2BFDFBED09CF170"; // SKUAssumptions
-    menu4_link7.setAttribute("href",urlWithoutID + '/aa/' + menu4_href7 + urlDefinedParameters + _URLParameter_value);
-    menu4_link7.onclick = function() {
-      let currentURL = urlWithoutID + '/aa/' + menu4_href7 + urlDefinedParameters + _URLParameter_value;
-      if (_URLParameter_value !== previousURL && previousURL !== ""){
-        var win = window.open(currentURL, "SKUAssumptions");
-        win.location.reload(); 
-      }
-      previousURL = _URLParameter_value;
-    };
-
-    // =========================================================================================================================
-    // =========================================================================================================================
-    let menuAdmin_href1 = "";
-    if(that._shadowRoot.getElementById("container-admin")){
-      menuAdmin_href1 = "44885E06DA30BA403C1A62486262E984"; // User Statistics
-      menuAdmin_link1.setAttribute("href",urlWithoutID + '/aa/' + menuAdmin_href1 + urlDefinedParameters + _URLParameter_value);
-      menuAdmin_link1.onclick = function() {
-        let currentURL = urlWithoutID + '/aa/' + menuAdmin_href1 + urlDefinedParameters + _URLParameter_value;
+      // Set onclick handler
+      link.onclick = function() {
+        let currentURL = urlWithoutID + '/aa/' + uid + urlDefinedParameters + _URLParameter_value;
         if (_URLParameter_value !== previousURL && previousURL !== ""){
-          var win = window.open(currentURL, "UserStatistics");
+          var win = window.open(currentURL, target);
           win.location.reload();
         }
         previousURL = _URLParameter_value;
       };
-    }
-
-    let menuAdmin_href2 = "";
-    if(that._shadowRoot.getElementById("container-admin")){
-      menuAdmin_href2 = "E5E804069B094A7D0A00F91DFAFB725C"; // AI Flex Launch Pad
-      menuAdmin_link2.setAttribute("href",urlWithoutID + '/aa/' + menuAdmin_href2 + urlDefinedParameters + _URLParameter_value);
-      menuAdmin_link2.onclick = function() {
-        let currentURL = urlWithoutID + '/aa/' + menuAdmin_href2 + urlDefinedParameters + _URLParameter_value;
-        if (_URLParameter_value !== previousURL && previousURL !== ""){
-          var win = window.open(currentURL, "FlexiLaunchpad");
-          win.location.reload();
-        }
-        previousURL = _URLParameter_value;
-      };
-    }
-
-    
-    /*
-    let menuAdmin_href2 = "";
-    if(that._shadowRoot.getElementById("container-admin")){
-      menuAdmin_href2 = "26104E878CEE1863F52A3AAB1F82FDD5"; // Cluster & Cut-Off
-      menuAdmin_link2.setAttribute("href",urlWithoutID + '/aa/' + menuAdmin_href2 + urlDefinedParameters + _URLParameter_value);
-      menuAdmin_link2.onclick = function() {
-        let currentURL = urlWithoutID + '/aa/' + menuAdmin_href2 + urlDefinedParameters + _URLParameter_value;
-        if (_URLParameter_value !== previousURL && previousURL !== ""){
-          var win = window.open(currentURL, "Cluster");
-          win.location.reload();
-        }
-        previousURL = _URLParameter_value;
-      };
-    }
-    */
-    let menuAdmin_href3 = "";
-    if(that._shadowRoot.getElementById("container-admin")){
-      menuAdmin_href3 = "820056878CEAA9B770B7BDA7310D9253"; // Prices FF Download aka Flatfile Uploads
-      menuAdmin_link3.setAttribute("href",urlWithoutID + '/aa/' + menuAdmin_href3 + urlDefinedParameters + _URLParameter_value);
-      menuAdmin_link3.onclick = function() {
-        let currentURL = urlWithoutID + '/aa/' + menuAdmin_href3 + urlDefinedParameters + _URLParameter_value;
-        if (_URLParameter_value !== previousURL && previousURL !== ""){
-          var win = window.open(currentURL, "Flatfile");
-          win.location.reload();
-        }
-        previousURL = _URLParameter_value;
-      };
-    }
-
-
-    
-    // let menuAdmin_href4 = "";
-    // if(that._shadowRoot.getElementById("container-admin")){
-    //   menuAdmin_href4 = "E5E804069B094A7D0A00F91DFAFB725C"; // AI Flex Launchpad
-    //   menuAdmin_link4.setAttribute("href",urlWithoutID + '/aa/' + menuAdmin_href4 + urlDefinedParameters + _URLParameter_value);
-    //   menuAdmin_link4.onclick = function() {
-    //     let currentURL = urlWithoutID + '/aa/' + menuAdmin_href4 + urlDefinedParameters + _URLParameter_value;
-    //     if (_URLParameter_value !== previousURL && previousURL !== ""){
-    //       var win = window.open(currentURL, "AIFlexLaunchpad");
-    //       win.location.reload();
-    //     }
-    //     previousURL = _URLParameter_value;
-    //   };
-    // }
-
-    // Old href4
-    // let menuAdmin_href4 = "";
-    // if(that._shadowRoot.getElementById("container-admin")){
-    //   menuAdmin_href4 = "66005804C15A3DBD5137A05F1AD177A9"; // Run over Run Analytics
-    //   menuAdmin_link4.setAttribute("href",urlWithoutID + '/aa/' + menuAdmin_href4 + urlDefinedParameters + _URLParameter_value);
-    //   menuAdmin_link4.onclick = function() {
-    //     let currentURL = urlWithoutID + '/aa/' + menuAdmin_href4 + urlDefinedParameters + _URLParameter_value;
-    //     if (_URLParameter_value !== previousURL && previousURL !== ""){
-    //       var win = window.open(currentURL, "RunAnalytics");
-    //       win.location.reload();
-    //     }
-    //     previousURL = _URLParameter_value;
-    //   };
-    // }
-
-    let menuAdmin_href5 = "";
-    if(that._shadowRoot.getElementById("container-admin")){
-      menuAdmin_href5 = "4F488C069B0AD4E924A034C96E2553AF"; // Single GX Scenario
-      menuAdmin_link5.setAttribute("href",urlWithoutID + '/aa/' + menuAdmin_href5 + urlDefinedParameters + _URLParameter_value);
-      menuAdmin_link5.onclick = function() {
-        let currentURL = urlWithoutID + '/aa/' + menuAdmin_href5 + urlDefinedParameters + _URLParameter_value;
-        if (_URLParameter_value !== previousURL && previousURL !== ""){
-          var win = window.open(currentURL, "SingleGX");
-          win.location.reload();
-        }
-        previousURL = _URLParameter_value;
-      };
-    }
-
-    let menuAdmin_href6 = "";
-    if(that._shadowRoot.getElementById("container-admin")){
-      menuAdmin_href6 = "20C993035FB23F1CC46E42D5B3A44E8F"; // Multi GX Scenario
-      menuAdmin_link6.setAttribute("href",urlWithoutID + '/aa/' + menuAdmin_href6 + urlDefinedParameters + _URLParameter_value);
-      menuAdmin_link6.onclick = function() {
-        let currentURL = urlWithoutID + '/aa/' + menuAdmin_href6 + urlDefinedParameters + _URLParameter_value;
-        if (_URLParameter_value !== previousURL && previousURL !== ""){
-          var win = window.open(currentURL, "MultiGX");
-          win.location.reload();
-        }
-        previousURL = _URLParameter_value;
-      };
-
-    }
+    });
 
     // =========================================================================================================================
+    // ============= Highlight active menu item based on current URL ==============
     // =========================================================================================================================
 
-    if (UrlIDString == menu1_href1){
-      menu1.classList.add("setSelectedParent");
-      icon1.classList.add("path");
-      menu1_link1.classList.add("setSelectedItem");
-      menu1_link1.addEventListener('click', function (event) {
-        event.preventDefault();
-      })
-      span_arrow[0].style.stroke="#fff";
-    }else {
-      menu1_link1.classList.remove("setSelectedItem");
-    }
+    allLinks.forEach(link => {
+      const uid = link.getAttribute('data-uid');
 
-    if (UrlIDString == menu1_href2){
-      menu1.classList.add("setSelectedParent");
-      icon1.classList.add("path");
-      menu1_link2.classList.add("setSelectedItem");
-      menu1_link2.addEventListener('click', function (event) {
-        event.preventDefault();
-      })
-      span_arrow[0].style.stroke="#fff";
-    }else {
-      menu1_link2.classList.remove("setSelectedItem");
-    }
+      if (UrlIDString == uid) {
+        // Find the parent menu container and icon
+        const parentLi = link.closest('li');
+        const parentUl = parentLi ? parentLi.closest('ul') : null;
+        const menuId = parentUl ? parentUl.id.replace('UL', '') : null;
+
+        if (menuId) {
+          const menuContainer = that._shadowRoot.getElementById(menuId);
+          const iconId = menuId.replace('Menu', 'icon');
+          const icon = that._shadowRoot.getElementById(iconId);
+
+          // Highlight parent menu
+          if (menuContainer) {
+            menuContainer.classList.add("setSelectedParent");
+          }
+
+          // Highlight icon
+          if (icon) {
+            icon.classList.add("path");
+          }
+
+          // Highlight the link itself
+          link.classList.add("setSelectedItem");
+          link.addEventListener('click', function (event) {
+            event.preventDefault();
+          });
+
+          // Update arrow color
+          const arrows = that._shadowRoot.querySelectorAll('.span-arrow');
+          const menuNum = menuId.replace('Menu', '').replace('Admin', '');
+          if (menuNum && arrows[menuNum - 1]) {
+            arrows[menuNum - 1].style.stroke = "#fff";
+          }
+        }
+      } else {
+        link.classList.remove("setSelectedItem");
+      }
+    });
 
     // if (UrlIDString == menu1_href3){
     //   menu1.classList.add("setSelectedParent");
