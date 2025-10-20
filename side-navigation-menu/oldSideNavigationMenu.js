@@ -1017,132 +1017,33 @@
 
   }
 
+  // ===========================
+  // SET SELECTED MENU ITEM & CONFIGURE HREFS
+  // ===========================
   function setSelectedFirstMenuItem(that){
-    
-    let menu1 = that._shadowRoot.getElementById("Menu1");
-    let menu2 = that._shadowRoot.getElementById("Menu2");
-    let menu3 = that._shadowRoot.getElementById("Menu3");
-    let menu4 = that._shadowRoot.getElementById("Menu4");
-    let menuAdmin = "";
-    if(that._shadowRoot.getElementById("container-admin")){
-      menuAdmin = that._shadowRoot.getElementById("MenuAdmin");
-    }
-
-    let menu1_button = that._shadowRoot.getElementById("Menu1.Button");
-    let menu2_button = that._shadowRoot.getElementById("Menu2.Button");
-    let menu3_button = that._shadowRoot.getElementById("Menu3.Button");
-    let menu4_button = that._shadowRoot.getElementById("Menu4.Button");
-    let menuAdmin_button = "";
-    if(that._shadowRoot.getElementById("container-admin")){
-      menuAdmin_button = that._shadowRoot.getElementById("MenuAdmin.Button");
-    }
-
-    let icon1 = that._shadowRoot.getElementById("icon1");
-    let icon2 = that._shadowRoot.getElementById("icon2");
-    let icon3 = that._shadowRoot.getElementById("icon3");
-    let icon4 = that._shadowRoot.getElementById("icon4");
-    let iconAdmin = "";
-    if(that._shadowRoot.getElementById("container-admin")){
-      iconAdmin = that._shadowRoot.getElementById("iconAdmin");
-    }
-    
-    let arrow = that._shadowRoot.querySelectorAll(".arrow");
-    let span_arrow = that._shadowRoot.querySelectorAll(".span-arrow")
-
-    let menu1_link1 = that._shadowRoot.getElementById("Menu1.link1");
-    let menu1_link2 = that._shadowRoot.getElementById("Menu1.link2");
-    // let menu1_link3 = that._shadowRoot.getElementById("Menu1.link3");
-    let menu1_link4 = that._shadowRoot.getElementById("Menu1.link4");
-    
-    let menu2_link1 = that._shadowRoot.getElementById("Menu2.link1");
-    // let menu2_link2 = that._shadowRoot.getElementById("Menu2.link2");
-    let menu2_link3 = that._shadowRoot.getElementById("Menu2.link3");
-    let menu2_link4 = that._shadowRoot.getElementById("Menu2.link4");
-    let menu2_link5 = that._shadowRoot.getElementById("Menu2.link5");
-    let menu2_link6 = that._shadowRoot.getElementById("Menu2.link6");
-    let menu2_link7 = that._shadowRoot.getElementById("Menu2.link7");
-
-    let menu3_link1 = that._shadowRoot.getElementById("Menu3.link1");
-    let menu3_link2 = that._shadowRoot.getElementById("Menu3.link2");
-
-    let menu4_link1 = that._shadowRoot.getElementById("Menu4.link1");
-    let menu4_link2 = that._shadowRoot.getElementById("Menu4.link2");
-    let menu4_link3 = that._shadowRoot.getElementById("Menu4.link3");
-    let menu4_link4 = that._shadowRoot.getElementById("Menu4.link4");
-    let menu4_link5 = that._shadowRoot.getElementById("Menu4.link5");
-    let menu4_link6 = that._shadowRoot.getElementById("Menu4.link6");
-    let menu4_link7 = that._shadowRoot.getElementById("Menu4.link7");
-    let menuAdmin_link1 = "";
-    let menuAdmin_link2 = "";
-    let menuAdmin_link3 = "";
-    let menuAdmin_link4 = "";
-    let menuAdmin_link5 = "";
-    let menuAdmin_link6 = "";
-
-    if(that._shadowRoot.getElementById("container-admin")){
-      menuAdmin_link1 = that._shadowRoot.getElementById("MenuAdmin.link1");
-      menuAdmin_link2 = that._shadowRoot.getElementById("MenuAdmin.link2");
-      menuAdmin_link3 = that._shadowRoot.getElementById("MenuAdmin.link3");
-      menuAdmin_link4 = that._shadowRoot.getElementById("MenuAdmin.link4");
-      menuAdmin_link5 = that._shadowRoot.getElementById("MenuAdmin.link5");
-      menuAdmin_link6 = that._shadowRoot.getElementById("MenuAdmin.link6");
-    }
-
-
-    // =========================================================================================================================
-    // =========================================================================================================================
-    // =========================================================================================================================
-
-    // This changes the URL
-    var windowURL = window.location.href;
-    let resultUrl = "";
-    let urlDefinedParameters = "";
-
-    let parameterString = windowURL.split('?')[1];
-    let queryString = new URLSearchParams(parameterString);
-    let URLParameterPair = [];
-    let arrayURLParameter = [];
-    for(let pair of queryString.entries()){
-      URLParameterPair = pair[0] + "=" + pair[1];
-      arrayURLParameter.push(URLParameterPair);
-    }
-    let uniqueArrayURLParameter = [...new Set(arrayURLParameter)];
-    function paramentersSAC(item) {
-      return item.toLowerCase().indexOf('p_') === 0;
-    }
-
-    let constParameters = uniqueArrayURLParameter.filter(paramentersSAC);
-
-    resultUrl = windowURL + uniqueArrayURLParameter.join('&');
 
     // ========================================================================================================================
+    // ======================================= Extract URL components =======================================
     // ========================================================================================================================
-    // ========================================================================================================================
-
-
-    // ========================================================================================================================
-    // ======================================= This gets the start of the URL before ID =======================================
-    // ========================================================================================================================
-
-    var windowURL = window.location.href;
-    let urlString = windowURL.split('/?')[0];
-    let queryUrlString = new URLSearchParams(urlString);
+    const windowURL = window.location.href;
+    const urlString = windowURL.split('/?')[0];
+    const queryUrlString = new URLSearchParams(urlString);
     let UrlStringPair = [];
+
     for(let pair of queryUrlString.entries()){
       UrlStringPair = pair[0];
     }
-    UrlSplitString = UrlStringPair.split('/');
-    UrlIDString = UrlSplitString[2];
 
-    let removeID = urlString.replaceAll(UrlSplitString[2]+"/", "");
+    const UrlSplitString = UrlStringPair.split('/');
+    const UrlIDString = UrlSplitString[2]; // Current page UID
 
+    const removeID = urlString.replaceAll(UrlSplitString[2]+"/", "");
     let urlWithoutID = removeID.replace(UrlStringPair, '');
 
-    let urlWithoutAppHTML = urlWithoutID.split('app.html')[0];
-    let urlAppHTML = urlWithoutID.split('app.html')[1];
+    const urlWithoutAppHTML = urlWithoutID.split('app.html')[0];
     urlWithoutID = urlWithoutAppHTML + 'app.html#/analyticapp?shellMode=embed&';
 
-    urlDefinedParameters = "/?url_api=true&view_id=appBuilding";
+    const urlDefinedParameters = "/?url_api=true&view_id=appBuilding";
 
     // =========================================================================================================================
     // ============= Set href attributes and onclick handlers dynamically from MENU_CONFIG JSON ==============
