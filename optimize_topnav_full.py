@@ -143,7 +143,7 @@ new_constructor = '''    /**
     }'''
 
 content = re.sub(old_constructor, new_constructor, content, flags=re.DOTALL)
-print("✓ Constructor optimized with event listener refactoring")
+print("[OK] Constructor optimized with event listener refactoring")
 
 # Optimize connectedCallback
 old_connected = r'''    //Fired when the widget is added to the html DOM of the page
