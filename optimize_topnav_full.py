@@ -78,7 +78,7 @@ replacement_html += '      </div>'
 ninedot_pattern = r'<div id="nineDotMenu" class="nineDotMenu"[^>]*>.*?</div>\s*(?=<div id="clipBoardMenu")'
 content = re.sub(ninedot_pattern, replacement_html + '\n      ', content, flags=re.DOTALL)
 
-print("✓ HTML template updated to use configuration objects")
+print("[OK] HTML template updated to use configuration objects")
 
 # Optimize the constructor
 old_constructor = r'''    constructor\(\) \{
