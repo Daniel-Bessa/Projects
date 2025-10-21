@@ -91,7 +91,7 @@ const CONFIG = {
             --bg-light-blue: var(--bg-light-blue);
             --text-primary: var(--text-primary);
             --text-secondary: var(--text-secondary);
-            --text-black: #000;
+            --text-black: var(--text-black);
             --text-inverse: var(--text-inverse);
             --success-green: var(--success-green);
             --accent-orange: #E74A21;
@@ -112,8 +112,8 @@ const CONFIG = {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-top: 1px solid #9E9E9E;
-            border-bottom: 1px solid #9E9E9E;
+            border-top: 1px solid var(--border-primary);
+            border-bottom: 1px solid var(--border-primary);
             background-color: var(--bg-primary);
             z-index: 99;
           }
@@ -135,7 +135,7 @@ const CONFIG = {
             cursor: pointer;
             width: 47px;
             height: 48px;
-            border-left: 1px solid #9E9E9E;
+            border-left: 1px solid var(--border-primary);
           }
           .button-menu a {
           }
@@ -159,7 +159,7 @@ const CONFIG = {
             float: right;
             width: 356px;
             height: 234px;
-            border: 1px solid #9E9E9E;
+            border: 1px solid var(--border-primary);
             margin-right: 138px;
           }
           .nineDotMenu span {
@@ -190,7 +190,7 @@ const CONFIG = {
             right: 140px;
             width: 288px;
             height: 240px;
-            border: 1px solid #9E9E9E;
+            border: 1px solid var(--border-primary);
             background-color: var(--bg-primary);
             background-size: 0px;
             background-image: none;
@@ -236,7 +236,7 @@ const CONFIG = {
             right: 284px;
             width: 288px;
             height: 240px;
-            border: 1px solid #9E9E9E;
+            border: 1px solid var(--border-primary);
             background-color: var(--bg-primary);
             background-size: 0px;
             background-image: none;
@@ -1453,7 +1453,7 @@ const CONFIG = {
         color: var(--text-secondary);
       }
       .userMenuPanel label {
-        color: #000;
+        color: var(--text-black);
       }
       .userMenuPanel .switch {
         position: relative;
