@@ -163,7 +163,7 @@ new_connected = '''    /**
     }'''
 
 content = re.sub(old_connected, new_connected, content)
-print("✓ connectedCallback optimized")
+print("[OK] connectedCallback optimized")
 
 # Optimize disconnectedCallback
 old_disconnected = r'''    //Fired when the widget is removed from the html DOM of the page \(e\.g\. by hide\)
