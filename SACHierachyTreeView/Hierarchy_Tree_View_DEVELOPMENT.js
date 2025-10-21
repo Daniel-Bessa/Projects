@@ -884,7 +884,6 @@
         if (!widgetInstanceMap.has(that)) {
             widgetInstanceCounter++;
             widgetInstanceMap.set(that, widgetInstanceCounter);
-            console.log(`[CW] Auto-assigned widget instance #${widgetInstanceCounter} to widget`);
         }
         
         // Always use the auto-assigned widget number (ignore any manual widgetno from payload)
@@ -1263,7 +1262,6 @@
         _filtervalue[that.widgetno - 1]     = filtervalue;
         // _filterValueDesc[that.widgetno - 1] = filterValueDesc;
         _filterinfo[that.widgetno - 1]      = filterinfo;
-        console.log("filterinfo", filterinfo);
         _dfnumber[that.widgetno - 1]        = dfnumber;
         _setModeInfo[that.widgetno]         = 1;
         _dfdesc[that.widgetno - 1]          = dfdesc;
@@ -3171,9 +3169,6 @@
                                     _SelectedTextDesc_Value = topmostNodesDec.length > 0 ? topmostNodesDec : listselecteddecUnique;
                                     _SelectedTextId_Value = topmostNodesId.length > 0 ? topmostNodesId : listselectedUnique;
 
-                                    console.log("[CW] Initial topmost selected nodes (ID):", _SelectedNode);
-                                    console.log("[CW] Initial topmost selected nodes (Desc):", _SelectedNodeDec);
-
                                     that._firePropertiesChanged();
                                     _setModeInfo[that.widgetno] = 0;
                                 }
@@ -3310,9 +3305,6 @@
                                 // Step 4: Update the selected node arrays with topmost nodes only
                                 _SelectedNode = topmostNodesId.length > 0 ? topmostNodesId : listselectedtest;
                                 _SelectedNodeDec = topmostNodesDec.length > 0 ? topmostNodesDec : listselecteddectest;
-
-                                console.log("[CW] Topmost selected nodes (ID):", _SelectedNode);
-                                console.log("[CW] Topmost selected nodes (Desc):", _SelectedNodeDec);
 
                                 that._firePropertiesChanged();
                             }, "0")    
