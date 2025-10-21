@@ -232,7 +232,7 @@ new_destroy = '''    /**
     }'''
 
 content = re.sub(old_destroy, new_destroy, content)
-print("✓ onCustomWidgetDestroy optimized")
+print("[OK] onCustomWidgetDestroy optimized")
 
 # Write the optimized file
 with open(r'C:\Users\iceco\Projects\TopNavigationBar\Top_Navigation_Bar.js', 'w', encoding='utf-8') as f:
