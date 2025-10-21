@@ -2101,69 +2101,29 @@
                                             let p = parentOf.get(selId);
                                             while (p) { ancestors.push(p); p = parentOf.get(p); }
 
-                                            // FIX: Use same logic as MultiSelect (_applySelectionOnly) - direct DOM manipulation
-                                            // Use setTimeout with longer delay to ensure this runs LAST
+                                            // DEBUG: Try setting ALL displayed nodes to expanded to see if CSS works
                                             setTimeout(() => {
-                                                console.log("[CW] SingleSelect setting icons - ancestors:", ancestors.length);
+                                                console.log("[CW] SingleSelect - setting ALL displayed nodes to EXPANDED");
 
-                                                // First, set all displayed nodes to collapsed (default state)
                                                 for (let i = 0; i < itemLis.length; i++) {
                                                     if (itemLis[i]?.classList.contains("displayed") && labels[i]) {
-                                                        labels[i].classList.add("collapsed");
-                                                        labels[i].classList.remove("expanded");
+                                                        labels[i].classList.remove("collapsed");
+                                                        labels[i].classList.add("expanded");
                                                         labels[i].setAttribute("data-sap-ui-icon-content", "");
+                                                        console.log("[CW] Set node", i, "to expanded");
                                                     }
                                                 }
 
-                                                // Then, set ancestors to expanded (override default)
-                                                for (const aid of ancestors) {
-                                                    const idx = indexById.get(aid);
-                                                    if (idx != null) {
-                                                        itemLis[idx]?.classList.add("displayed");
-                                                        itemLis[idx]?.classList.remove("disabled");
-                                                        if (labels[idx]) {
-                                                            console.log("[CW] Setting ancestor", idx, "to expanded");
-                                                            labels[idx].classList.add("expanded");
-                                                            labels[idx].classList.remove("collapsed");
-                                                            labels[idx].setAttribute("data-sap-ui-icon-content", "");
-
-                                                            // Debug: Check if class persists
-                                                            setTimeout(() => {
-                                                                const hasExpanded = labels[idx]?.classList.contains("expanded");
-                                                                const hasCollapsed = labels[idx]?.classList.contains("collapsed");
-                                                                console.log("[CW] After 100ms, ancestor", idx, "expanded:", hasExpanded, "collapsed:", hasCollapsed);
-                                                            }, 100);
-                                                        }
+                                                // Check after delay if it sticks
+                                                setTimeout(() => {
+                                                    let expandedCount = 0;
+                                                    let collapsedCount = 0;
+                                                    for (let i = 0; i < labels.length; i++) {
+                                                        if (labels[i]?.classList.contains("expanded")) expandedCount++;
+                                                        if (labels[i]?.classList.contains("collapsed")) collapsedCount++;
                                                     }
-                                                }
-
-                                                // Show every ancestor's direct children (siblings at each level) - collapsed
-                                                const shown = new Set();
-                                                for (const aid of ancestors) {
-                                                    const kids = childrenOf.get(aid) || [];
-                                                    for (const cid of kids) {
-                                                        const idx = indexById.get(cid);
-                                                        if (idx != null && !shown.has(idx)) {
-                                                            shown.add(idx);
-                                                            itemLis[idx]?.classList.add("displayed");
-                                                            itemLis[idx]?.classList.remove("disabled");
-                                                            if (labels[idx]) {
-                                                                labels[idx].classList.add("collapsed");
-                                                                labels[idx].classList.remove("expanded");
-                                                                labels[idx].setAttribute("data-sap-ui-icon-content", "");
-                                                            }
-                                                        }
-                                                    }
-                                                }
-
-                                                // Show the selected row with collapsed icon (same as MultiSelect children)
-                                                itemLis[selIndex]?.classList.add("displayed");
-                                                itemLis[selIndex]?.classList.remove("disabled");
-                                                if (labels[selIndex]) {
-                                                    labels[selIndex].classList.add("collapsed");
-                                                    labels[selIndex].classList.remove("expanded");
-                                                    labels[selIndex].setAttribute("data-sap-ui-icon-content", "");
-                                                }
+                                                    console.log("[CW] After 100ms - expanded:", expandedCount, "collapsed:", collapsedCount);
+                                                }, 100);
                                             }, 200); // setTimeout with 200ms delay
                                         }
                                     })();
