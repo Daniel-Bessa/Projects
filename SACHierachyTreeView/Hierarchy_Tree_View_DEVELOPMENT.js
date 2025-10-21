@@ -2104,6 +2104,7 @@
 
                                             // FIX: Use same logic as MultiSelect (_applySelectionOnly) - direct DOM manipulation
                                             requestAnimationFrame(() => {
+                                                console.log("[CW] SingleSelect setting icons - ancestors:", ancestors.length);
                                                 // Show and expand all ancestors (same as MultiSelect)
                                                 for (const aid of ancestors) {
                                                     const idx = indexById.get(aid);
@@ -2111,6 +2112,7 @@
                                                         itemLis[idx]?.classList.add("displayed");
                                                         itemLis[idx]?.classList.remove("disabled");
                                                         if (labels[idx]) {
+                                                            console.log("[CW] Setting ancestor", idx, "to expanded");
                                                             labels[idx].classList.add("expanded");
                                                             labels[idx].classList.remove("collapsed");
                                                             labels[idx].setAttribute("data-sap-ui-icon-content", "");
