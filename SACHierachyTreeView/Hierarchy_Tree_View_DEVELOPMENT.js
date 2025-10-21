@@ -2103,8 +2103,11 @@
                                             while (p) { ancestors.push(p); p = parentOf.get(p); }
 
                                             // FIX: Use same logic as MultiSelect (_applySelectionOnly) - direct DOM manipulation
+                                            // Use double requestAnimationFrame + setTimeout to ensure this runs LAST
                                             requestAnimationFrame(() => {
-                                                console.log("[CW] SingleSelect setting icons - ancestors:", ancestors.length);
+                                                requestAnimationFrame(() => {
+                                                    setTimeout(() => {
+                                                        console.log("[CW] SingleSelect setting icons - ancestors:", ancestors.length);
                                                 // Show and expand all ancestors (same as MultiSelect)
                                                 for (const aid of ancestors) {
                                                     const idx = indexById.get(aid);
@@ -2154,7 +2157,9 @@
                                                     labels[selIndex].classList.remove("expanded");
                                                     labels[selIndex].setAttribute("data-sap-ui-icon-content", "");
                                                 }
-                                            });
+                                                    }, 0); // setTimeout
+                                                }); // inner requestAnimationFrame
+                                            }); // outer requestAnimationFrame
                                         }
                                     })();
 
