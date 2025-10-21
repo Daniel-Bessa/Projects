@@ -580,6 +580,10 @@ let tmpl = document.createElement('template');
       });
     }
 
+    /**
+     * Lifecycle: Called when the widget is added to the DOM
+     * Initializes the widget and loads its initial state
+     */
     connectedCallback() {
       this.firstConnection = true;
       loadthis(this);
