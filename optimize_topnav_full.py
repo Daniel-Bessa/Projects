@@ -238,7 +238,7 @@ print("[OK] onCustomWidgetDestroy optimized")
 with open(r'C:\Users\iceco\Projects\TopNavigationBar\Top_Navigation_Bar.js', 'w', encoding='utf-8') as f:
     f.write(content)
 
-print("\n✓ File successfully optimized and written to disk")
+print("\n[OK] File successfully optimized and written to disk")
 print(f"\nSummary:")
 print(f"- Extracted {len(matches)} SVG icons")
 print(f"- Extracted {len(matches)} menu links")
