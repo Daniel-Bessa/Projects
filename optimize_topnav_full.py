@@ -196,7 +196,7 @@ new_before = '''    /**
     }'''
 
 content = re.sub(old_before, new_before, content)
-print("✓ onCustomWidgetBeforeUpdate optimized")
+print("[OK] onCustomWidgetBeforeUpdate optimized")
 
 # Optimize onCustomWidgetAfterUpdate
 old_after = r'''    //When the custom widget is updated, the Custom Widget SDK framework executes this function after the update
