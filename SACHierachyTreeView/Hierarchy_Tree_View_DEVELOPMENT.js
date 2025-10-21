@@ -2114,14 +2114,46 @@
                                                     }
                                                 }
 
-                                                // Then override: ancestors get expanded (minus icon)
+                                                // Show and override: ancestors get expanded (minus icon)
                                                 for (const aid of ancestors) {
                                                     const idx = indexById.get(aid);
-                                                    if (idx != null && labels[idx]) {
-                                                        labels[idx].classList.add("expanded");
-                                                        labels[idx].classList.remove("collapsed");
-                                                        labels[idx].setAttribute("data-sap-ui-icon-content", "");
+                                                    if (idx != null) {
+                                                        itemLis[idx]?.classList.add("displayed");
+                                                        itemLis[idx]?.classList.remove("disabled");
+                                                        if (labels[idx]) {
+                                                            labels[idx].classList.add("expanded");
+                                                            labels[idx].classList.remove("collapsed");
+                                                            labels[idx].setAttribute("data-sap-ui-icon-content", "");
+                                                        }
                                                     }
+                                                }
+
+                                                // Show every ancestor's direct children (siblings at each level)
+                                                const shown = new Set();
+                                                for (const aid of ancestors) {
+                                                    const kids = childrenOf.get(aid) || [];
+                                                    for (const cid of kids) {
+                                                        const idx = indexById.get(cid);
+                                                        if (idx != null && !shown.has(idx)) {
+                                                            shown.add(idx);
+                                                            itemLis[idx]?.classList.add("displayed");
+                                                            itemLis[idx]?.classList.remove("disabled");
+                                                            if (labels[idx]) {
+                                                                labels[idx].classList.add("collapsed");
+                                                                labels[idx].classList.remove("expanded");
+                                                                labels[idx].setAttribute("data-sap-ui-icon-content", "");
+                                                            }
+                                                        }
+                                                    }
+                                                }
+
+                                                // Show the selected node itself
+                                                itemLis[selIndex]?.classList.add("displayed");
+                                                itemLis[selIndex]?.classList.remove("disabled");
+                                                if (labels[selIndex]) {
+                                                    labels[selIndex].classList.add("collapsed");
+                                                    labels[selIndex].classList.remove("expanded");
+                                                    labels[selIndex].setAttribute("data-sap-ui-icon-content", "");
                                                 }
 
                                                 // Debug: Count final state
