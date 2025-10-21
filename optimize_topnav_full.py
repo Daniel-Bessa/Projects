@@ -55,7 +55,7 @@ if tmpl_match:
 
     print("[OK] Configuration objects created and inserted")
 else:
-    print("✗ Could not find template declaration")
+    print("[ERROR] Could not find template declaration")
     exit(1)
 
 # Now replace the nineDotMenu HTML to use the configuration
