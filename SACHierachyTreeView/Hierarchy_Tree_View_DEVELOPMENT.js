@@ -2090,22 +2090,31 @@
                                             }
                                             console.log("[CW] SingleSelect icon logic - selIndex:", selIndex, "total items:", uiItems.length);
                                             if (selIndex < 0) return;
-                                        
+
                                             const selId = nodes[selIndex]?.nodeUnique;
-                                        
+
                                             // Climb ancestors
                                             const ancestors = [];
                                             let p = parentOf.get(selId);
                                             while (p) { ancestors.push(p); p = parentOf.get(p); }
-                                        
+
+                                            // FIX: Use same logic as MultiSelect (_applySelectionOnly) - direct DOM manipulation
                                             requestAnimationFrame(() => {
-                                                // Expand all ancestors, make sure they’re visible
+                                                // Show and expand all ancestors (same as MultiSelect)
                                                 for (const aid of ancestors) {
                                                     const idx = indexById.get(aid);
-                                                    if (idx != null) { showIndex(idx); iconOpen(idx); }
+                                                    if (idx != null) {
+                                                        itemLis[idx]?.classList.add("displayed");
+                                                        itemLis[idx]?.classList.remove("disabled");
+                                                        if (labels[idx]) {
+                                                            labels[idx].classList.add("expanded");
+                                                            labels[idx].classList.remove("collapsed");
+                                                            labels[idx].setAttribute("data-sap-ui-icon-content", "");
+                                                        }
+                                                    }
                                                 }
-                                        
-                                                // Show every ancestor's direct children (siblings at each level)
+
+                                                // Show every ancestor's direct children (siblings at each level) - collapsed
                                                 const shown = new Set();
                                                 for (const aid of ancestors) {
                                                     const kids = childrenOf.get(aid) || [];
@@ -2113,15 +2122,25 @@
                                                         const idx = indexById.get(cid);
                                                         if (idx != null && !shown.has(idx)) {
                                                             shown.add(idx);
-                                                            showIndex(idx);
-                                                            iconClose(idx); // keep children collapsed by default
+                                                            itemLis[idx]?.classList.add("displayed");
+                                                            itemLis[idx]?.classList.remove("disabled");
+                                                            if (labels[idx]) {
+                                                                labels[idx].classList.add("collapsed");
+                                                                labels[idx].classList.remove("expanded");
+                                                                labels[idx].setAttribute("data-sap-ui-icon-content", "");
+                                                            }
                                                         }
                                                     }
                                                 }
-                                        
-                                                // Ensure the selected row is visible, collapsed icon (to match your previous behavior)
-                                                showIndex(selIndex);
-                                                iconClose(selIndex);
+
+                                                // Show the selected row with collapsed icon (same as MultiSelect children)
+                                                itemLis[selIndex]?.classList.add("displayed");
+                                                itemLis[selIndex]?.classList.remove("disabled");
+                                                if (labels[selIndex]) {
+                                                    labels[selIndex].classList.add("collapsed");
+                                                    labels[selIndex].classList.remove("expanded");
+                                                    labels[selIndex].setAttribute("data-sap-ui-icon-content", "");
+                                                }
                                             });
                                         }
                                     })();
