@@ -82,18 +82,18 @@ const CONFIG = {
       <style>
           /* CSS Custom Properties - Generated from CONFIG.COLORS */
           :host {
-            --border-primary: #9E9E9E;
-            --border-secondary: #ccc;
-            --border-tertiary: #CBCBCB;
-            --bg-primary: #fff;
-            --bg-accent: rgb(4, 96, 169);
-            --bg-accent-hex: #0460A9;
-            --bg-light-blue: #9CBFDD;
-            --text-primary: #212121;
-            --text-secondary: #666;
+            --border-primary: var(--border-primary);
+            --border-secondary: var(--border-secondary);
+            --border-tertiary: var(--border-tertiary);
+            --bg-primary: var(--bg-primary);
+            --bg-accent: var(--bg-accent);
+            --bg-accent-hex: var(--bg-accent-hex);
+            --bg-light-blue: var(--bg-light-blue);
+            --text-primary: var(--text-primary);
+            --text-secondary: var(--text-secondary);
             --text-black: #000;
-            --text-inverse: rgb(255, 255, 255);
-            --success-green: #388E3C;
+            --text-inverse: var(--text-inverse);
+            --success-green: var(--success-green);
             --accent-orange: #E74A21;
             --accent-yellow: #EC9A1E;
             --accent-red: #FF585D;
@@ -114,7 +114,7 @@ const CONFIG = {
             align-items: center;
             border-top: 1px solid #9E9E9E;
             border-bottom: 1px solid #9E9E9E;
-            background-color: #fff;
+            background-color: var(--bg-primary);
             z-index: 99;
           }
           .blankSpace {
@@ -191,7 +191,7 @@ const CONFIG = {
             width: 288px;
             height: 240px;
             border: 1px solid #9E9E9E;
-            background-color: #fff;
+            background-color: var(--bg-primary);
             background-size: 0px;
             background-image: none;
             // padding: 0 16px;
@@ -207,7 +207,7 @@ const CONFIG = {
           clipBoardMenu h2{
             font-family: "arial";
             font-size: 20px;
-            color: #212121;
+            color: var(--text-primary);
             font-weight: bold;
             text-align: center;
           }
@@ -222,9 +222,9 @@ const CONFIG = {
             font-weight: bold;
             height: 40px;
             width: 178px;
-            background-color: rgb(4, 96, 169);
-            border-color: rgb(4, 96, 169);
-            color: rgb(255, 255, 255);
+            background-color: var(--bg-accent);
+            border-color: var(--bg-accent);
+            color: var(--text-inverse);
           }
 
           .clipBoardSuccess{
@@ -237,7 +237,7 @@ const CONFIG = {
             width: 288px;
             height: 240px;
             border: 1px solid #9E9E9E;
-            background-color: #fff;
+            background-color: var(--bg-primary);
             background-size: 0px;
             background-image: none;
             // padding: 0 16px;
@@ -274,8 +274,8 @@ const CONFIG = {
           .userElement img {
           }
           .avatarUser {
-            color: rgb(255, 255, 255);
-            background-color: rgb(4, 96, 169);
+            color: var(--text-inverse);
+            background-color: var(--bg-accent);
             padding: 2px;
             display: flex;
             justify-content: center;
@@ -1160,7 +1160,7 @@ const CONFIG = {
         height: 234px;
         border: 1px solid #CBCBCB;
         border-top: 0;
-        background-color: #fff;
+        background-color: var(--bg-primary);
         z-index: 99;
       }
       .nineDotMenu span {
@@ -1251,7 +1251,7 @@ const CONFIG = {
         height: 240px;
         border: 1px solid #CBCBCB;
         border-top: 0;
-        background-color: #fff;
+        background-color: var(--bg-primary);
         background-size: 0px;
         background-image: none;
         z-index: 99;
@@ -1273,7 +1273,7 @@ const CONFIG = {
         max-width: 240px;
         font-family: "arial";
         font-size: 18px;
-        color: #212121;
+        color: var(--text-primary);
         font-weight: bold;
         margin: 0;
         text-align: center;
@@ -1289,9 +1289,9 @@ const CONFIG = {
         font-weight: bold;
         height: 40px;
         width: 178px;
-        background-color: rgb(4, 96, 169);
-        border-color: rgb(4, 96, 169);
-        color: rgb(255, 255, 255);
+        background-color: var(--bg-accent);
+        border-color: var(--bg-accent);
+        color: var(--text-inverse);
         cursor: pointer;
         border: none;
         margin-top: 10px;
@@ -1307,7 +1307,7 @@ const CONFIG = {
         height: 240px;
         border: 1px solid #CBCBCB;
         border-top: 0;
-        background-color: #fff;
+        background-color: var(--bg-primary);
         background-size: 0px;
         background-image: none;
         // padding: 0 16px;
@@ -1396,7 +1396,7 @@ const CONFIG = {
         justify-content: space-evenly;
         border: 1px solid #CBCBCB;
         border-top: 0;
-        background-color: #fff;
+        background-color: var(--bg-primary);
         background-size: 0px;
         background-image: none;
         padding: 0 16px;
@@ -1428,7 +1428,7 @@ const CONFIG = {
         margin: 0;
       }
       .team_info:checked {
-        accent-color: rgb(4, 96, 169);
+        accent-color: var(--bg-accent);
       }
       .teamInfoPanel label {
         font-size: 14px;
@@ -1450,7 +1450,7 @@ const CONFIG = {
         line-height: 16px;
         letter-spacing: 0px;
         text-align: left;
-        color: #666;
+        color: var(--text-secondary);
       }
       .userMenuPanel label {
         color: #000;
@@ -1474,7 +1474,7 @@ const CONFIG = {
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: #ccc;
+        background-color: var(--border-secondary);
         -webkit-transition: .4s;
         transition: .4s;
       }
@@ -1485,12 +1485,12 @@ const CONFIG = {
         width: 26px;
         left: 4px;
         bottom: 4px;
-        background-color: #fff;
+        background-color: var(--bg-primary);
         -webkit-transition: .4s;
         transition: .4s;
       }
       .userMenuPanel input:checked + .slider {
-        background-color: rgb(4, 96, 169);;
+        background-color: var(--bg-accent);;
       }
       // .userMenuPanel input:focus + .slider {
       //   box-shadow: 0 0 1px rgb(4, 96, 169);;
