@@ -2101,28 +2101,40 @@
                                             let p = parentOf.get(selId);
                                             while (p) { ancestors.push(p); p = parentOf.get(p); }
 
-                                            // DEBUG: Try setting ALL displayed nodes to expanded to see if CSS works
+                                            // Set icons: ancestors=expanded(minus), all others=collapsed(plus)
                                             setTimeout(() => {
-                                                console.log("[CW] SingleSelect - setting ALL displayed nodes to EXPANDED");
+                                                console.log("[CW] SingleSelect setting icons - ancestors:", ancestors.length);
 
+                                                // First, set ALL displayed nodes to collapsed (plus icon)
                                                 for (let i = 0; i < itemLis.length; i++) {
                                                     if (itemLis[i]?.classList.contains("displayed") && labels[i]) {
-                                                        labels[i].classList.remove("collapsed");
-                                                        labels[i].classList.add("expanded");
+                                                        labels[i].classList.add("collapsed");
+                                                        labels[i].classList.remove("expanded");
                                                         labels[i].setAttribute("data-sap-ui-icon-content", "");
-                                                        console.log("[CW] Set node", i, "to expanded");
                                                     }
                                                 }
 
-                                                // Check after delay if it sticks
+                                                // Then override: ancestors get expanded (minus icon)
+                                                for (const aid of ancestors) {
+                                                    const idx = indexById.get(aid);
+                                                    if (idx != null && labels[idx]) {
+                                                        labels[idx].classList.add("expanded");
+                                                        labels[idx].classList.remove("collapsed");
+                                                        labels[idx].setAttribute("data-sap-ui-icon-content", "");
+                                                    }
+                                                }
+
+                                                // Debug: Count final state
                                                 setTimeout(() => {
                                                     let expandedCount = 0;
                                                     let collapsedCount = 0;
                                                     for (let i = 0; i < labels.length; i++) {
-                                                        if (labels[i]?.classList.contains("expanded")) expandedCount++;
-                                                        if (labels[i]?.classList.contains("collapsed")) collapsedCount++;
+                                                        if (itemLis[i]?.classList.contains("displayed")) {
+                                                            if (labels[i]?.classList.contains("expanded")) expandedCount++;
+                                                            if (labels[i]?.classList.contains("collapsed")) collapsedCount++;
+                                                        }
                                                     }
-                                                    console.log("[CW] After 100ms - expanded:", expandedCount, "collapsed:", collapsedCount);
+                                                    console.log("[CW] After 100ms - displayed nodes with expanded:", expandedCount, "collapsed:", collapsedCount);
                                                 }, 100);
                                             }, 200); // setTimeout with 200ms delay
                                         }
