@@ -21,7 +21,8 @@
       "Bash(git commit -m \"$(cat <<''EOF''\nDEBUG: Set all SingleSelect nodes to expanded to test CSS\n\nSimplified logic to set ALL displayed nodes to expanded class\nto verify if CSS is working and if classes persist.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
       "Bash(git commit -m \"$(cat <<''EOF''\nRestore proper SingleSelect icon logic with debug counters\n\nSet all displayed nodes to collapsed (plus), then override ancestors\nto expanded (minus). Added debug counters to verify final state.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
       "Bash(git commit -m \"$(cat <<''EOF''\nAdd visibility logic to show selected node and siblings in SingleSelect\n\nRestored code to show:\n- Ancestors (with expanded/minus icon)\n- Children of ancestors/siblings (with collapsed/plus icon)  \n- Selected node itself (with collapsed/plus icon)\n\nThis matches the MultiSelect _applySelectionOnly behavior.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(git fetch:*)"
     ],
     "deny": [],
     "ask": []
