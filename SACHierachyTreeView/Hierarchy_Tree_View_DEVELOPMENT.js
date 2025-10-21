@@ -3551,8 +3551,8 @@
             let displayedNode = '<style>.displayed{display:flex;padding-left:0rem!important;margin:0 1rem;}</style>';
             let rightSideCBNewClass = '<style>.sapMCbNewClass{position:absolute!important;right:5px!important;}</style>';
             let unselectable = '<style>.unselectable{-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none;}</style>';
-            let expandedIcon = '<style>label.expanded:before{content:"\\e1f7"!important;font-family:"SAP-icons"!important;}</style>';
-            let collapsedIcon = '<style>label.collapsed:before{content:"\\e1f6"!important;font-family:"SAP-icons"!important;}</style>';
+            let expandedIcon = '<style>label.sapMTreeItemBaseExpander.expanded:before{content:"\\e1f7"!important;font-family:"SAP-icons"!important;display:inline-block!important;}</style>';
+            let collapsedIcon = '<style>label.sapMTreeItemBaseExpander.collapsed:before{content:"\\e1f6"!important;font-family:"SAP-icons"!important;display:inline-block!important;}</style>';
             $('body').append(partiallyCheck, disabledNode, displayedNode, unselectable, rightSideCBNewClass, sapMCbMarkChecked, sapMCbMarkCheckedBackground, sapMCbBg, expandedIcon, collapsedIcon);
             executed = true; 
             }
