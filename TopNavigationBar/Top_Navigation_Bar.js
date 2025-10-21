@@ -532,82 +532,65 @@ let tmpl = document.createElement('template');
 
   customElements.define('com-sap-top-navigation-bar', class TopNavigationBar extends HTMLElement {
 
+    /**
+     * Constructor - Initializes the custom widget
+     * Sets up shadow DOM and attaches event listeners for all interactive elements
+     */
     constructor() {
-      super(); 
+      super();
+
+      // Initialize shadow DOM
       this._shadowRoot = this.attachShadow({mode: "open"});
       this._shadowRoot.appendChild(tmpl.content.cloneNode(true));
 
+      // Initialize widget state
       this._export_settings = {};
-
-      //#region // addEventListener for everything
-      let navElement = this._shadowRoot.getElementById("blankSpace");
-      navElement.addEventListener("click", event => {
-        var eventClick = new Event("onClick");
-        this.dispatchEvent(eventClick);
-      });
-      let adminElement = this._shadowRoot.getElementById("adminElement");
-      adminElement.addEventListener("click", evt => {
-        var eventToggle = new Event("onClickAdmin");
-        this.dispatchEvent(eventToggle);
-      });
-      let configElement = this._shadowRoot.getElementById("configElement");
-      configElement.addEventListener("click", evt => {
-        var eventToggle = new Event("onClickConfig");
-        this.dispatchEvent(eventToggle);
-      });
-      let clipBoardElement = this._shadowRoot.getElementById("clipBoardElement");
-      clipBoardElement.addEventListener("click", evt => {
-        var eventToggle = new Event("onClickClipBoard");
-        this.dispatchEvent(eventToggle);
-      });
-      let copyLinkButton = this._shadowRoot.getElementById("copyLink");
-      copyLinkButton.addEventListener("click", evt => {
-        var eventToggle = new Event("onClickCopyLink");
-        this.dispatchEvent(eventToggle);
-      });
-      let downloadElement = this._shadowRoot.getElementById("downloadElement");
-      downloadElement.addEventListener("click", evt => {
-        var eventToggle = new Event("onClickDownload");
-        this.dispatchEvent(eventToggle);
-      });
-      let infoElement = this._shadowRoot.getElementById("infoElement");
-      infoElement.addEventListener("click", evt => {
-        var eventToggle = new Event("onClickInfo");
-        this.dispatchEvent(eventToggle);
-      });
-      let userElement = this._shadowRoot.getElementById("userElement");
-      userElement.addEventListener("click", evt => {
-        var eventToggle = new Event("onClickUser");
-        this.dispatchEvent(eventToggle);
-      });
-      let toggleElement = this._shadowRoot.getElementById("adminSwitch");
-      toggleElement.addEventListener("click", evt => {
-        var eventToggle = new Event("onToggleAdmin");
-        this.dispatchEvent(eventToggle);
-      });
-      let menuElement = this._shadowRoot.getElementById("menuElement");
-      menuElement.addEventListener("click", evt => {
-        var eventToggle = new Event("onClickMenu");
-        this.dispatchEvent(eventToggle);
-      });
-      //#endregion
-
       this._props = {};
       this._firstConnection = false;
+
+      // Attach event listeners to all interactive elements
+      this._attachEventListeners();
     }
 
     /**
-     * Lifecycle: Called when the widget is added to the DOM
-     * Initializes the widget and loads its initial state
+     * Attaches event listeners to all interactive elements in the shadow DOM
+     * Centralizes event listener setup for better maintainability
      */
+    _attachEventListeners() {
+      const eventBindings = [
+        { id: 'blankSpace', event: 'onClick' },
+        { id: 'adminElement', event: 'onClickAdmin' },
+        { id: 'configElement', event: 'onClickConfig' },
+        { id: 'clipBoardElement', event: 'onClickClipBoard' },
+        { id: 'copyLink', event: 'onClickCopyLink' },
+        { id: 'downloadElement', event: 'onClickDownload' },
+        { id: 'infoElement', event: 'onClickInfo' },
+        { id: 'userElement', event: 'onClickUser' },
+        { id: 'adminSwitch', event: 'onToggleAdmin' },
+        { id: 'menuElement', event: 'onClickMenu' }
+      ];
+
+      eventBindings.forEach(({ id, event }) => {
+        const element = this._shadowRoot.getElementById(id);
+        if (element) {
+          element.addEventListener('click', () => {
+            this.dispatchEvent(new Event(event));
+          });
+        }
+      });
+    }
+
     connectedCallback() {
       this.firstConnection = true;
       loadthis(this);
     }
 
-    //Fired when the widget is removed from the html DOM of the page (e.g. by hide)
-    disconnectedCallback(){
-      
+    /**
+     * Lifecycle: Called when the widget is removed from the DOM
+     * Cleanup operations can be added here if needed (e.g., removing event listeners)
+     */
+    disconnectedCallback() {
+      // Currently no cleanup needed - event listeners are automatically removed with shadow DOM
     }
 
     /**
