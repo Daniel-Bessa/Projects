@@ -26,81 +26,11 @@
   let _isAdmin_value = false;
   let adminHeight = true;
 
-// ===================================================================
-// CONFIGURATION SECTION - Customize icons and colors here
-// ===================================================================
-
-const CONFIG = {
-  // Icon Configuration
-  // Note: This file uses inline SVG icons in the HTML template
-  // These values can be used if converting to Material Symbols
-  ICONS: {
-    ADMIN: 'admin_panel_settings',
-    CONFIG: 'settings',
-    CLIPBOARD: 'share',
-    DOWNLOAD: 'download',
-    INFO: 'info',
-    USER: 'person',
-    MENU: 'menu',
-  },
-
-  // Color Configuration (CSS Custom Properties will be created from these)
-  COLORS: {
-    // Border Colors
-    BORDER_PRIMARY: '#9E9E9E',
-    BORDER_SECONDARY: '#ccc',
-    BORDER_TERTIARY: '#CBCBCB',
-
-    // Background Colors
-    BG_PRIMARY: '#fff',
-    BG_ACCENT: 'rgb(4, 96, 169)',
-    BG_ACCENT_HEX: '#0460A9',
-    BG_LIGHT_BLUE: '#9CBFDD',
-
-    // Text/Font Colors
-    TEXT_PRIMARY: '#212121',
-    TEXT_SECONDARY: '#666',
-    TEXT_BLACK: '#000',
-    TEXT_INVERSE: 'rgb(255, 255, 255)',
-
-    // Accent Colors
-    SUCCESS_GREEN: '#388E3C',
-    ACCENT_ORANGE: '#E74A21',
-    ACCENT_YELLOW: '#EC9A1E',
-    ACCENT_RED: '#FF585D',
-    ACCENT_GOLD: '#FFC100',
-    ACCENT_DARK_BLUE: '#002068',
-  }
-};
-
-
-
 
   let tmpl = document.createElement('template');
   tmpl.innerHTML = `
       <script><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" /></script>
       <style>
-          /* CSS Custom Properties - Generated from CONFIG.COLORS */
-          :host {
-            --border-primary: #9E9E9E;
-            --border-secondary: #ccc;
-            --border-tertiary: #CBCBCB;
-            --bg-primary: #fff;
-            --bg-accent: rgb(4, 96, 169);
-            --bg-accent-hex: #0460A9;
-            --bg-light-blue: #9CBFDD;
-            --text-primary: #212121;
-            --text-secondary: #666;
-            --text-black: #000;
-            --text-inverse: rgb(255, 255, 255);
-            --success-green: #388E3C;
-            --accent-orange: #E74A21;
-            --accent-yellow: #EC9A1E;
-            --accent-red: #FF585D;
-            --accent-gold: #FFC100;
-            --accent-dark-blue: #002068;
-          }
-
           .material-symbols-outlined {
             font-variation-settings:
             'FILL' 0,
@@ -112,9 +42,9 @@ const CONFIG = {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-top: 1px solid var(--border-primary);
-            border-bottom: 1px solid var(--border-primary);
-            background-color: var(--bg-primary);
+            border-top: 1px solid #9E9E9E;
+            border-bottom: 1px solid #9E9E9E;
+            background-color: #fff;
             z-index: 99;
           }
           .blankSpace {
@@ -135,7 +65,7 @@ const CONFIG = {
             cursor: pointer;
             width: 47px;
             height: 48px;
-            border-left: 1px solid var(--border-primary);
+            border-left: 1px solid #9E9E9E;
           }
           .button-menu a {
           }
@@ -159,7 +89,7 @@ const CONFIG = {
             float: right;
             width: 356px;
             height: 234px;
-            border: 1px solid var(--border-primary);
+            border: 1px solid #9E9E9E;
             margin-right: 138px;
           }
           .nineDotMenu span {
@@ -190,8 +120,8 @@ const CONFIG = {
             right: 140px;
             width: 288px;
             height: 240px;
-            border: 1px solid var(--border-primary);
-            background-color: var(--bg-primary);
+            border: 1px solid #9E9E9E;
+            background-color: #fff;
             background-size: 0px;
             background-image: none;
             // padding: 0 16px;
@@ -207,7 +137,7 @@ const CONFIG = {
           clipBoardMenu h2{
             font-family: "arial";
             font-size: 20px;
-            color: var(--text-primary);
+            color: #212121;
             font-weight: bold;
             text-align: center;
           }
@@ -222,9 +152,9 @@ const CONFIG = {
             font-weight: bold;
             height: 40px;
             width: 178px;
-            background-color: var(--bg-accent);
-            border-color: var(--bg-accent);
-            color: var(--text-inverse);
+            background-color: rgb(4, 96, 169);
+            border-color: rgb(4, 96, 169);
+            color: rgb(255, 255, 255);
           }
 
           .clipBoardSuccess{
@@ -236,8 +166,8 @@ const CONFIG = {
             right: 284px;
             width: 288px;
             height: 240px;
-            border: 1px solid var(--border-primary);
-            background-color: var(--bg-primary);
+            border: 1px solid #9E9E9E;
+            background-color: #fff;
             background-size: 0px;
             background-image: none;
             // padding: 0 16px;
@@ -274,8 +204,8 @@ const CONFIG = {
           .userElement img {
           }
           .avatarUser {
-            color: var(--text-inverse);
-            background-color: var(--bg-accent);
+            color: rgb(255, 255, 255);
+            background-color: rgb(4, 96, 169);
             padding: 2px;
             display: flex;
             justify-content: center;
@@ -1158,9 +1088,9 @@ const CONFIG = {
         float: right;
         width: 356px;
         height: 234px;
-        border: 1px solid var(--border-tertiary);
+        border: 1px solid #CBCBCB;
         border-top: 0;
-        background-color: var(--bg-primary);
+        background-color: #fff;
         z-index: 99;
       }
       .nineDotMenu span {
@@ -1249,9 +1179,9 @@ const CONFIG = {
         right:  ` + rightClipboardSize + `px;
         width: 288px;
         height: 240px;
-        border: 1px solid var(--border-tertiary);
+        border: 1px solid #CBCBCB;
         border-top: 0;
-        background-color: var(--bg-primary);
+        background-color: #fff;
         background-size: 0px;
         background-image: none;
         z-index: 99;
@@ -1273,7 +1203,7 @@ const CONFIG = {
         max-width: 240px;
         font-family: "arial";
         font-size: 18px;
-        color: var(--text-primary);
+        color: #212121;
         font-weight: bold;
         margin: 0;
         text-align: center;
@@ -1289,9 +1219,9 @@ const CONFIG = {
         font-weight: bold;
         height: 40px;
         width: 178px;
-        background-color: var(--bg-accent);
-        border-color: var(--bg-accent);
-        color: var(--text-inverse);
+        background-color: rgb(4, 96, 169);
+        border-color: rgb(4, 96, 169);
+        color: rgb(255, 255, 255);
         cursor: pointer;
         border: none;
         margin-top: 10px;
@@ -1305,9 +1235,9 @@ const CONFIG = {
         right:  ` + rightClipboardSize + `px;
         width: 288px;
         height: 240px;
-        border: 1px solid var(--border-tertiary);
+        border: 1px solid #CBCBCB;
         border-top: 0;
-        background-color: var(--bg-primary);
+        background-color: #fff;
         background-size: 0px;
         background-image: none;
         // padding: 0 16px;
@@ -1394,9 +1324,9 @@ const CONFIG = {
         height: ` + adminHeightPixel + `px;;
         flex-direction: column;
         justify-content: space-evenly;
-        border: 1px solid var(--border-tertiary);
+        border: 1px solid #CBCBCB;
         border-top: 0;
-        background-color: var(--bg-primary);
+        background-color: #fff;
         background-size: 0px;
         background-image: none;
         padding: 0 16px;
@@ -1428,7 +1358,7 @@ const CONFIG = {
         margin: 0;
       }
       .team_info:checked {
-        accent-color: var(--bg-accent);
+        accent-color: rgb(4, 96, 169);
       }
       .teamInfoPanel label {
         font-size: 14px;
@@ -1450,10 +1380,10 @@ const CONFIG = {
         line-height: 16px;
         letter-spacing: 0px;
         text-align: left;
-        color: var(--text-secondary);
+        color: #666;
       }
       .userMenuPanel label {
-        color: var(--text-black);
+        color: #000;
       }
       .userMenuPanel .switch {
         position: relative;
@@ -1474,7 +1404,7 @@ const CONFIG = {
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: var(--border-secondary);
+        background-color: #ccc;
         -webkit-transition: .4s;
         transition: .4s;
       }
@@ -1485,12 +1415,12 @@ const CONFIG = {
         width: 26px;
         left: 4px;
         bottom: 4px;
-        background-color: var(--bg-primary);
+        background-color: #fff;
         -webkit-transition: .4s;
         transition: .4s;
       }
       .userMenuPanel input:checked + .slider {
-        background-color: var(--bg-accent);;
+        background-color: rgb(4, 96, 169);;
       }
       // .userMenuPanel input:focus + .slider {
       //   box-shadow: 0 0 1px rgb(4, 96, 169);;
