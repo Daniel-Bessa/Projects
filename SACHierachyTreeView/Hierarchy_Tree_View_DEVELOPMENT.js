@@ -1963,18 +1963,17 @@
                                             labelWrapper.style.paddingLeft = `${Math.max(0, (lvl || 0) - 1)}rem`;
                                             }
 
-                                            // Visibility + icon state by defaultLevel (skip for SingleSelect - it handles its own)
-                                            if (!isSingleSelect) {
-                                                const show = lvl && lvl <= defaultLevel;
-                                                li.classList.toggle("displayed", !!show);
-                                                li.classList.toggle("disabled", !show);
+                                            // Visibility by defaultLevel (always set this)
+                                            const show = lvl && lvl <= defaultLevel;
+                                            li.classList.toggle("displayed", !!show);
+                                            li.classList.toggle("disabled", !show);
 
-                                                if (lbl) {
+                                            // Icon state (skip for SingleSelect - it handles its own icons later)
+                                            if (!isSingleSelect && lbl) {
                                                 const opened = show && lvl < defaultLevel; // parents open, boundary collapsed
                                                 lbl.setAttribute("data-sap-ui-icon-content", opened ? data_sap_icon_open : data_sap_icon_close);
                                                 lbl.classList.toggle("expanded", opened);
                                                 lbl.classList.toggle("collapsed", !opened);
-                                                }
                                             }
                                         }
                                         dynamicHeightCW?.();
