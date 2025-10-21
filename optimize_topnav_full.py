@@ -180,7 +180,7 @@ new_disconnected = '''    /**
     }'''
 
 content = re.sub(old_disconnected, new_disconnected, content)
-print("✓ disconnectedCallback optimized")
+print("[OK] disconnectedCallback optimized")
 
 # Optimize onCustomWidgetBeforeUpdate
 old_before = r'''    //When the custom widget is updated, the Custom Widget SDK framework executes this function first
