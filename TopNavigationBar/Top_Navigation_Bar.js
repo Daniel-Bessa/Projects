@@ -26,11 +26,81 @@
   let _isAdmin_value = false;
   let adminHeight = true;
 
+// ===================================================================
+// CONFIGURATION SECTION - Customize icons and colors here
+// ===================================================================
+
+const CONFIG = {
+  // Icon Configuration
+  // Note: This file uses inline SVG icons in the HTML template
+  // These values can be used if converting to Material Symbols
+  ICONS: {
+    ADMIN: 'admin_panel_settings',
+    CONFIG: 'settings',
+    CLIPBOARD: 'share',
+    DOWNLOAD: 'download',
+    INFO: 'info',
+    USER: 'person',
+    MENU: 'menu',
+  },
+
+  // Color Configuration (CSS Custom Properties will be created from these)
+  COLORS: {
+    // Border Colors
+    BORDER_PRIMARY: '#9E9E9E',
+    BORDER_SECONDARY: '#ccc',
+    BORDER_TERTIARY: '#CBCBCB',
+
+    // Background Colors
+    BG_PRIMARY: '#fff',
+    BG_ACCENT: 'rgb(4, 96, 169)',
+    BG_ACCENT_HEX: '#0460A9',
+    BG_LIGHT_BLUE: '#9CBFDD',
+
+    // Text/Font Colors
+    TEXT_PRIMARY: '#212121',
+    TEXT_SECONDARY: '#666',
+    TEXT_BLACK: '#000',
+    TEXT_INVERSE: 'rgb(255, 255, 255)',
+
+    // Accent Colors
+    SUCCESS_GREEN: '#388E3C',
+    ACCENT_ORANGE: '#E74A21',
+    ACCENT_YELLOW: '#EC9A1E',
+    ACCENT_RED: '#FF585D',
+    ACCENT_GOLD: '#FFC100',
+    ACCENT_DARK_BLUE: '#002068',
+  }
+};
+
+
+
 
   let tmpl = document.createElement('template');
   tmpl.innerHTML = `
       <script><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" /></script>
       <style>
+          /* CSS Custom Properties - Generated from CONFIG.COLORS */
+          :host {
+            --border-primary: #9E9E9E;
+            --border-secondary: #ccc;
+            --border-tertiary: #CBCBCB;
+            --bg-primary: #fff;
+            --bg-accent: rgb(4, 96, 169);
+            --bg-accent-hex: #0460A9;
+            --bg-light-blue: #9CBFDD;
+            --text-primary: #212121;
+            --text-secondary: #666;
+            --text-black: #000;
+            --text-inverse: rgb(255, 255, 255);
+            --success-green: #388E3C;
+            --accent-orange: #E74A21;
+            --accent-yellow: #EC9A1E;
+            --accent-red: #FF585D;
+            --accent-gold: #FFC100;
+            --accent-dark-blue: #002068;
+          }
+
           .material-symbols-outlined {
             font-variation-settings:
             'FILL' 0,

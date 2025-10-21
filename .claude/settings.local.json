@@ -25,7 +25,8 @@
       "Bash(git fetch:*)",
       "Bash(mkdir:*)",
       "Bash(git mv:*)",
-      "Bash(cp:*)"
+      "Bash(cp:*)",
+      "Bash(python:*)"
     ],
     "deny": [],
     "ask": []
