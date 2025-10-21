@@ -215,7 +215,7 @@ new_after = '''    /**
     }'''
 
 content = re.sub(old_after, new_after, content)
-print("✓ onCustomWidgetAfterUpdate optimized")
+print("[OK] onCustomWidgetAfterUpdate optimized")
 
 # Optimize onCustomWidgetDestroy
 old_destroy = r'''    //When the custom widget is removed from the canvas or the analytic application is closed
