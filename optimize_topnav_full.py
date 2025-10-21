@@ -53,7 +53,7 @@ if tmpl_match:
     configuration = "\n" + svg_icons_config + menu_links_config + "\n"
     content = content[:insert_pos] + configuration + content[insert_pos:]
 
-    print("✓ Configuration objects created and inserted")
+    print("[OK] Configuration objects created and inserted")
 else:
     print("✗ Could not find template declaration")
     exit(1)
