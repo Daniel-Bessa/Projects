@@ -2102,12 +2102,20 @@
                                             while (p) { ancestors.push(p); p = parentOf.get(p); }
 
                                             // FIX: Use same logic as MultiSelect (_applySelectionOnly) - direct DOM manipulation
-                                            // Use double requestAnimationFrame + setTimeout to ensure this runs LAST
-                                            requestAnimationFrame(() => {
-                                                requestAnimationFrame(() => {
-                                                    setTimeout(() => {
-                                                        console.log("[CW] SingleSelect setting icons - ancestors:", ancestors.length);
-                                                // Show and expand all ancestors (same as MultiSelect)
+                                            // Use setTimeout with longer delay to ensure this runs LAST
+                                            setTimeout(() => {
+                                                console.log("[CW] SingleSelect setting icons - ancestors:", ancestors.length);
+
+                                                // First, set all displayed nodes to collapsed (default state)
+                                                for (let i = 0; i < itemLis.length; i++) {
+                                                    if (itemLis[i]?.classList.contains("displayed") && labels[i]) {
+                                                        labels[i].classList.add("collapsed");
+                                                        labels[i].classList.remove("expanded");
+                                                        labels[i].setAttribute("data-sap-ui-icon-content", "");
+                                                    }
+                                                }
+
+                                                // Then, set ancestors to expanded (override default)
                                                 for (const aid of ancestors) {
                                                     const idx = indexById.get(aid);
                                                     if (idx != null) {
@@ -2156,9 +2164,7 @@
                                                     labels[selIndex].classList.remove("expanded");
                                                     labels[selIndex].setAttribute("data-sap-ui-icon-content", "");
                                                 }
-                                                    }, 0); // setTimeout
-                                                }); // inner requestAnimationFrame
-                                            }); // outer requestAnimationFrame
+                                            }, 200); // setTimeout with 200ms delay
                                         }
                                     })();
 
