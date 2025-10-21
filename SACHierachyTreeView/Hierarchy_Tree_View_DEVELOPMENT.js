@@ -2116,6 +2116,13 @@
                                                             labels[idx].classList.add("expanded");
                                                             labels[idx].classList.remove("collapsed");
                                                             labels[idx].setAttribute("data-sap-ui-icon-content", "");
+
+                                                            // Debug: Check if class persists
+                                                            setTimeout(() => {
+                                                                const hasExpanded = labels[idx]?.classList.contains("expanded");
+                                                                const hasCollapsed = labels[idx]?.classList.contains("collapsed");
+                                                                console.log("[CW] After 100ms, ancestor", idx, "expanded:", hasExpanded, "collapsed:", hasCollapsed);
+                                                            }, 100);
                                                         }
                                                     }
                                                 }
