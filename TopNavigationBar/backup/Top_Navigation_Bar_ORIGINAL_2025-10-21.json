@@ -1,0 +1,240 @@
+{
+  "name": "Top Navigation Bar",
+  "description": "Top Navigation Bar",
+  "eula": "",
+  "vendor": "Daniel Santos",
+  "license": "",
+  "id": "com.sap.top.navigation.bar",
+  "newInstancePrefix": "TopNavigationBar",
+  "version": "0.2.3",
+  "icon": "",
+  "webcomponents": [
+    {
+      "kind": "main",
+      "tag": "com-sap-top-navigation-bar",
+      "url": "https://sac-dev-cw.novartis.net/cw/dev/Top_Navigation_Bar/Top_Navigation_Bar.js?v=0.0.9",
+      "integrity": "",
+      "ignoreIntegrity" : true
+    }
+  ],
+  "properties": {
+    "userName": {
+      "type": "any",
+      "description": "User Name",
+      "default": ""
+    },
+    "toggleAdmin": {
+      "type": "any",
+      "description": "Access Admin",
+      "default": ""
+    },
+    "toggleConfig": {
+      "type": "any",
+      "description": "Access Config",
+      "default": ""
+    },
+    "toggleClipBoard": {
+      "type": "any",
+      "description": "Access Clipboard",
+      "default": ""
+    },
+    "toggleDownload": {
+      "type": "any",
+      "description": "Access Download",
+      "default": ""
+    },
+    "toggleInfo": {
+      "type": "any",
+      "description": "Access Info",
+      "default": ""
+    },
+    "toggleMenu": {
+      "type": "any",
+      "description": "Access Menu",
+      "default": ""
+    },
+    "toggleUser": {
+      "type": "any",
+      "description": "Access User",
+      "default": ""
+    },
+    "ClipboardString": {
+      "type": "string",
+      "description": "Clipboard string",
+      "default": ""
+    },
+    "userTeamInfo": {
+      "type": "any",
+      "description": "User Team Info",
+      "default": ""
+    },
+    "AccessParameter": {
+      "type": "any",
+      "description": "Access Parameter",
+      "default": ""
+    }
+  },
+  "methods": {
+    "isChecked": {
+      "returnType": "boolean",
+      "description": "Returns if checkbox is checked or not for toggle Admin"
+    },
+    "isAdmin": {
+      "returnType": "any",
+      "description": "Return if user is Admin or Admin privileges"
+    },
+    "setAccess": {
+      "description": "Sets the Access of the User",
+      "parameters": [
+        {
+          "name": "newAccess",
+          "type": "any",
+          "description": "Access String"
+        }
+      ],
+      "body": "this.AccessParameter = newAccess;"
+    },
+    "setUserNameAvatar": {
+      "description": "Sets the Name of the User for User icon",
+      "parameters": [
+        {
+          "name": "newUserName",
+          "type": "any",
+          "description": "User Name String"
+        }
+      ],
+      "body": "this.userName = newUserName;"
+    },
+    "setUserTeamInfo": {
+      "description": "Sets the User Info Team",
+      "parameters": [
+        {
+          "name": "newUserTeam",
+          "type": "any",
+          "description": "Access String"
+        }
+      ],
+      "body": "this.userTeamInfo = newUserTeam;"
+    },
+    "toggleAdminIcon": {
+      "description": "Sets the visibility of Admin Icon",
+      "parameters": [
+        {
+          "name": "newAdmin",
+          "type": "any",
+          "description": "Admin String"
+        }
+      ],
+      "body": "this.toggleAdmin = newAdmin;"
+    },
+    "toggleConfigIcon": {
+      "description": "Sets the visibility of Config Icon",
+      "parameters": [
+        {
+          "name": "newConfig",
+          "type": "any",
+          "description": "Config String"
+        }
+      ],
+      "body": "this.toggleConfig = newConfig;"
+    },
+    "toggleClipboardIcon": {
+      "description": "Sets the visibility of Clipboard Icon",
+      "parameters": [
+        {
+          "name": "newClipboard",
+          "type": "any",
+          "description": "Clipboard String"
+        }
+      ],
+      "body": "this.toggleClipBoard = newClipboard;"
+    },
+    "setClipboardString": {
+      "description": "Sets the string to the Clipboard",
+      "parameters": [
+        {
+          "name": "newClipboardString",
+          "type": "string",
+          "description": "Copy String"
+        }
+      ],
+      "body": "this.ClipboardString = newClipboardString;"
+    },
+    "toggleDownloadIcon": {
+      "description": "Sets the visibility of Download Icon",
+      "parameters": [
+        {
+          "name": "newDownload",
+          "type": "any",
+          "description": "Download String"
+        }
+      ],
+      "body": "this.toggleDownload = newDownload;"
+    },
+    "toggleInfoIcon": {
+      "description": "Sets the visibility of Info Icon",
+      "parameters": [
+        {
+          "name": "newInfo",
+          "type": "any",
+          "description": "Info String"
+        }
+      ],
+      "body": "this.toggleInfo = newInfo;"
+    },
+    "toggleMenuIcon": {
+      "description": "Sets the visibility of Menu Icon",
+      "parameters": [
+        {
+          "name": "newMenu",
+          "type": "any",
+          "description": "Menu String"
+        }
+      ],
+      "body": "this.toggleMenu = newMenu;"
+    },
+    "toggleUserIcon": {
+      "description": "Sets the visibility of User Icon",
+      "parameters": [
+        {
+          "name": "newUser",
+          "type": "any",
+          "description": "User String"
+        }
+      ],
+      "body": "this.toggleUser = newUser;"
+    }
+  },
+  "events": {
+    "onClick": {
+      "description": "Event that triggers when the user clicks on the Menu Bar"
+    },
+    "onClickAdmin": {
+      "description": "Event that triggers when the user clicks on the show/hide Admin Panel"
+    },
+    "onClickConfig": {
+      "description": "Event that triggers when the user clicks on the show/hide Config Panel"
+    },
+    "onClickClipBoard": {
+      "description": "Event that triggers when the user clicks on the show/hide Clipboard URL Panel"
+    },
+    "onClickCopyLink": {
+      "description": "Event that triggers when the user clicks on the Copy Link button on Clipboard"
+    },
+    "onClickDownload": {
+      "description": "Event that triggers when the user clicks on the show/hide Download Panel"
+    },
+    "onClickInfo": {
+      "description": "Event that triggers when the user clicks on the show/hide Info Panel"
+    },
+    "onClickUser": {
+      "description": "Event that triggers when the user clicks on the show/hide User Panel"
+    },
+    "onToggleAdmin": {
+      "description": "Event that triggers when the user toggles the Checkbox in User Panel"
+    },
+    "onClickMenu": {
+      "description": "Event that triggers when the user clicks on the show/hide Menu Panel"
+    }
+  }
+}

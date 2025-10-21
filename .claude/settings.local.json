@@ -24,7 +24,8 @@
       "Bash(git commit:*)",
       "Bash(git fetch:*)",
       "Bash(mkdir:*)",
-      "Bash(git mv:*)"
+      "Bash(git mv:*)",
+      "Bash(cp:*)"
     ],
     "deny": [],
     "ask": []
