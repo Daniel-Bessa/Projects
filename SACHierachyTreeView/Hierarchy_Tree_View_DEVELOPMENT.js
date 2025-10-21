@@ -2088,6 +2088,7 @@
                                             for (let i = 0; i < uiItems.length; i++) {
                                                 if (uiItems[i]?.mProperties?.selected) { selIndex = i; break; }
                                             }
+                                            console.log("[CW] SingleSelect icon logic - selIndex:", selIndex, "total items:", uiItems.length);
                                             if (selIndex < 0) return;
                                         
                                             const selId = nodes[selIndex]?.nodeUnique;
