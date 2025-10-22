@@ -1775,15 +1775,18 @@ let tmpl = document.createElement('template');
     return 234; // Default fallback
   }
 
-  function userMenuFn(that){
-    let adminHeightPixel = "";
-    if (adminHeight === true){
-      adminHeightPixel = 170;
-    }else {
-      adminHeightPixel = 120;
-    }
-    let userElementLocal = userElement;
-    let userMenuPanelStyle = `<style>
+  /**
+   * Initializes the user menu panel
+   * Creates menu styling with dynamic height based on admin access
+   * Attaches click handler to toggle menu visibility
+   */
+  function userMenuFn(){
+    // Calculate menu height based on admin access
+    // Admin users see additional admin controls (170px), others see basic info (120px)
+    const adminHeightPixel = adminHeight ? 170 : 120;
+
+    // User menu panel styling
+    const userMenuPanelStyle = `<style>
       .userMenuPanel {
         position: absolute;
         display: none;
@@ -1792,8 +1795,8 @@ let tmpl = document.createElement('template');
         top: 48px;
         right: 186px;
         width: 260px;
-        max-height: ` + adminHeightPixel + `px;
-        height: ` + adminHeightPixel + `px;;
+        max-height: ${adminHeightPixel}px;
+        height: ${adminHeightPixel}px;
         flex-direction: column;
         justify-content: space-evenly;
         border: 1px solid #CBCBCB;
@@ -1815,8 +1818,6 @@ let tmpl = document.createElement('template');
         letter-spacing: 0px;
         text-align: left;
         margin: 0;
-        // margin-top: 16px;
-        
       }
       .teamInfoPanel {
         display: flex;
@@ -1837,11 +1838,8 @@ let tmpl = document.createElement('template');
         margin-left: 0px;
       }
       .userMenuPanel .container-admin{
-        // display: none;
-        // visibility: hidden;
-        // opacity: 0;
+        /* Empty block - admin container styles can go here */
       }
-
       .userMenuPanel hr {
         width: 100%;
       }
@@ -1892,11 +1890,8 @@ let tmpl = document.createElement('template');
         transition: .4s;
       }
       .userMenuPanel input:checked + .slider {
-        background-color: rgb(4, 96, 169);;
+        background-color: rgb(4, 96, 169);
       }
-      // .userMenuPanel input:focus + .slider {
-      //   box-shadow: 0 0 1px rgb(4, 96, 169);;
-      // }
       .userMenuPanel input:checked + .slider:before {
         -webkit-transform: translateX(26px);
         -ms-transform: translateX(26px);
@@ -1908,7 +1903,6 @@ let tmpl = document.createElement('template');
       .userMenuPanel .slider.round:before {
         border-radius: 50%;
       }
-
       .adminDivider {
         display: flex;
         align-items: center;
@@ -1916,31 +1910,32 @@ let tmpl = document.createElement('template');
       }
     </style>`;
 
-    let thatParentLocal = thatParent
-    let nineDotMenuLocal = nineDotMenu;
-    let clipBoardMenuLocal = clipBoardMenu;
-    let clipBoardSuccessLocal = clipBoardSuccess;
-    let userMenuPanelLocal = userMenuPanel;
-    let userMenuPanelStyleLocal = userMenuPanelStyle;
-    if(thatParentLocal){
-      let thatGrandParent = thatParentLocal.parentNode
-      let that2ndGrandParent = thatGrandParent.parentNode
-      let that3rdGrandParent = that2ndGrandParent.parentNode
-      $(that3rdGrandParent).append(userMenuPanelLocal, userMenuPanelStyleLocal);
+    // Traverse DOM to find root element
+    if (thatParent) {
+      const rootElement = thatParent.parentNode?.parentNode?.parentNode;
 
-      userElementLocal.addEventListener("click", evnt => {
-        if(userMenuPanelLocal){
-          if(userMenuPanelLocal.style.display === "flex"){
-            userMenuPanelLocal.style.display = "none";
-          }else {
-            userMenuPanelLocal.style.display = "flex";
-            clipBoardMenuLocal.style.display = "none";
-            nineDotMenuLocal.style.display = "none";
-            clipBoardSuccessLocal.style.display = "none";
-          }
-          evnt.stopPropagation();
+      if (rootElement) {
+        // Append menu and styles to DOM
+        $(rootElement).append(userMenuPanel, userMenuPanelStyle);
+
+        // Attach click handler to user button
+        if (userElement && userMenuPanel) {
+          userElement.addEventListener("click", (evnt) => {
+            // Toggle user menu visibility
+            const isVisible = userMenuPanel.style.display === DISPLAY_STATES.FLEX;
+            userMenuPanel.style.display = isVisible ? DISPLAY_STATES.NONE : DISPLAY_STATES.FLEX;
+
+            // Hide other menus when opening user menu
+            if (!isVisible) {
+              toggleDisplay(clipBoardMenu, false);
+              toggleDisplay(nineDotMenu, false);
+              toggleDisplay(clipBoardSuccess, false);
+            }
+
+            evnt.stopPropagation();
+          });
         }
-      });
+      }
     }
   }
 
