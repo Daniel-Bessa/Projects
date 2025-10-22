@@ -1299,7 +1299,7 @@
             }else {
                 max_height_test = 100+"%";
             }
-            div2.innerHTML = '<div style="max-height: '+max_height_test+'; border-radius: 15px;" id="ui5_content_' + widgetName + '" name="ui5_content_' + widgetName + '"><div style="max-height: '+max_height_test+'; border-radius: 15px; overflow-y: auto;" id="ui5_content_' + widgetName + '" name="ui5_content_' + widgetName + '"><slot name="content_' + widgetName + '"> </slot></div></div>';
+            div2.innerHTML = '<div style="max-height: '+max_height_test+'; border-radius: 15px; overflow-y: auto;" id="ui5_content_' + widgetName + '" name="ui5_content_' + widgetName + '"><div style="max-height: '+max_height_test+'; border-radius: 15px; overflow-y: auto;" id="ui5_content_' + widgetName + '" name="ui5_content_' + widgetName + '"><slot name="content_' + widgetName + '"> </slot></div></div>';
             _shadowRoot.appendChild(div2);
             that._firstConnection = 1;
         }
@@ -1937,6 +1937,8 @@
 
                                         // One paint-friendly pass
                                         requestAnimationFrame(() => {
+                                        const isSingleSelect = (that.Selection_Type === "SingleSelectLeft" || that.Selection_Type === "SingleSelectMaster");
+
                                         for (let i = 0; i < itemLis.length; i++) {
                                             const li  = itemLis[i];
                                             const lbl = labels[i];
@@ -1953,16 +1955,17 @@
                                             labelWrapper.style.paddingLeft = `${Math.max(0, (lvl || 0) - 1)}rem`;
                                             }
 
-                                            // Visibility + icon state by defaultLevel
+                                            // Visibility by defaultLevel (always set this)
                                             const show = lvl && lvl <= defaultLevel;
                                             li.classList.toggle("displayed", !!show);
                                             li.classList.toggle("disabled", !show);
 
-                                            if (lbl) {
-                                            const opened = show && lvl < defaultLevel; // parents open, boundary collapsed
-                                            lbl.setAttribute("data-sap-ui-icon-content", opened ? data_sap_icon_open : data_sap_icon_close);
-                                            lbl.classList.toggle("expanded", opened);
-                                            lbl.classList.toggle("collapsed", !opened);
+                                            // Icon state (skip for SingleSelect - it handles its own icons later)
+                                            if (!isSingleSelect && lbl) {
+                                                const opened = show && lvl < defaultLevel; // parents open, boundary collapsed
+                                                lbl.setAttribute("data-sap-ui-icon-content", opened ? data_sap_icon_open : data_sap_icon_close);
+                                                lbl.classList.toggle("expanded", opened);
+                                                lbl.classList.toggle("collapsed", !opened);
                                             }
                                         }
                                         dynamicHeightCW?.();
