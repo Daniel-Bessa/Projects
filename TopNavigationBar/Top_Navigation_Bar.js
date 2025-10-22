@@ -1409,102 +1409,100 @@ let tmpl = document.createElement('template');
     });
   }
 
-  function toggleButtonsFn(that){
-    let adminElementLocal = adminElement;
-    let configElementLocal = configElement;
-    let clipBoardElementLocal = clipBoardElement;
-    let clipBoardSuccessLocal = clipBoardSuccess;
-    let downloadElementLocal = downloadElement;
-    let infoElementLocal = infoElement;
-    let menuElementLocal = menuElement;
-    let userElementLocal = userElement;
+  /**
+   * Toggles visibility of navigation buttons based on configuration values
+   * Uses a data-driven approach to avoid repetitive code
+   *
+   * This function:
+   * - Normalizes toggle values to booleans
+   * - Shows/hides elements based on toggle state
+   * - Adds/removes CSS classes for styling
+   * - Attaches click handlers to hide menus when buttons are clicked
+   */
+  function toggleButtonsFn(){
+    // Configuration mapping toggle values to their elements
+    // Note: Menu and User default to true when empty string
+    const buttonConfigs = [
+      {
+        toggleVar: '_toggleAdmin_value',
+        element: adminElement,
+        allowEmpty: false
+      },
+      {
+        toggleVar: '_toggleConfig_value',
+        element: configElement,
+        allowEmpty: false
+      },
+      {
+        toggleVar: '_toggleClipBoard_value',
+        element: clipBoardElement,
+        allowEmpty: false
+      },
+      {
+        toggleVar: '_toggleDownload_value',
+        element: downloadElement,
+        allowEmpty: false
+      },
+      {
+        toggleVar: '_toggleInfo_value',
+        element: infoElement,
+        allowEmpty: false
+      },
+      {
+        toggleVar: '_toggleMenu_value',
+        element: menuElement,
+        allowEmpty: true  // Defaults to true when empty
+      },
+      {
+        toggleVar: '_toggleUser_value',
+        element: userElement,
+        allowEmpty: true  // Defaults to true when empty
+      }
+    ];
 
-    let clipBoardMenuLocal = clipBoardMenu;
-    let userMenuPanelLocal = userMenuPanel;
-    let nineDotMenuLocal = nineDotMenu;
+    // Process each button configuration
+    buttonConfigs.forEach(config => {
+      const currentValue = eval(config.toggleVar);
 
-    if( _toggleAdmin_value === "true" || _toggleAdmin_value === true ){ // || _toggleAdmin_value === ""){
-      _toggleAdmin_value = true;
-      adminElementLocal.style.display = "flex !important";
-      adminElementLocal.classList.remove("hiddenDefault");
-    }else {
-      _toggleAdmin_value = false;
-      adminElementLocal.style.display = "none !important";
-      adminElementLocal.classList.add("hiddenDefault");
-    }
+      // Normalize boolean value (allow empty string for menu and user)
+      const shouldShow = config.allowEmpty
+        ? (currentValue === 'true' || currentValue === true || currentValue === '')
+        : normalizeBoolean(currentValue);
 
-    if( _toggleConfig_value === "true" || _toggleConfig_value === true ){ // || _toggleConfig_value === ""){
-      _toggleConfig_value = true;
-      configElementLocal.style.display = "flex !important";
-      configElementLocal.classList.remove("hiddenDefault");
-    }else {
-      _toggleConfig_value = false;
-      configElementLocal.style.display = "none !important";
-      configElementLocal.classList.add("hiddenDefault");
-    }
+      // Update the global variable with normalized value
+      eval(`${config.toggleVar} = ${shouldShow}`);
 
-    if( _toggleClipBoard_value === "true" || _toggleClipBoard_value === true ){ // || _toggleClipBoard_value === ""){
-      _toggleClipBoard_value = true;
-      clipBoardElementLocal.style.display = "flex !important";
-      clipBoardElementLocal.classList.remove("hiddenDefault");
-    }else {
-      _toggleClipBoard_value = false;
-      clipBoardElementLocal.style.display = "none !important";
-      clipBoardElementLocal.classList.add("hiddenDefault");
-    }
-
-    if( _toggleDownload_value === "true" || _toggleDownload_value === true ){ // || _toggleDownload_value === ""){
-      _toggleDownload_value = true;
-      downloadElementLocal.style.display = "flex !important";
-      downloadElementLocal.classList.remove("hiddenDefault");
-    }else {
-      downloadElementLocal.style.display = "none !important";
-      downloadElementLocal.classList.add("hiddenDefault");
-      _toggleDownload_value = false;
-    }
-
-    if( _toggleInfo_value === "true" || _toggleInfo_value === true ){ // || _toggleInfo_value === ""){
-      _toggleInfo_value = true;
-      infoElementLocal.style.display = "flex !important";
-      infoElementLocal.classList.remove("hiddenDefault");
-    }else {
-      _toggleInfo_value = false;
-      infoElementLocal.style.display = "none !important";
-      infoElementLocal.classList.add("hiddenDefault");
-    }
-
-    if( _toggleMenu_value === "true" || _toggleMenu_value === true || _toggleMenu_value === ""){
-      _toggleMenu_value = true;
-      menuElementLocal.style.display = "flex !important";
-      menuElementLocal.classList.remove("hiddenDefault");
-    }  else {
-      _toggleMenu_value = false;
-      menuElementLocal.style.display = "none !important";
-      menuElementLocal.classList.add("hiddenDefault");
-    }
-
-    if( _toggleUser_value === "true" || _toggleUser_value === true || _toggleUser_value === ""){
-      _toggleUser_value = true;
-      userElementLocal.style.display = "flex !important";
-      userElementLocal.classList.remove("hiddenDefault");
-    }else {
-      _toggleUser_value = false;
-      userElementLocal.style.display = "none !important";
-      userElementLocal.classList.add("hiddenDefault");
-    }
-
-    let navButtonsLocal = navButtons;
-    navButtonsLocal.forEach(item => {
-      item.addEventListener('click', event => {
-        if(clipBoardSuccessLocal && clipBoardSuccessLocal.style.display === "flex" || clipBoardMenuLocal && clipBoardMenuLocal.style.display === "flex" || nineDotMenuLocal && nineDotMenuLocal.style.display === "flex" || userMenuPanelLocal && userMenuPanelLocal.style.display === "flex"){
-          clipBoardSuccessLocal.style.display = "none";
-          clipBoardMenuLocal.style.display = "none";
-          nineDotMenuLocal.style.display = "none";
-          userMenuPanelLocal.style.display = "none";
+      // Apply visibility and styling
+      if (config.element) {
+        if (shouldShow) {
+          config.element.style.display = 'flex !important';
+          config.element.classList.remove('hiddenDefault');
+        } else {
+          config.element.style.display = 'none !important';
+          config.element.classList.add('hiddenDefault');
         }
-        
-      })
+      }
     });
+
+    // Attach click listeners to nav buttons to hide menus
+    if (navButtons) {
+      navButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          // Check if any menus are visible
+          const menusToHide = [clipBoardSuccess, clipBoardMenu, nineDotMenu, userMenuPanel];
+          const anyMenuVisible = menusToHide.some(menu =>
+            menu && menu.style.display === DISPLAY_STATES.FLEX
+          );
+
+          // Hide all menus if any are visible
+          if (anyMenuVisible) {
+            menusToHide.forEach(menu => {
+              if (menu) menu.style.display = DISPLAY_STATES.NONE;
+            });
+          }
+        });
+      });
+    }
   }
 
   function initialsNameIconFn(that){
