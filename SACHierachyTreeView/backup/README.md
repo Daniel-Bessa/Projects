@@ -33,4 +33,5 @@ cp backup/Hierarchy_Tree_View_DEVELOPMENT_YYYYMMDD_HHMMSS_description.js Hierarc
 
 ## Current Backups
 
-- **20251022_101203_icons_fixed.js** - Fixed missing CSS for expanded/collapsed tree icons
+- **20251022_101203_icons_fixed.js** - Fixed missing CSS for expanded/collapsed tree icons (had issues)
+- **20251022_105001_singleselect_icons_fixed.js** - ✅ WORKING - Complete SingleSelect icon fix with proper skip logic
