@@ -1030,6 +1030,151 @@ let tmpl = document.createElement('template');
   let adminSwitchElement;
   let navButtons;
 
+  // ===================================================================
+  // CONSTANTS - Centralized configuration values
+  // ===================================================================
+
+  /**
+   * Admin team codes that grant elevated permissions
+   */
+  const ADMIN_TEAM_CODES = {
+    DEV: 'TM_CLD_SAC_DEV',
+    SUPPORT_NON_CONF: 'TM_CLD_SAC_SUPP_NCON',
+    SUPPORT_CONF: 'TM_CLD_SAC_SUPP_CONF',
+    ADMIN_POWER_WRITE: 'TM_AIDA_PWR_W',
+    POWER_WRITE_COUNTRY: 'TM_AIDA_PWR_W_CTRY',
+    END_USER_READ: 'TM_AIDA_END_R'
+  };
+
+  /**
+   * Team display names mapped to their codes
+   */
+  const TEAM_DISPLAY_NAMES = {
+    [ADMIN_TEAM_CODES.DEV]: 'IT Team',
+    [ADMIN_TEAM_CODES.SUPPORT_CONF]: 'IT Team',
+    [ADMIN_TEAM_CODES.SUPPORT_NON_CONF]: 'IT Team',
+    [ADMIN_TEAM_CODES.ADMIN_POWER_WRITE]: 'Admin',
+    [ADMIN_TEAM_CODES.POWER_WRITE_COUNTRY]: 'End User Write',
+    [ADMIN_TEAM_CODES.END_USER_READ]: 'End User Read'
+  };
+
+  /**
+   * Team codes that grant admin access
+   */
+  const ADMIN_ACCESS_CODES = [
+    ADMIN_TEAM_CODES.DEV,
+    ADMIN_TEAM_CODES.SUPPORT_NON_CONF,
+    ADMIN_TEAM_CODES.SUPPORT_CONF,
+    ADMIN_TEAM_CODES.ADMIN_POWER_WRITE
+  ];
+
+  /**
+   * Display state constants
+   */
+  const DISPLAY_STATES = {
+    FLEX: 'flex',
+    BLOCK: 'block',
+    NONE: 'none'
+  };
+
+  /**
+   * Color constants
+   */
+  const COLORS = {
+    WHITE: '#FFF',
+    BLUE: '#blue',
+    TRANSPARENT: 'transparent'
+  };
+
+  /**
+   * Clipboard timing constants (in milliseconds)
+   */
+  const CLIPBOARD_TIMING = {
+    CHECK_INTERVAL: 150,
+    MAX_CHECKS: 200
+  };
+
+  // ===================================================================
+  // HELPER FUNCTIONS - Reusable utility functions
+  // ===================================================================
+
+  /**
+   * Toggles the display property of an element
+   * @param {HTMLElement} element - The element to toggle
+   * @param {boolean} show - Whether to show or hide the element
+   * @param {string} displayType - The display type when showing (default: 'flex')
+   */
+  function toggleDisplay(element, show, displayType = DISPLAY_STATES.FLEX) {
+    if (!element) return;
+    element.style.display = show ? displayType : DISPLAY_STATES.NONE;
+  }
+
+  /**
+   * Resets the background color of multiple elements to white
+   * @param {HTMLElement[]} elements - Array of elements to reset
+   */
+  function resetElementBackgrounds(elements) {
+    elements.forEach(element => {
+      if (element) {
+        element.style.background = COLORS.WHITE;
+      }
+    });
+  }
+
+  /**
+   * Extracts initials from a full name
+   * @param {string} fullName - The full name to extract initials from
+   * @returns {string} The initials (up to 2 characters)
+   */
+  function getInitials(fullName) {
+    if (!fullName) return '';
+    return fullName
+      .split(' ')
+      .map(n => n[0])
+      .join('')
+      .replace('(', '')
+      .substring(0, 2);
+  }
+
+  /**
+   * Checks if a team code grants admin access
+   * @param {string} teamCode - The team code to check
+   * @returns {boolean} True if the team code grants admin access
+   */
+  function isAdminTeamCode(teamCode) {
+    return ADMIN_ACCESS_CODES.includes(teamCode);
+  }
+
+  /**
+   * Gets the display name for a team code
+   * @param {string} teamCode - The team code
+   * @returns {string|null} The display name or null if not found
+   */
+  function getTeamDisplayName(teamCode) {
+    return TEAM_DISPLAY_NAMES[teamCode] || null;
+  }
+
+  /**
+   * Normalizes a value to a boolean
+   * @param {*} value - The value to normalize
+   * @returns {boolean} The normalized boolean value
+   */
+  function normalizeBoolean(value) {
+    return value === 'true' || value === true;
+  }
+
+  /**
+   * Hides all menu panels
+   * @param {Object} menus - Object containing menu element references
+   */
+  function hideAllMenus(menus) {
+    const { clipBoardMenu, userMenuPanel, nineDotMenu, clipBoardSuccess } = menus;
+    toggleDisplay(clipBoardMenu, false);
+    toggleDisplay(userMenuPanel, false);
+    toggleDisplay(nineDotMenu, false);
+    toggleDisplay(clipBoardSuccess, false);
+  }
+
   function loadthis(that){
     thatParent = that.parentNode;
     navBarMenu = that._shadowRoot.getElementById("nav");
