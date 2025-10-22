@@ -1440,9 +1440,16 @@
                                     }
                                     if (divPanelComponentSection?.style) {
                                         const oldHeight = divPanelComponentSection.style.height;
-                                        const maxHeightValue = (that && that.max_height && that.unit_option)
-                                            ? `${that.max_height}${that.unit_option}`
-                                            : "70%";
+                                        let maxHeightValue = "70%";
+
+                                        // Cap max-height at 70% even if that.max_height is 100%
+                                        if (that && that.max_height && that.unit_option) {
+                                            if (that.unit_option === "%" && that.max_height > 70) {
+                                                maxHeightValue = "70%";
+                                            } else {
+                                                maxHeightValue = `${that.max_height}${that.unit_option}`;
+                                            }
+                                        }
 
                                         divPanelComponentSection.style.minWidth = "297px";
                                         divPanelComponentSection.style.maxHeight = maxHeightValue;
