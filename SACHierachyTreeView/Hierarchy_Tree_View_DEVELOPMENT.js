@@ -1399,20 +1399,6 @@
                                     return;
                                 }
 
-                                // Check if CW is hidden - if so, skip height calculation
-                                const divLayoutCommonWidget = that && that.parentNode;
-                                if (divLayoutCommonWidget) {
-                                    const divCommonWidgetPanelWrapper = divLayoutCommonWidget.parentNode;
-                                    const divPanelComponentSection = divCommonWidgetPanelWrapper?.parentNode?.parentNode;
-
-                                    if (divPanelComponentSection) {
-                                        const computedStyle = window.getComputedStyle(divPanelComponentSection);
-                                        if (computedStyle.display === 'none' || computedStyle.visibility === 'hidden') {
-                                            return; // Skip if CW is hidden
-                                        }
-                                    }
-                                }
-
                                 const itemList = tree.$().find(".sapMTreeItemBase");
                                 let displayedCount = 0;
                                 for (let i = 0; i < itemList.length; i++) {
@@ -1482,6 +1468,35 @@
                                 });
                                 return sizeDynamicCW;
                             };
+
+                            // Set up MutationObserver to call dynamicHeightCW when CW becomes visible
+                            if (that && that.parentNode) {
+                                const divLayoutCommonWidget = that.parentNode;
+                                const divCommonWidgetPanelWrapper = divLayoutCommonWidget.parentNode;
+                                const divPanelComponentSection = divCommonWidgetPanelWrapper?.parentNode?.parentNode;
+
+                                if (divPanelComponentSection) {
+                                    const observer = new MutationObserver((mutations) => {
+                                        mutations.forEach((mutation) => {
+                                            if (mutation.type === 'attributes' &&
+                                                (mutation.attributeName === 'style' || mutation.attributeName === 'class')) {
+                                                const computedStyle = window.getComputedStyle(divPanelComponentSection);
+                                                const isVisible = computedStyle.display !== 'none' && computedStyle.visibility !== 'hidden';
+
+                                                // Call dynamicHeightCW when CW becomes visible
+                                                if (isVisible) {
+                                                    dynamicHeightCW();
+                                                }
+                                            }
+                                        });
+                                    });
+
+                                    observer.observe(divPanelComponentSection, {
+                                        attributes: true,
+                                        attributeFilter: ['style', 'class']
+                                    });
+                                }
+                            }
 
                             if(that.widgetno) {
                                 // If document not ready doesn't run this function
