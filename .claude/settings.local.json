@@ -37,7 +37,8 @@
       "Bash(python3:*)",
       "Bash(xxd:*)",
       "Bash(printf:*)",
-      "Bash(dir:*)"
+      "Bash(dir:*)",
+      "Bash(cmd /c dir /b \"c:\\Users\\iceco\\Projects\\side-navigation-menu\\test.js\")"
     ],
     "deny": [],
     "ask": []
