@@ -1456,13 +1456,6 @@
                                         divCommonWidgetPanelWrapper.style.overflowY = "auto";
                                     }
                                     if (divCommonWidgetPanel?.style) {
-                                        divCommonWidgetPanel.style.minWidth = "297px";
-                                        divCommonWidgetPanel.style.minHeight = `${MIN_HEIGHT}px`;
-                                        divCommonWidgetPanel.style.height = `${sizeDynamicCW}px`;
-                                        divCommonWidgetPanel.style.overflowY = "auto";
-                                    }
-                                    if (divPanelComponentSection?.style) {
-                                        const oldHeight = divPanelComponentSection.style.height;
                                         let maxHeightValue = "70%";
 
                                         // Cap max-height at 70% even if that.max_height is 100%
@@ -1474,8 +1467,15 @@
                                             }
                                         }
 
+                                        divCommonWidgetPanel.style.minWidth = "297px";
+                                        divCommonWidgetPanel.style.maxHeight = maxHeightValue;
+                                        divCommonWidgetPanel.style.minHeight = `${MIN_HEIGHT}px`;
+                                        divCommonWidgetPanel.style.height = `${sizeDynamicCW}px`;
+                                        divCommonWidgetPanel.style.overflowY = "auto";
+                                    }
+                                    if (divPanelComponentSection?.style) {
                                         divPanelComponentSection.style.minWidth = "297px";
-                                        divPanelComponentSection.style.maxHeight = maxHeightValue;
+                                        divPanelComponentSection.style.maxHeight = "100%";
                                         divPanelComponentSection.style.minHeight = `${MIN_HEIGHT}px`;
                                         divPanelComponentSection.style.height    = `${sizeDynamicCW}px`;
                                         divPanelComponentSection.style.visibility = "visible";
