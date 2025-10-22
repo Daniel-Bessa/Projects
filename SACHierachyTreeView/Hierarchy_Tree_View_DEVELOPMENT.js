@@ -96,6 +96,10 @@
             // Update panel styles in next frame
             requestAnimationFrame(() => {
 
+                if (divLayoutCommonWidget?.style) {
+                    divLayoutCommonWidget.style.overflowY = "auto";
+                }
+
                 if (divCommonWidgetPanelWrapper?.style) {
                     divCommonWidgetPanelWrapper.style.visibility = "visible";
                     divCommonWidgetPanelWrapper.style.display = "";
@@ -1436,6 +1440,9 @@
                                 }
 
                                 requestAnimationFrame(() => {
+                                    if (divLayoutCommonWidget?.style) {
+                                        divLayoutCommonWidget.style.overflowY = "auto";
+                                    }
                                     if (divCommonWidgetPanelWrapper?.style) {
                                         divCommonWidgetPanelWrapper.style.visibility = "visible";
                                         divCommonWidgetPanelWrapper.style.display = "";
