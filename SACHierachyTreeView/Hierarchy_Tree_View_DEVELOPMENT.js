@@ -1498,26 +1498,45 @@
                                 const divCommonWidgetPanelWrapper = divLayoutCommonWidget.parentNode;
                                 const divPanelComponentSection = divCommonWidgetPanelWrapper?.parentNode?.parentNode;
 
+                                // Track previous visibility state
+                                let wasVisible = false;
+                                let debounceTimer = null;
+
+                                const checkVisibility = () => {
+                                    if (!divPanelComponentSection) return;
+
+                                    const computedStyle = window.getComputedStyle(divPanelComponentSection);
+                                    const isVisible = computedStyle.display !== 'none' && computedStyle.visibility !== 'hidden';
+
+                                    // Only call dynamicHeightCW when transitioning from hidden to visible
+                                    if (isVisible && !wasVisible) {
+                                        // Use setTimeout to ensure SAC has finished applying visibility changes
+                                        setTimeout(() => {
+                                            dynamicHeightCW();
+                                        }, 100);
+                                    }
+                                    wasVisible = isVisible;
+                                };
+
                                 if (divPanelComponentSection) {
                                     const observer = new MutationObserver((mutations) => {
-                                        mutations.forEach((mutation) => {
-                                            if (mutation.type === 'attributes' &&
-                                                (mutation.attributeName === 'style' || mutation.attributeName === 'class')) {
-                                                const computedStyle = window.getComputedStyle(divPanelComponentSection);
-                                                const isVisible = computedStyle.display !== 'none' && computedStyle.visibility !== 'hidden';
-
-                                                // Call dynamicHeightCW when CW becomes visible
-                                                if (isVisible) {
-                                                    dynamicHeightCW();
-                                                }
-                                            }
-                                        });
+                                        // Debounce to avoid multiple rapid calls
+                                        if (debounceTimer) clearTimeout(debounceTimer);
+                                        debounceTimer = setTimeout(checkVisibility, 50);
                                     });
 
                                     observer.observe(divPanelComponentSection, {
                                         attributes: true,
                                         attributeFilter: ['style', 'class']
                                     });
+
+                                    // Also observe parent elements in case SAC changes visibility there
+                                    if (divPanelComponentSection.parentNode) {
+                                        observer.observe(divPanelComponentSection.parentNode, {
+                                            attributes: true,
+                                            attributeFilter: ['style', 'class']
+                                        });
+                                    }
                                 }
                             }
 
