@@ -31,7 +31,8 @@
       "Bash(del optimize_topnav.py optimize_topnav_full.py optimize_topnav_v2.py)",
       "Bash(node --check:*)",
       "Bash(git add:*)",
-      "Bash(git log:*)"
+      "Bash(git log:*)",
+      "Bash(sed:*)"
     ],
     "deny": [],
     "ask": []
