@@ -1470,14 +1470,14 @@
                                         divCommonWidgetPanel.style.minWidth = "297px";
                                         divCommonWidgetPanel.style.maxHeight = maxHeightValue;
                                         divCommonWidgetPanel.style.minHeight = `${MIN_HEIGHT}px`;
-                                        divCommonWidgetPanel.style.height = `${sizeDynamicCW}px`;
+                                        divCommonWidgetPanel.style.height = "auto";
                                         divCommonWidgetPanel.style.overflowY = "auto";
                                     }
                                     if (divPanelComponentSection?.style) {
                                         divPanelComponentSection.style.minWidth = "297px";
                                         divPanelComponentSection.style.maxHeight = "100%";
                                         divPanelComponentSection.style.minHeight = `${MIN_HEIGHT}px`;
-                                        divPanelComponentSection.style.height    = `${sizeDynamicCW}px`;
+                                        divPanelComponentSection.style.height    = "auto";
                                         divPanelComponentSection.style.visibility = "visible";
                                         divPanelComponentSection.style.opacity    = "";
                                     }
