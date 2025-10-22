@@ -1299,7 +1299,7 @@
             }else {
                 max_height_test = 100+"%";
             }
-            div2.innerHTML = '<div style="max-height: '+max_height_test+'; border-radius: 15px; overflow-y: auto;" id="ui5_content_' + widgetName + '" name="ui5_content_' + widgetName + '"><div style="max-height: '+max_height_test+'; border-radius: 15px; overflow-y: auto;" id="ui5_content_' + widgetName + '" name="ui5_content_' + widgetName + '"><slot name="content_' + widgetName + '"> </slot></div></div>';
+            div2.innerHTML = '<div style="max-height: '+max_height_test+'; border-radius: 15px;" id="ui5_content_' + widgetName + '" name="ui5_content_' + widgetName + '"><div style="max-height: '+max_height_test+'; border-radius: 15px; overflow-y: auto;" id="ui5_content_' + widgetName + '" name="ui5_content_' + widgetName + '"><slot name="content_' + widgetName + '"> </slot></div></div>';
             _shadowRoot.appendChild(div2);
             that._firstConnection = 1;
         }
@@ -3543,4 +3543,3 @@
     })();
 
 })();
-
