@@ -1399,6 +1399,20 @@
                                     return;
                                 }
 
+                                // Check if CW is hidden - if so, skip height calculation
+                                const divLayoutCommonWidget = that && that.parentNode;
+                                if (divLayoutCommonWidget) {
+                                    const divCommonWidgetPanelWrapper = divLayoutCommonWidget.parentNode;
+                                    const divPanelComponentSection = divCommonWidgetPanelWrapper?.parentNode?.parentNode;
+
+                                    if (divPanelComponentSection) {
+                                        const computedStyle = window.getComputedStyle(divPanelComponentSection);
+                                        if (computedStyle.display === 'none' || computedStyle.visibility === 'hidden') {
+                                            return; // Skip if CW is hidden
+                                        }
+                                    }
+                                }
+
                                 const itemList = tree.$().find(".sapMTreeItemBase");
                                 let displayedCount = 0;
                                 for (let i = 0; i < itemList.length; i++) {
