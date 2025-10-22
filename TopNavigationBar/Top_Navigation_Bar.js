@@ -1939,29 +1939,73 @@ let tmpl = document.createElement('template');
     }
   }
 
-  var something_cachedValue = _clipboard_value;
-  let timer = 0;
-  function doStuff() {
-    let clipBoardSuccessLocal = document.getElementById("clipBoardSuccess");
-    let clipBoardMenuLocal = document.getElementById("clipBoardMenu");
-    if(_clipboard_value === something_cachedValue) {
-      timer += 1;
-      timeOutLoop = setTimeout(doStuff, 150);
-      if (timer === 200){
-        something_cachedValue=_clipboard_value;
-        clipBoardMenuLocal.style.display = "none";
-        navigator.clipboard.writeText(_clipboard_value);
-        clipBoardSuccessLocal.style.display = "flex";
-        timer = 0;
-        clearTimeout(timeOutLoop);
-        return;
+  // Clipboard copy state management
+  let cachedClipboardValue = _clipboard_value;
+  let clipboardCheckTimer = 0;
+  let clipboardTimeout = null;
+
+  /**
+   * Handles clipboard copy operation with debounce logic
+   * Waits for the clipboard value to stabilize before copying
+   * This prevents multiple rapid copy attempts and ensures the correct value is copied
+   *
+   * The function uses a recursive timeout approach:
+   * - If the value hasn't changed, it increments a counter and checks again
+   * - After max checks (200 * 150ms = 30 seconds), it forces the copy
+   * - If the value changes, it immediately copies the new value
+   */
+  function handleClipboardCopy() {
+    const clipBoardSuccessEl = document.getElementById("clipBoardSuccess");
+    const clipBoardMenuEl = document.getElementById("clipBoardMenu");
+
+    if (!clipBoardSuccessEl || !clipBoardMenuEl) return;
+
+    // Check if clipboard value has changed since last check
+    if (_clipboard_value === cachedClipboardValue) {
+      // Value hasn't changed - increment check counter
+      clipboardCheckTimer += 1;
+
+      // Schedule next check
+      clipboardTimeout = setTimeout(
+        handleClipboardCopy,
+        CLIPBOARD_TIMING.CHECK_INTERVAL
+      );
+
+      // Force copy after maximum checks to prevent infinite waiting
+      if (clipboardCheckTimer === CLIPBOARD_TIMING.MAX_CHECKS) {
+        performClipboardCopy(clipBoardMenuEl, clipBoardSuccessEl);
+        clearTimeout(clipboardTimeout);
       }
+
       return;
     }
-    something_cachedValue=_clipboard_value;
-    clipBoardMenuLocal.style.display = "none";
+
+    // Value has changed - copy immediately
+    performClipboardCopy(clipBoardMenuEl, clipBoardSuccessEl);
+  }
+
+  /**
+   * Performs the actual clipboard copy operation
+   * Updates UI to show success message
+   *
+   * @param {HTMLElement} menuElement - The clipboard menu element to hide
+   * @param {HTMLElement} successElement - The success message element to show
+   */
+  function performClipboardCopy(menuElement, successElement) {
+    // Update cached value
+    cachedClipboardValue = _clipboard_value;
+
+    // Hide menu and show success message
+    toggleDisplay(menuElement, false);
     navigator.clipboard.writeText(_clipboard_value);
-    clipBoardSuccessLocal.style.display = "flex";
-    timer = 0;
+    toggleDisplay(successElement, true);
+
+    // Reset timer
+    clipboardCheckTimer = 0;
+  }
+
+  // Legacy function name for backward compatibility
+  function doStuff() {
+    handleClipboardCopy();
   }
 })();
