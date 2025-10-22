@@ -1453,11 +1453,13 @@
                                     if (divCommonWidgetPanelWrapper?.style) {
                                         divCommonWidgetPanelWrapper.style.visibility = "visible";
                                         divCommonWidgetPanelWrapper.style.display = "";
+                                        divCommonWidgetPanelWrapper.style.overflowY = "auto";
                                     }
                                     if (divCommonWidgetPanel?.style) {
                                         divCommonWidgetPanel.style.minWidth = "297px";
                                         divCommonWidgetPanel.style.minHeight = `${MIN_HEIGHT}px`;
                                         divCommonWidgetPanel.style.height = `${sizeDynamicCW}px`;
+                                        divCommonWidgetPanel.style.overflowY = "auto";
                                     }
                                     if (divPanelComponentSection?.style) {
                                         const oldHeight = divPanelComponentSection.style.height;
