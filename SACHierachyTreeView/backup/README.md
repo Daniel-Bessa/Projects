@@ -36,3 +36,4 @@ cp backup/Hierarchy_Tree_View_DEVELOPMENT_YYYYMMDD_HHMMSS_description.js Hierarc
 - **20251022_101203_icons_fixed.js** - Fixed missing CSS for expanded/collapsed tree icons (had issues)
 - **20251022_105001_singleselect_icons_fixed.js** - SingleSelect icon fix with skip logic (icons work but selected item doesn't show)
 - **20251022_105830_COMPLETE_icons_and_selection.js** - ✅ COMPLETE FIX - Both icons working AND selected item showing at start!
+- **20251022_114134_overflow_adjusted.js** - ✅ LATEST - Removed overflow-y from outer div, keeping only on inner div
