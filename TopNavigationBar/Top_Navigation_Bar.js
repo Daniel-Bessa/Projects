@@ -1531,9 +1531,14 @@ let tmpl = document.createElement('template');
     }
   }
 
-  function nineDotMenuFn(that){
-
-    let nineDotStyle = `<style>
+  /**
+   * Initializes the nine-dot menu (app launcher)
+   * Creates the menu's CSS styles and attaches it to the DOM
+   * Sets up click handler to toggle menu visibility
+   */
+  function nineDotMenuFn(){
+    // Nine-dot menu styling
+    const nineDotStyle = `<style>
       .nineDotMenu {
         position: absolute;
         top: 48px;
@@ -1569,36 +1574,34 @@ let tmpl = document.createElement('template');
         align-items: flex-start;
       }
     </style>`;
-    
-    let thatParentLocal = thatParent;
-    let menuElementLocal = menuElement;
-    let nineDotMenuLocal = nineDotMenu;
-    let clipBoardMenuLocal = clipBoardMenu;
-    let clipBoardSuccessLocal = clipBoardSuccess;
-    let userMenuPanelLocal = userMenuPanel;
-    let nineDotStyleLocal = nineDotStyle;
-    if(thatParentLocal){
-      let thatGrandParent = thatParentLocal.parentNode
-      let that2ndGrandParent = thatGrandParent.parentNode
-      let that3rdGrandParent = that2ndGrandParent.parentNode
-      $(that3rdGrandParent).append(nineDotMenuLocal, nineDotStyleLocal);
 
-      menuElementLocal.addEventListener("click", evt => {
-        if(nineDotMenuLocal){
-          if(nineDotMenuLocal.style.display === "flex"){
-            nineDotMenuLocal.style.display = "none";
-          }else {
-            nineDotMenuLocal.style.display = "flex";
-            clipBoardMenuLocal.style.display = "none"
-            clipBoardSuccessLocal.style.display = "none";
-            userMenuPanelLocal.style.display = "none";
-          }
-          evt.stopPropagation();
+    // Traverse DOM to find the root element to append menu to
+    if (thatParent) {
+      const rootElement = thatParent.parentNode?.parentNode?.parentNode;
+
+      if (rootElement) {
+        // Append menu and styles to DOM
+        $(rootElement).append(nineDotMenu, nineDotStyle);
+
+        // Attach click handler to toggle menu
+        if (menuElement && nineDotMenu) {
+          menuElement.addEventListener("click", (evt) => {
+            // Toggle nine-dot menu visibility
+            const isVisible = nineDotMenu.style.display === DISPLAY_STATES.FLEX;
+            nineDotMenu.style.display = isVisible ? DISPLAY_STATES.NONE : DISPLAY_STATES.FLEX;
+
+            // Hide other menus when opening nine-dot menu
+            if (!isVisible) {
+              toggleDisplay(clipBoardMenu, false);
+              toggleDisplay(clipBoardSuccess, false);
+              toggleDisplay(userMenuPanel, false);
+            }
+
+            evt.stopPropagation();
+          });
         }
-      });
+      }
     }
-
-
   }
 
   function clipBoardMenuFn(that){
