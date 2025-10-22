@@ -1505,32 +1505,30 @@ let tmpl = document.createElement('template');
     }
   }
 
-  function initialsNameIconFn(that){
-    let adminElementLocal = adminElement;
-    let configElementLocal = configElement;
-    let clipBoardElementLocal = clipBoardElement;
-    let downloadElementLocal = downloadElement;
-    let infoElementLocal = infoElement;
-    let menuElementLocal = menuElement;
-    let userElementLocal = userElement;
+  /**
+   * Sets the user's initials in the avatar icon
+   * Extracts the first letter of each word in the user's display name
+   * and displays up to 2 characters in the avatar element
+   */
+  function initialsNameIconFn(){
+    // Check if user display name exists
+    if (!_setUserName || !_setUserName.displayName) return;
 
-    let clipBoardMenuLocal = clipBoardMenu;
-    let userMenuPanelLocal = userMenuPanel;
-    let nineDotMenuLocal = nineDotMenu;
+    // Extract initials using helper function
+    const initials = getInitials(_setUserName.displayName);
 
-    if(_setUserName.displayName){
-      let setUserDisplayName = _setUserName.displayName;
-      // let initialsName = _setUserName.split(" ").map((n)=>n[0]).reverse().join("").replace("(", "").substring(0, 2);
-      let initialsName = setUserDisplayName.split(" ").map((n)=>n[0]).join("").replace("(", "").substring(0, 2);
-      if (initialsName){
-        let avatarUserLocal = avatarUser
-        avatarUserLocal.innerHTML = initialsName;
-        const buttonMenuLocal = buttonMenu
-        const countSpanButtonMenu = buttonMenuLocal.getElementsByTagName('span').length;
-        let leftAlignClipBoard = countSpanButtonMenu / 143;
-      }
+    // Set initials in avatar if we have them
+    if (initials && avatarUser) {
+      avatarUser.innerHTML = initials;
     }
 
+    // Calculate button menu spacing (appears to be for layout purposes)
+    if (buttonMenu) {
+      const spanCount = buttonMenu.getElementsByTagName('span').length;
+      const leftAlignClipBoard = spanCount / 143;
+      // Note: leftAlignClipBoard is calculated but not used
+      // This may be legacy code for future alignment features
+    }
   }
 
   function nineDotMenuFn(that){
