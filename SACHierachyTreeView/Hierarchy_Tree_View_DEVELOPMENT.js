@@ -1305,10 +1305,15 @@
         } else {
             let div2 = document.createElement('div');
             let max_height_test;
-            if(that.max_height+that.unit_option){
-                max_height_test = that.max_height+that.unit_option;
+            if(that.max_height && that.unit_option){
+                // Cap max-height at 70% even if that.max_height is 100%
+                if (that.unit_option === "%" && that.max_height > 70) {
+                    max_height_test = "70%";
+                } else {
+                    max_height_test = that.max_height + that.unit_option;
+                }
             }else {
-                max_height_test = 100+"%";
+                max_height_test = "70%";
             }
             div2.innerHTML = '<div style="max-height: '+max_height_test+'; border-radius: 15px;" id="ui5_content_' + widgetName + '" name="ui5_content_' + widgetName + '"><div style="max-height: '+max_height_test+'; border-radius: 15px; overflow-y: auto;" id="ui5_content_' + widgetName + '" name="ui5_content_' + widgetName + '"><slot name="content_' + widgetName + '"> </slot></div></div>';
             _shadowRoot.appendChild(div2);
