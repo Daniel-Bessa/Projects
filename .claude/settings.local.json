@@ -27,7 +27,8 @@
       "Bash(git mv:*)",
       "Bash(cp:*)",
       "Bash(python:*)",
-      "Bash(git checkout:*)"
+      "Bash(git checkout:*)",
+      "Bash(del optimize_topnav.py optimize_topnav_full.py optimize_topnav_v2.py)"
     ],
     "deny": [],
     "ask": []
