@@ -2084,21 +2084,22 @@
                                                 if (uiItems[i]?.mProperties?.selected) { selIndex = i; break; }
                                             }
                                             if (selIndex < 0) return;
-                                        
+
                                             const selId = nodes[selIndex]?.nodeUnique;
-                                        
+
                                             // Climb ancestors
                                             const ancestors = [];
                                             let p = parentOf.get(selId);
                                             while (p) { ancestors.push(p); p = parentOf.get(p); }
-                                        
+
+                                            // First, show the hierarchy immediately (visibility)
                                             requestAnimationFrame(() => {
-                                                // Expand all ancestors, make sure they’re visible
+                                                // Expand all ancestors, make sure they're visible
                                                 for (const aid of ancestors) {
                                                     const idx = indexById.get(aid);
-                                                    if (idx != null) { showIndex(idx); iconOpen(idx); }
+                                                    if (idx != null) { showIndex(idx); }
                                                 }
-                                        
+
                                                 // Show every ancestor's direct children (siblings at each level)
                                                 const shown = new Set();
                                                 for (const aid of ancestors) {
@@ -2108,15 +2109,35 @@
                                                         if (idx != null && !shown.has(idx)) {
                                                             shown.add(idx);
                                                             showIndex(idx);
-                                                            iconClose(idx); // keep children collapsed by default
                                                         }
                                                     }
                                                 }
-                                        
-                                                // Ensure the selected row is visible, collapsed icon (to match your previous behavior)
+
+                                                // Ensure the selected row is visible
                                                 showIndex(selIndex);
-                                                iconClose(selIndex);
                                             });
+
+                                            // Then set icons with delay (to run after DefaultLevel)
+                                            setTimeout(() => {
+                                                // First, set ALL displayed nodes to collapsed (plus icon)
+                                                for (let i = 0; i < itemLis.length; i++) {
+                                                    if (itemLis[i]?.classList.contains("displayed") && labels[i]) {
+                                                        labels[i].classList.add("collapsed");
+                                                        labels[i].classList.remove("expanded");
+                                                        labels[i].setAttribute("data-sap-ui-icon-content", "");
+                                                    }
+                                                }
+
+                                                // Then override: ancestors get expanded (minus icon)
+                                                for (const aid of ancestors) {
+                                                    const idx = indexById.get(aid);
+                                                    if (idx != null && labels[idx]) {
+                                                        labels[idx].classList.add("expanded");
+                                                        labels[idx].classList.remove("collapsed");
+                                                        labels[idx].setAttribute("data-sap-ui-icon-content", "");
+                                                    }
+                                                }
+                                            }, 200); // Delayed to run after DefaultLevel
                                         }
                                     })();
 
