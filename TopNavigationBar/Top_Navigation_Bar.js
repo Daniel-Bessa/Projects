@@ -1604,39 +1604,24 @@ let tmpl = document.createElement('template');
     }
   }
 
-  function clipBoardMenuFn(that){
-    // 92, 140, 188, 236, 284
-    //          234, 282, 330  -> + 46
-    let clipBoardElementLocal = clipBoardElement;
-    let clipBoardSuccessLocal = clipBoardSuccess;
-    let recClipBoardElement = clipBoardElementLocal.getBoundingClientRect();
-    // let rightClipboardSize = recClipBoardElement.left + recClipBoardElement.width - 405;
-    let rightClipboardSize = "";
+  /**
+   * Initializes the clipboard menu
+   * Creates menu styling with dynamic positioning based on visible buttons
+   * Attaches click handlers for menu toggle and copy functionality
+   */
+  function clipBoardMenuFn(){
+    // Calculate right position based on which buttons are visible
+    // Base position + 48px for each visible button (Info, Download)
+    const rightClipboardSize = calculateClipboardMenuPosition();
 
-    if(_toggleInfo_value === "false" && _toggleDownload_value === "false" || _toggleInfo_value === false && _toggleDownload_value === false){
-      rightClipboardSize = 234;
-    }
-    
-    if( _toggleInfo_value === "false" && _toggleDownload_value === "true"  || _toggleInfo_value === false && _toggleDownload_value === true) {
-      rightClipboardSize = 282;
-    }
-
-    if( _toggleInfo_value === "true" && _toggleDownload_value === "false"  || _toggleInfo_value === true && _toggleDownload_value === false) {
-      rightClipboardSize = 282;
-    }
-    
-    if(_toggleInfo_value === "true" && _toggleDownload_value === "true" || _toggleInfo_value === true &&  _toggleDownload_value === true) {
-      rightClipboardSize = 330;  
-    }
-
-    //#region // This is the Style for clipBoard
-    let clipBoardStyle = `<style>
+    // Clipboard menu and success message styling
+    const clipBoardStyle = `<style>
       .clipBoardMenu {
         position: absolute;
         align-items: center;
         flex-wrap: wrap;
         top: 48px;
-        right:  ` + rightClipboardSize + `px;
+        right: ${rightClipboardSize}px;
         width: 288px;
         height: 240px;
         border: 1px solid #CBCBCB;
@@ -1649,7 +1634,7 @@ let tmpl = document.createElement('template');
         flex-direction: column;
       }
       .clipBoardMenu div{
-        // margin: 0 16px;
+        /* margin: 0 16px; */
       }
       .titleDiv {
         display: flex;
@@ -1692,7 +1677,7 @@ let tmpl = document.createElement('template');
         align-items: center;
         flex-wrap: wrap;
         top: 48px;
-        right:  ` + rightClipboardSize + `px;
+        right: ${rightClipboardSize}px;
         width: 288px;
         height: 240px;
         border: 1px solid #CBCBCB;
@@ -1700,7 +1685,6 @@ let tmpl = document.createElement('template');
         background-color: #fff;
         background-size: 0px;
         background-image: none;
-        // padding: 0 16px;
         justify-content: center;
       }
       .clipBoardSuccess .titleDiv {
@@ -1724,43 +1708,71 @@ let tmpl = document.createElement('template');
         font-size: 18px;
       }
     </style>`;
-    //#endregion
 
-    let thatParentLocal = thatParent
-    let nineDotMenuLocal = nineDotMenu;
-    let clipBoardMenuLocal = clipBoardMenu;
-    let userMenuPanelLocal = userMenuPanel;
-    let clipBoardStyleLocal = clipBoardStyle;
-    if(thatParentLocal){
-      let thatGrandParent = thatParentLocal.parentNode
-      let that2ndGrandParent = thatGrandParent.parentNode
-      let that3rdGrandParent = that2ndGrandParent.parentNode
-      $(that3rdGrandParent).append(clipBoardMenuLocal, clipBoardSuccessLocal,  clipBoardStyleLocal);
+    // Traverse DOM to find root element
+    if (thatParent) {
+      const rootElement = thatParent.parentNode?.parentNode?.parentNode;
 
-      clipBoardElementLocal.addEventListener("click", evnt => {
-        if(clipBoardMenuLocal){
-          if(clipBoardMenuLocal.style.display === "flex" || clipBoardSuccessLocal.style.display === "flex"){
-            clipBoardMenuLocal.style.display = "none";
-            clipBoardSuccessLocal.style.display = "none";
-          }else {
-            clipBoardMenuLocal.style.display = "flex";
-            nineDotMenuLocal.style.display = "none";
-            userMenuPanelLocal.style.display = "none";
-            clipBoardSuccessLocal.style.display = "none";
-          }
-          evnt.stopPropagation();
+      if (rootElement) {
+        // Append menu elements and styles to DOM
+        $(rootElement).append(clipBoardMenu, clipBoardSuccess, clipBoardStyle);
+
+        // Attach click handler to clipboard button
+        if (clipBoardElement && clipBoardMenu) {
+          clipBoardElement.addEventListener("click", (evnt) => {
+            // Check if either menu or success message is visible
+            const isMenuVisible = clipBoardMenu.style.display === DISPLAY_STATES.FLEX ||
+                                  clipBoardSuccess.style.display === DISPLAY_STATES.FLEX;
+
+            if (isMenuVisible) {
+              // Hide both clipboard menu and success message
+              toggleDisplay(clipBoardMenu, false);
+              toggleDisplay(clipBoardSuccess, false);
+            } else {
+              // Show clipboard menu and hide other menus
+              toggleDisplay(clipBoardMenu, true);
+              toggleDisplay(nineDotMenu, false);
+              toggleDisplay(userMenuPanel, false);
+              toggleDisplay(clipBoardSuccess, false);
+            }
+
+            evnt.stopPropagation();
+          });
         }
-        
-      });
-      if (copyLinkButton){
-        copyLinkButton.addEventListener("click", evt => {
-          // clipBoardMenuLocal.style.display = "none";
-          // navigator.clipboard.writeText(_clipboard_value);
-          doStuff();
-          // clipBoardSuccessLocal.style.display = "flex";
-        });
+
+        // Attach click handler to copy link button
+        if (copyLinkButton) {
+          copyLinkButton.addEventListener("click", () => {
+            // Trigger clipboard copy with debounce logic
+            handleClipboardCopy();
+          });
+        }
       }
     }
+  }
+
+  /**
+   * Calculates the right position for the clipboard menu based on visible buttons
+   * Position changes based on Info and Download button visibility
+   *
+   * @returns {number} The right position in pixels
+   */
+  function calculateClipboardMenuPosition() {
+    // Normalize boolean values
+    const infoVisible = normalizeBoolean(_toggleInfo_value);
+    const downloadVisible = normalizeBoolean(_toggleDownload_value);
+
+    // Calculate position based on visible buttons
+    // Base: 234px, +48px for each visible button
+    if (!infoVisible && !downloadVisible) {
+      return 234;
+    } else if ((infoVisible && !downloadVisible) || (!infoVisible && downloadVisible)) {
+      return 282;
+    } else if (infoVisible && downloadVisible) {
+      return 330;
+    }
+
+    return 234; // Default fallback
   }
 
   function userMenuFn(that){
