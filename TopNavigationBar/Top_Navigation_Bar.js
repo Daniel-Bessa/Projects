@@ -629,138 +629,364 @@ let tmpl = document.createElement('template');
     }
     */
 
-    //#region // sets and gets
+    //#region Getters and Setters
+
+    // ========================================================================
+    // USER-RELATED PROPERTIES
+    // ========================================================================
+
+    /**
+     * Gets or sets the user name displayed in the navigation bar
+     * @type {string}
+     */
     get userName() {
-      return _setUserName
+      return _setUserName;
     }
-    set userName(value){
+
+    /**
+     * @param {string} value - The user name to display
+     */
+    set userName(value) {
       _setUserName = value;
     }
+
+    /**
+     * Gets or sets the user team information displayed in the navigation bar
+     * @type {string}
+     */
     get userTeamInfo() {
-      return _setUserTeamInfo
+      return _setUserTeamInfo;
     }
-    set userTeamInfo(value){
+
+    /**
+     * @param {string} value - The user team information to display
+     */
+    set userTeamInfo(value) {
       _setUserTeamInfo = value;
     }
+
+    // ========================================================================
+    // TOGGLE VISIBILITY PROPERTIES
+    // These control whether specific UI elements are visible in the navigation bar
+    // ========================================================================
+
+    /**
+     * Gets or sets the visibility of the Admin toggle button
+     * @type {boolean}
+     */
     get toggleAdmin() {
       return _toggleAdmin_value;
     }
+
+    /**
+     * @param {boolean} value - True to show the Admin button, false to hide it
+     * TODO: Consider adding validation to ensure value is boolean
+     */
     set toggleAdmin(value) {
       _toggleAdmin_value = value;
     }
+
+    /**
+     * Gets or sets the visibility of the Config toggle button
+     * @type {boolean}
+     */
     get toggleConfig() {
       return _toggleConfig_value;
     }
+
+    /**
+     * @param {boolean} value - True to show the Config button, false to hide it
+     * TODO: Consider adding validation to ensure value is boolean
+     */
     set toggleConfig(value) {
       _toggleConfig_value = value;
     }
+
+    /**
+     * Gets or sets the visibility of the Clipboard toggle button
+     * @type {boolean}
+     */
     get toggleClipBoard() {
       return _toggleClipBoard_value;
     }
+
+    /**
+     * @param {boolean} value - True to show the Clipboard button, false to hide it
+     * TODO: Consider adding validation to ensure value is boolean
+     */
     set toggleClipBoard(value) {
       _toggleClipBoard_value = value;
     }
+
+    /**
+     * Gets or sets the visibility of the Download toggle button
+     * @type {boolean}
+     */
     get toggleDownload() {
       return _toggleDownload_value;
     }
+
+    /**
+     * @param {boolean} value - True to show the Download button, false to hide it
+     * TODO: Consider adding validation to ensure value is boolean
+     */
     set toggleDownload(value) {
       _toggleDownload_value = value;
     }
+
+    /**
+     * Gets or sets the visibility of the Info toggle button
+     * @type {boolean}
+     */
     get toggleInfo() {
       return _toggleInfo_value;
     }
+
+    /**
+     * @param {boolean} value - True to show the Info button, false to hide it
+     * TODO: Consider adding validation to ensure value is boolean
+     */
     set toggleInfo(value) {
       _toggleInfo_value = value;
     }
+
+    /**
+     * Gets or sets the visibility of the Menu toggle button
+     * @type {boolean}
+     */
     get toggleMenu() {
       return _toggleMenu_value;
     }
+
+    /**
+     * @param {boolean} value - True to show the Menu button, false to hide it
+     * TODO: Consider adding validation to ensure value is boolean
+     */
     set toggleMenu(value) {
       _toggleMenu_value = value;
     }
+
+    /**
+     * Gets or sets the visibility of the User toggle button
+     * @type {boolean}
+     */
     get toggleUser() {
       return _toggleUser_value;
     }
+
+    /**
+     * @param {boolean} value - True to show the User button, false to hide it
+     * TODO: Consider adding validation to ensure value is boolean
+     */
     set toggleUser(value) {
       _toggleUser_value = value;
     }
+
+    // ========================================================================
+    // TOGGLE ICON PROPERTIES
+    // These control which icon is displayed for each toggle button
+    // ========================================================================
+
+    /**
+     * Gets or sets the icon identifier for the Config toggle button
+     * @type {string}
+     */
     get toggleConfigIcon() {
-      return toggleConfigIcon
+      return toggleConfigIcon;
     }
-    set toggleConfigIcon(value){
+
+    /**
+     * @param {string} value - The icon identifier to use for the Config button
+     */
+    set toggleConfigIcon(value) {
       toggleConfigIcon = value;
     }
+
+    /**
+     * Gets or sets the icon identifier for the Clipboard toggle button
+     * @type {string}
+     */
     get toggleClipboardIcon() {
-      return toggleClipboardIcon
+      return toggleClipboardIcon;
     }
-    set toggleClipboardIcon(value){
+
+    /**
+     * @param {string} value - The icon identifier to use for the Clipboard button
+     */
+    set toggleClipboardIcon(value) {
       toggleClipboardIcon = value;
     }
+
+    /**
+     * Gets or sets the icon identifier for the Download toggle button
+     * @type {string}
+     */
     get toggleDownloadIcon() {
-      return toggleDownloadIcon
+      return toggleDownloadIcon;
     }
-    set toggleDownloadIcon(value){
+
+    /**
+     * @param {string} value - The icon identifier to use for the Download button
+     */
+    set toggleDownloadIcon(value) {
       toggleDownloadIcon = value;
     }
+
+    /**
+     * Gets or sets the icon identifier for the Info toggle button
+     * @type {string}
+     */
     get toggleInfoIcon() {
-      return toggleInfoIcon
+      return toggleInfoIcon;
     }
-    set toggleInfoIcon(value){
+
+    /**
+     * @param {string} value - The icon identifier to use for the Info button
+     */
+    set toggleInfoIcon(value) {
       toggleInfoIcon = value;
     }
+
+    /**
+     * Gets or sets the icon identifier for the Menu toggle button
+     * @type {string}
+     */
     get toggleMenuIcon() {
-      return toggleMenuIcon
+      return toggleMenuIcon;
     }
-    set toggleMenuIcon(value){
+
+    /**
+     * @param {string} value - The icon identifier to use for the Menu button
+     */
+    set toggleMenuIcon(value) {
       toggleMenuIcon = value;
     }
+
+    /**
+     * Gets or sets the icon identifier for the User toggle button
+     * @type {string}
+     */
     get toggleUserIcon() {
-      return toggleUserIcon
+      return toggleUserIcon;
     }
-    set toggleUserIcon(value){
+
+    /**
+     * @param {string} value - The icon identifier to use for the User button
+     */
+    set toggleUserIcon(value) {
       toggleUserIcon = value;
     }
 
+    // ========================================================================
+    // CLIPBOARD PROPERTIES
+    // ========================================================================
+
+    /**
+     * Gets the current clipboard value (method-style getter)
+     * @returns {string} The current clipboard string value
+     * @deprecated Use ClipboardString getter instead for consistency
+     */
     getClipboard() {
       return _clipboard_value;
     }
 
+    /**
+     * Gets or sets the clipboard string value
+     * This is the primary clipboard property - use this instead of setClipboardString
+     * @type {string}
+     */
     get ClipboardString() {
       return _clipboard_value;
     }
 
+    /**
+     * @param {string} value - The string value to store in clipboard
+     */
     set ClipboardString(value) {
       _clipboard_value = value;
     }
 
+    /**
+     * Gets or sets the clipboard string (alternate property)
+     * @type {string}
+     * @deprecated REDUNDANT: This appears to be a duplicate of ClipboardString.
+     * Recommend using ClipboardString instead as it follows proper naming conventions
+     * and accesses the correct internal variable (_clipboard_value).
+     * This property accesses 'setClipboardString' variable which may be different.
+     */
     get setClipboardString() {
-      return setClipboardString
+      return setClipboardString;
     }
 
-    set setClipboardString(value){
+    /**
+     * @param {string} value - The string value to store
+     * @deprecated See getter deprecation note
+     */
+    set setClipboardString(value) {
       setClipboardString = value;
     }
 
+    // ========================================================================
+    // ACCESS PROPERTIES
+    // ========================================================================
+
+    /**
+     * Gets or sets the access parameter for controlling user permissions
+     * This is the primary access property - use this instead of setAccess
+     * @type {*}
+     */
     get AccessParameter() {
       return _AccessParameter_value;
     }
+
+    /**
+     * @param {*} value - The access parameter value (type may vary based on implementation)
+     * TODO: Consider adding type validation based on expected access control format
+     */
     set AccessParameter(value) {
       _AccessParameter_value = value;
     }
 
+    /**
+     * Gets or sets the access value (alternate property)
+     * @type {*}
+     * @deprecated REDUNDANT: This appears to be a duplicate of AccessParameter.
+     * Recommend using AccessParameter instead as it follows better naming conventions
+     * and accesses the correct internal variable (_AccessParameter_value).
+     * This property accesses 'setAccess' variable which may be different.
+     */
     get setAccess() {
-      return setAccess
+      return setAccess;
     }
-    set setAccess(value){
+
+    /**
+     * @param {*} value - The access value to set
+     * @deprecated See getter deprecation note
+     */
+    set setAccess(value) {
       setAccess = value;
     }
 
+    // ========================================================================
+    // HELPER METHODS
+    // ========================================================================
+
+    /**
+     * Checks if a value is checked
+     * @returns {boolean} The checked state value
+     */
     isChecked() {
-      return _isChecked_value
-    }    
-    isAdmin() {
-      return _isAdmin_value
+      return _isChecked_value;
     }
+
+    /**
+     * Checks if the current user has admin privileges
+     * @returns {boolean} True if user is admin, false otherwise
+     */
+    isAdmin() {
+      return _isAdmin_value;
+    }
+
     //#endregion
 
     static get observedAttributes() {
