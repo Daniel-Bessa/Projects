@@ -1175,7 +1175,71 @@ let tmpl = document.createElement('template');
     toggleDisplay(clipBoardSuccess, false);
   }
 
+  /**
+   * Initializes all DOM element references and sets up the navigation bar
+   * This is the main initialization function that:
+   * - Caches DOM element references
+   * - Sets user information (name, ID, team)
+   * - Configures admin access based on team membership
+   * - Initializes all sub-components (buttons, menus, etc.)
+   * - Attaches event listeners for UI interactions
+   *
+   * @param {HTMLElement} that - The component instance (should be 'this' from the calling context)
+   */
   function loadthis(that){
+    // ===================================================================
+    // PART 1: Cache DOM Element References
+    // ===================================================================
+    initializeDOMReferences(that);
+
+    // Get local DOM references (outside shadow DOM)
+    const localMenus = {
+      clipBoardMenu: document.getElementById("clipBoardMenu"),
+      userMenuPanel: document.getElementById("userMenuPanel"),
+      nineDotMenu: document.getElementById("nineDotMenu"),
+      clipBoardSuccess: document.getElementById("clipBoardSuccess")
+    };
+
+    // ===================================================================
+    // PART 2: Set User Information
+    // ===================================================================
+    setUserInfo(that);
+
+    // ===================================================================
+    // PART 3: Determine Admin Status and Team Display
+    // ===================================================================
+    const teamCodes = _setUserTeamInfo.map(team => team.name);
+    updateAdminStatus(teamCodes);
+    updateTeamDisplay(teamCodes);
+
+    // ===================================================================
+    // PART 4: Configure Admin Container Visibility
+    // ===================================================================
+    configureAdminContainer(that, teamCodes);
+
+    // ===================================================================
+    // PART 5: Initialize Sub-Components
+    // ===================================================================
+    toggleButtonsFn();
+    initialsNameIconFn();
+    nineDotMenuFn();
+    clipBoardMenuFn();
+    userMenuFn();
+
+    // ===================================================================
+    // PART 6: Attach Event Listeners
+    // ===================================================================
+    attachAdminSwitchListeners();
+    attachGlobalClickListener(localMenus);
+    attachElementHighlightListeners();
+    attachMenuStopPropagation(localMenus);
+  }
+
+  /**
+   * Initializes all DOM element references from the shadow DOM
+   * @param {HTMLElement} that - The component instance
+   */
+  function initializeDOMReferences(that) {
     thatParent = that.parentNode;
     navBarMenu = that._shadowRoot.getElementById("nav");
     adminElement = that._shadowRoot.getElementById("adminElement");
@@ -1193,140 +1257,156 @@ let tmpl = document.createElement('template');
     avatarUser = that._shadowRoot.getElementById("avatarUser");
     buttonMenu = that._shadowRoot.getElementById("buttonMenu");
     containerAdmin = that._shadowRoot.getElementById("container-admin");
-
-    let clipBoardMenuLocal = document.getElementById("clipBoardMenu");
-    let userMenuPanelLocal = document.getElementById("userMenuPanel");
-    let nineDotMenuLocal = document.getElementById("nineDotMenu");
-    let clipBoardSuccessLocal = document.getElementById("clipBoardSuccess");
-
     navButtons = that._shadowRoot.querySelectorAll('.navButton');
-    
-    if (!userInfoName){userInfoName = that._shadowRoot.getElementById("userInfoName");}
-    if (!userInfoID){userInfoID = that._shadowRoot.getElementById("userInfoID");}
-    if (!userTeamInfo){userTeamInfo = that._shadowRoot.getElementById("teamInfoLabel");}
-    if(userInfoName){userInfoName.innerHTML = _setUserName.displayName;}
-    if(userInfoID){userInfoID.innerHTML = _setUserName.id;}
-    let userTeamInfoTestArrayDesc = [];
-    for(let i=0; i < _setUserTeamInfo.length; i++){
-      userTeamInfoTestArrayDesc.push(_setUserTeamInfo[i].name);
-      for(let c=0; c < userTeamInfoTestArrayDesc.length; c++){
-        if(userTeamInfoTestArrayDesc[c] !== "TM_CLD_SAC_DEV" && userTeamInfoTestArrayDesc[c] !== "TM_CLD_SAC_SUPP_NCON" && userTeamInfoTestArrayDesc[c] !== "TM_CLD_SAC_SUPP_CONF" && userTeamInfoTestArrayDesc[c] !== "TM_AIDA_PWR_W"){
-          
-        }else {
-          _isAdmin_value = true;
-          break;
-        }
+  }
+
+  /**
+   * Sets user information in the UI (name, ID, team)
+   * @param {HTMLElement} that - The component instance
+   */
+  function setUserInfo(that) {
+    // Initialize user info elements if not already set
+    if (!userInfoName) userInfoName = that._shadowRoot.getElementById("userInfoName");
+    if (!userInfoID) userInfoID = that._shadowRoot.getElementById("userInfoID");
+    if (!userTeamInfo) userTeamInfo = that._shadowRoot.getElementById("teamInfoLabel");
+
+    // Set user name and ID
+    if (userInfoName) userInfoName.innerHTML = _setUserName.displayName;
+    if (userInfoID) userInfoID.innerHTML = _setUserName.id;
+  }
+
+  /**
+   * Updates the global admin status based on team codes
+   * @param {string[]} teamCodes - Array of team code strings
+   */
+  function updateAdminStatus(teamCodes) {
+    // Check if any team code grants admin access
+    _isAdmin_value = teamCodes.some(code => isAdminTeamCode(code));
+  }
+
+  /**
+   * Updates the team display label based on user's team codes
+   * Uses the first matching team code to set the display name
+   * @param {string[]} teamCodes - Array of team code strings
+   */
+  function updateTeamDisplay(teamCodes) {
+    if (!userTeamInfo || !teamCodes.length) return;
+
+    // Find the first team code with a display name and use it
+    for (const teamCode of teamCodes) {
+      const displayName = getTeamDisplayName(teamCode);
+      if (displayName) {
+        userTeamInfo.innerHTML = displayName;
+        break;
       }
     }
-    
-    if(userTeamInfo){
-      if(userTeamInfoTestArrayDesc){
-        for(let i=0; i < userTeamInfoTestArrayDesc.length; i++){
-          let userTeamInfoTestArrayDescString = userTeamInfoTestArrayDesc[i];
-  
-          if(userTeamInfoTestArrayDescString === "TM_CLD_SAC_DEV" || userTeamInfoTestArrayDescString === "TM_CLD_SAC_SUPP_CONF" || userTeamInfoTestArrayDescString === "TM_CLD_SAC_SUPP_NCON"){
-            userTeamInfo.innerHTML = "IT Team";
-          }else if(userTeamInfoTestArrayDescString === "TM_AIDA_PWR_W"){
-            userTeamInfo.innerHTML = "Admin";
-          }else if(userTeamInfoTestArrayDescString === "TM_AIDA_PWR_W_CTRY"){
-            userTeamInfo.innerHTML = "End User Write";
-          }else if(userTeamInfoTestArrayDescString === "TM_AIDA_END_R"){
-            userTeamInfo.innerHTML = "End User Read";
-          }
-        }
-      }
-    }
-    if (!containerAdmin){
-      // containerAdmin = that._shadowRoot.getElementById("container-admin");
+  }
+
+  /**
+   * Configures the admin container visibility based on user permissions
+   * @param {HTMLElement} that - The component instance
+   * @param {string[]} teamCodes - Array of team code strings
+   */
+  function configureAdminContainer(that, teamCodes) {
+    // Get container reference
+    if (!containerAdmin) {
       containerAdmin = document.getElementById("container-admin");
-    } 
-    if (!adminSwitchElement){
+    }
+
+    // Get admin switch element
+    if (!adminSwitchElement) {
       adminSwitchElement = that._shadowRoot.getElementById("adminSwitch");
-      adminElement.style.display = "flex";
-    }
-    if(containerAdmin){
-      // containerAdmin.add();
-      for(let i=0; i < _setUserTeamInfo.length; i++){
-        let AccessParameterArray = _setUserTeamInfo[i].name;
-        if (typeof _setUserTeamInfo === 'undefined' || _setUserTeamInfo === null || !_setUserTeamInfo){
-          // do nothing
-        }else {
-          // TM_CLD_SAC_DEV || TM_CLD_SAC_SUPP_NCON || TM_CLD_SAC_SUPP_CONF || TM_AIDA_PWR_W
-          if (AccessParameterArray !== "TM_CLD_SAC_DEV" && AccessParameterArray !== "TM_CLD_SAC_SUPP_NCON" && AccessParameterArray !== "TM_CLD_SAC_SUPP_CONF" && AccessParameterArray !== "TM_AIDA_PWR_W"){
-          // if (AccessParameterArray !== "Test"){
-            
-            // containerAdmin.remove();
-            // adminElement.classList.remove("hiddenDefault");
-            containerAdmin.style.display = "none";
-            containerAdmin.style.visibility = "visible";
-            containerAdmin.style.opacity = "1";
-            adminElement.style.display = "none";
-            adminHeight = false;
-          }else {
-            containerAdmin.style.display = "block";
-            containerAdmin.style.visibility = "visible";
-            containerAdmin.style.opacity = "1";
-            adminElement.style.display = "flex";
-            adminHeight = true;
-            break;
-          }
-        }
-      }
+      adminElement.style.display = DISPLAY_STATES.FLEX;
     }
 
-    toggleButtonsFn();
-    initialsNameIconFn();
-    nineDotMenuFn();
-    clipBoardMenuFn();
-    userMenuFn();
+    // Configure visibility based on admin permissions
+    if (containerAdmin && _setUserTeamInfo) {
+      const hasAdminAccess = teamCodes.some(code => isAdminTeamCode(code));
 
-    adminSwitchElement.addEventListener("click", function (event){
-      if(adminElement.style.display === "flex"){
-        adminElement.style.display = "none";
-      }else {
-        adminElement.style.display = "flex";
+      if (hasAdminAccess) {
+        // User has admin access - show admin controls
+        containerAdmin.style.display = DISPLAY_STATES.BLOCK;
+        containerAdmin.style.visibility = "visible";
+        containerAdmin.style.opacity = "1";
+        adminElement.style.display = DISPLAY_STATES.FLEX;
+        adminHeight = true;
+      } else {
+        // User doesn't have admin access - hide admin controls
+        containerAdmin.style.display = DISPLAY_STATES.NONE;
+        containerAdmin.style.visibility = "visible";
+        containerAdmin.style.opacity = "1";
+        adminElement.style.display = DISPLAY_STATES.NONE;
+        adminHeight = false;
       }
+    }
+  }
+
+  /**
+   * Attaches event listeners to the admin switch element
+   */
+  function attachAdminSwitchListeners() {
+    if (!adminSwitchElement) return;
+
+    // Toggle admin panel visibility
+    adminSwitchElement.addEventListener("click", () => {
+      const isVisible = adminElement.style.display === DISPLAY_STATES.FLEX;
+      adminElement.style.display = isVisible ? DISPLAY_STATES.NONE : DISPLAY_STATES.FLEX;
     });
 
+    // Track checked state
     adminSwitchElement.addEventListener("change", () => {
-      if (adminSwitchElement.checked){
-        _isChecked_value = true;
-      }else {
-        _isChecked_value = false;
-      }
-    })
-
-    document.addEventListener('click', event => {
-      if(clipBoardMenuLocal){clipBoardMenuLocal.style.display = "none";}
-      if(userMenuPanelLocal){userMenuPanelLocal.style.display = "none";}
-      if(nineDotMenuLocal){nineDotMenuLocal.style.display = "none";}
-      if(clipBoardSuccessLocal) {clipBoardSuccessLocal.style.display = "none";}
-
-      if(adminElement){ adminElement.style.background = "#FFF"; }
-      if(configElement){ configElement.style.background = "#FFF"; }
-      if(clipBoardElement){ clipBoardElement.style.background = "#FFF"; }
-      if(downloadElement){ downloadElement.style.background = "#FFF"; }
-      if(infoElement){ infoElement.style.background = "#FFF"; }
-      if(userElement){ userElement.style.background = "#FFF"; }
-      if(menuElement){ menuElement.style.background = "#FFF"; }
-      if(nineDotMenu){ nineDotMenu.style.background = "#FFF"; }
-
+      _isChecked_value = adminSwitchElement.checked;
     });
-    // Chnage Background color or selected Icon
-    if(adminElement){adminElement.addEventListener('click', event => {adminElement.style.background = "#blue";})}
-    if(configElement){configElement.addEventListener('click', event => {configElement.style.background = "#blue";})}
-    if(clipBoardElement){clipBoardElement.addEventListener('click', event => {clipBoardElement.style.background = "#blue";})}
-    if(downloadElement){downloadElement.addEventListener('click', event => {downloadElement.style.background = "#blue";})}
-    if(infoElement){infoElement.addEventListener('click', event => {infoElement.style.background = "#blue";})}
-    if(userElement){userElement.addEventListener('click', event => {userElement.style.background = "#blue";})}
-    if(menuElement){menuElement.addEventListener('click', event => {menuElement.style.background = "#blue";})}
-    // if(nineDotMenu){nineDotMenu.addEventListener('click', event => {nineDotMenu.style.background = "#blue";})}
+  }
 
-    if(clipBoardMenuLocal){clipBoardMenuLocal.addEventListener('click', event => {event.stopPropagation();})}
-    if(userMenuPanelLocal){userMenuPanelLocal.addEventListener('click', event => {event.stopPropagation();})}
-    if(nineDotMenuLocal){nineDotMenuLocal.addEventListener('click', event => {event.stopPropagation();})}
-    if(clipBoardSuccessLocal){clipBoardSuccessLocal.addEventListener('click', event => {event.stopPropagation();})}
+  /**
+   * Attaches global click listener to hide menus and reset backgrounds
+   * @param {Object} localMenus - Object containing local menu element references
+   */
+  function attachGlobalClickListener(localMenus) {
+    document.addEventListener('click', () => {
+      // Hide all menus
+      hideAllMenus(localMenus);
 
+      // Reset all element backgrounds to white
+      const elementsToReset = [
+        adminElement, configElement, clipBoardElement, downloadElement,
+        infoElement, userElement, menuElement, nineDotMenu
+      ];
+      resetElementBackgrounds(elementsToReset);
+    });
+  }
+
+  /**
+   * Attaches click listeners to highlight elements when clicked
+   */
+  function attachElementHighlightListeners() {
+    const elementsToHighlight = [
+      adminElement, configElement, clipBoardElement, downloadElement,
+      infoElement, userElement, menuElement
+    ];
+
+    elementsToHighlight.forEach(element => {
+      if (element) {
+        element.addEventListener('click', () => {
+          element.style.background = COLORS.BLUE;
+        });
+      }
+    });
+  }
+
+  /**
+   * Prevents click events in menus from propagating to document
+   * @param {Object} localMenus - Object containing local menu element references
+   */
+  function attachMenuStopPropagation(localMenus) {
+    Object.values(localMenus).forEach(menu => {
+      if (menu) {
+        menu.addEventListener('click', (event) => {
+          event.stopPropagation();
+        });
+      }
+    });
   }
 
   function toggleButtonsFn(that){
