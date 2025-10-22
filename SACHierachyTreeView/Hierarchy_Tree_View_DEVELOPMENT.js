@@ -95,7 +95,6 @@
 
             // Update panel styles in next frame
             requestAnimationFrame(() => {
-                // that.style.overflowY = "auto";
 
                 if (divCommonWidgetPanelWrapper?.style) {
                     divCommonWidgetPanelWrapper.style.visibility = "visible";
@@ -118,7 +117,6 @@
                     divPanelComponentSection.style.maxHeight = maxHeightValue;
                     divPanelComponentSection.style.minHeight = `${MIN_HEIGHT}px`;
                     divPanelComponentSection.style.height = `${sizeDynamicCW}px`;
-                    divPanelComponentSection.style.overflowY = "auto";
                     divPanelComponentSection.style.visibility = "visible";
                     divPanelComponentSection.style.opacity = "";
                 }
@@ -898,8 +896,6 @@
         }
         
         let defaultSelection = payload?.defaultSelection ?? changedProperties.setSelection ?? changedProperties.default;
-            
-        console.log("resultSetData", resultSetData);
 
         /*-------------------------- Node Hierarchy Creation based on Paren-Child Relations  ------------------------------------- */
         /*-------------------------- Local Variable Declaration  ------------------------------------- */
@@ -1303,7 +1299,7 @@
             }else {
                 max_height_test = 100+"%";
             }
-            div2.innerHTML = '<div style="max-height: '+max_height_test+'; border-radius: 15px; overflow-y: auto;" id="ui5_content_' + widgetName + '" name="ui5_content_' + widgetName + '"><div style="max-height: '+max_height_test+'; border-radius: 15px; overflow-y: auto;" id="ui5_content_' + widgetName + '" name="ui5_content_' + widgetName + '"><slot name="content_' + widgetName + '"> </slot></div></div>';
+            div2.innerHTML = '<div style="max-height: '+max_height_test+'; border-radius: 15px;" id="ui5_content_' + widgetName + '" name="ui5_content_' + widgetName + '"><div style="max-height: '+max_height_test+'; border-radius: 15px; overflow-y: auto;" id="ui5_content_' + widgetName + '" name="ui5_content_' + widgetName + '"><slot name="content_' + widgetName + '"> </slot></div></div>';
             _shadowRoot.appendChild(div2);
             that._firstConnection = 1;
         }
@@ -1433,7 +1429,6 @@
                                 }
 
                                 requestAnimationFrame(() => {
-                                    // that.style.overflowY = "auto";
                                     if (divCommonWidgetPanelWrapper?.style) {
                                         divCommonWidgetPanelWrapper.style.visibility = "visible";
                                         divCommonWidgetPanelWrapper.style.display = "";
@@ -1453,7 +1448,6 @@
                                         divPanelComponentSection.style.maxHeight = maxHeightValue;
                                         divPanelComponentSection.style.minHeight = `${MIN_HEIGHT}px`;
                                         divPanelComponentSection.style.height    = `${sizeDynamicCW}px`;
-                                        divPanelComponentSection.style.overflowY = "auto";
                                         divPanelComponentSection.style.visibility = "visible";
                                         divPanelComponentSection.style.opacity    = "";
                                     }
@@ -1943,8 +1937,6 @@
 
                                         // One paint-friendly pass
                                         requestAnimationFrame(() => {
-                                        const isSingleSelect = (that.Selection_Type === "SingleSelectLeft" || that.Selection_Type === "SingleSelectMaster");
-
                                         for (let i = 0; i < itemLis.length; i++) {
                                             const li  = itemLis[i];
                                             const lbl = labels[i];
@@ -1961,17 +1953,16 @@
                                             labelWrapper.style.paddingLeft = `${Math.max(0, (lvl || 0) - 1)}rem`;
                                             }
 
-                                            // Visibility by defaultLevel (always set this)
+                                            // Visibility + icon state by defaultLevel
                                             const show = lvl && lvl <= defaultLevel;
                                             li.classList.toggle("displayed", !!show);
                                             li.classList.toggle("disabled", !show);
 
-                                            // Icon state (skip for SingleSelect - it handles its own icons later)
-                                            if (!isSingleSelect && lbl) {
-                                                const opened = show && lvl < defaultLevel; // parents open, boundary collapsed
-                                                lbl.setAttribute("data-sap-ui-icon-content", opened ? data_sap_icon_open : data_sap_icon_close);
-                                                lbl.classList.toggle("expanded", opened);
-                                                lbl.classList.toggle("collapsed", !opened);
+                                            if (lbl) {
+                                            const opened = show && lvl < defaultLevel; // parents open, boundary collapsed
+                                            lbl.setAttribute("data-sap-ui-icon-content", opened ? data_sap_icon_open : data_sap_icon_close);
+                                            lbl.classList.toggle("expanded", opened);
+                                            lbl.classList.toggle("collapsed", !opened);
                                             }
                                         }
                                         dynamicHeightCW?.();
@@ -2090,39 +2081,21 @@
                                                 if (uiItems[i]?.mProperties?.selected) { selIndex = i; break; }
                                             }
                                             if (selIndex < 0) return;
-
+                                        
                                             const selId = nodes[selIndex]?.nodeUnique;
-
+                                        
                                             // Climb ancestors
                                             const ancestors = [];
                                             let p = parentOf.get(selId);
                                             while (p) { ancestors.push(p); p = parentOf.get(p); }
-
-                                            // Set icons: ancestors=expanded(minus), all others=collapsed(plus)
-                                            setTimeout(() => {
-                                                // First, set ALL displayed nodes to collapsed (plus icon)
-                                                for (let i = 0; i < itemLis.length; i++) {
-                                                    if (itemLis[i]?.classList.contains("displayed") && labels[i]) {
-                                                        labels[i].classList.add("collapsed");
-                                                        labels[i].classList.remove("expanded");
-                                                        labels[i].setAttribute("data-sap-ui-icon-content", "");
-                                                    }
-                                                }
-
-                                                // Show and override: ancestors get expanded (minus icon)
+                                        
+                                            requestAnimationFrame(() => {
+                                                // Expand all ancestors, make sure they’re visible
                                                 for (const aid of ancestors) {
                                                     const idx = indexById.get(aid);
-                                                    if (idx != null) {
-                                                        itemLis[idx]?.classList.add("displayed");
-                                                        itemLis[idx]?.classList.remove("disabled");
-                                                        if (labels[idx]) {
-                                                            labels[idx].classList.add("expanded");
-                                                            labels[idx].classList.remove("collapsed");
-                                                            labels[idx].setAttribute("data-sap-ui-icon-content", "");
-                                                        }
-                                                    }
+                                                    if (idx != null) { showIndex(idx); iconOpen(idx); }
                                                 }
-
+                                        
                                                 // Show every ancestor's direct children (siblings at each level)
                                                 const shown = new Set();
                                                 for (const aid of ancestors) {
@@ -2131,26 +2104,16 @@
                                                         const idx = indexById.get(cid);
                                                         if (idx != null && !shown.has(idx)) {
                                                             shown.add(idx);
-                                                            itemLis[idx]?.classList.add("displayed");
-                                                            itemLis[idx]?.classList.remove("disabled");
-                                                            if (labels[idx]) {
-                                                                labels[idx].classList.add("collapsed");
-                                                                labels[idx].classList.remove("expanded");
-                                                                labels[idx].setAttribute("data-sap-ui-icon-content", "");
-                                                            }
+                                                            showIndex(idx);
+                                                            iconClose(idx); // keep children collapsed by default
                                                         }
                                                     }
                                                 }
-
-                                                // Show the selected node itself
-                                                itemLis[selIndex]?.classList.add("displayed");
-                                                itemLis[selIndex]?.classList.remove("disabled");
-                                                if (labels[selIndex]) {
-                                                    labels[selIndex].classList.add("collapsed");
-                                                    labels[selIndex].classList.remove("expanded");
-                                                    labels[selIndex].setAttribute("data-sap-ui-icon-content", "");
-                                                }
-                                            }, 200); // setTimeout with 200ms delay
+                                        
+                                                // Ensure the selected row is visible, collapsed icon (to match your previous behavior)
+                                                showIndex(selIndex);
+                                                iconClose(selIndex);
+                                            });
                                         }
                                     })();
 
@@ -3350,7 +3313,6 @@
                                 _SelectedChild = _unit1.filter((c, index) => {
                                     return _unit1.indexOf(c) === index;
                                 });
-                                console.log("_SelectedChild", _SelectedChild);
 
                                 // _SelectedChild = schild;
 
@@ -3548,9 +3510,7 @@
             let displayedNode = '<style>.displayed{display:flex;padding-left:0rem!important;margin:0 1rem;}</style>';
             let rightSideCBNewClass = '<style>.sapMCbNewClass{position:absolute!important;right:5px!important;}</style>';
             let unselectable = '<style>.unselectable{-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none;}</style>';
-            let expandedIcon = '<style>label.sapMTreeItemBaseExpander.expanded:before{content:"\\e1f7"!important;font-family:"SAP-icons"!important;display:inline-block!important;}</style>';
-            let collapsedIcon = '<style>label.sapMTreeItemBaseExpander.collapsed:before{content:"\\e1f6"!important;font-family:"SAP-icons"!important;display:inline-block!important;}</style>';
-            $('body').append(partiallyCheck, disabledNode, displayedNode, unselectable, rightSideCBNewClass, sapMCbMarkChecked, sapMCbMarkCheckedBackground, sapMCbBg, expandedIcon, collapsedIcon);
+            $('body').append(partiallyCheck, disabledNode, displayedNode, unselectable, rightSideCBNewClass, sapMCbMarkChecked, sapMCbMarkCheckedBackground, sapMCbBg);
             executed = true; 
             }
         };
