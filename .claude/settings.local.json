@@ -32,7 +32,8 @@
       "Bash(node --check:*)",
       "Bash(git add:*)",
       "Bash(git log:*)",
-      "Bash(sed:*)"
+      "Bash(sed:*)",
+      "Bash(git pull:*)"
     ],
     "deny": [],
     "ask": []
