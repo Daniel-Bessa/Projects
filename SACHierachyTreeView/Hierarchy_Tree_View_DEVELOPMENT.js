@@ -107,12 +107,14 @@
                 }
 
                 if (divCommonWidgetPanel?.style) {
-                    let maxHeightValue = "70%";
+                    let maxHeightValue = "70vh";
 
-                    // Cap max-height at 70% even if that.max_height is 100%
+                    // Cap max-height at 70vh even if that.max_height is 100%
                     if (that && that.max_height && that.unit_option) {
                         if (that.unit_option === "%" && that.max_height > 70) {
-                            maxHeightValue = "70%";
+                            maxHeightValue = "70vh";
+                        } else if (that.unit_option === "%") {
+                            maxHeightValue = `${that.max_height}vh`;
                         } else {
                             maxHeightValue = `${that.max_height}${that.unit_option}`;
                         }
@@ -121,7 +123,7 @@
                     divCommonWidgetPanel.style.minWidth = "297px";
                     divCommonWidgetPanel.style.maxHeight = maxHeightValue;
                     divCommonWidgetPanel.style.minHeight = `${MIN_HEIGHT}px`;
-                    divCommonWidgetPanel.style.height = "auto";
+                    divCommonWidgetPanel.style.height = `min(${sizeDynamicCW}px, ${maxHeightValue})`;
                     divCommonWidgetPanel.style.overflowY = "auto";
                 }
 
@@ -129,7 +131,7 @@
                     divPanelComponentSection.style.minWidth = "297px";
                     divPanelComponentSection.style.maxHeight = "100%";
                     divPanelComponentSection.style.minHeight = `${MIN_HEIGHT}px`;
-                    divPanelComponentSection.style.height = "auto";
+                    divPanelComponentSection.style.height = "100%";
                     divPanelComponentSection.style.visibility = "visible";
                     divPanelComponentSection.style.opacity = "";
                 }
@@ -1456,12 +1458,14 @@
                                         divCommonWidgetPanelWrapper.style.overflowY = "auto";
                                     }
                                     if (divCommonWidgetPanel?.style) {
-                                        let maxHeightValue = "70%";
+                                        let maxHeightValue = "70vh";
 
-                                        // Cap max-height at 70% even if that.max_height is 100%
+                                        // Cap max-height at 70vh even if that.max_height is 100%
                                         if (that && that.max_height && that.unit_option) {
                                             if (that.unit_option === "%" && that.max_height > 70) {
-                                                maxHeightValue = "70%";
+                                                maxHeightValue = "70vh";
+                                            } else if (that.unit_option === "%") {
+                                                maxHeightValue = `${that.max_height}vh`;
                                             } else {
                                                 maxHeightValue = `${that.max_height}${that.unit_option}`;
                                             }
@@ -1470,14 +1474,14 @@
                                         divCommonWidgetPanel.style.minWidth = "297px";
                                         divCommonWidgetPanel.style.maxHeight = maxHeightValue;
                                         divCommonWidgetPanel.style.minHeight = `${MIN_HEIGHT}px`;
-                                        divCommonWidgetPanel.style.height = "auto";
+                                        divCommonWidgetPanel.style.height = `min(${sizeDynamicCW}px, ${maxHeightValue})`;
                                         divCommonWidgetPanel.style.overflowY = "auto";
                                     }
                                     if (divPanelComponentSection?.style) {
                                         divPanelComponentSection.style.minWidth = "297px";
                                         divPanelComponentSection.style.maxHeight = "100%";
                                         divPanelComponentSection.style.minHeight = `${MIN_HEIGHT}px`;
-                                        divPanelComponentSection.style.height    = "auto";
+                                        divPanelComponentSection.style.height    = "100%";
                                         divPanelComponentSection.style.visibility = "visible";
                                         divPanelComponentSection.style.opacity    = "";
                                     }
