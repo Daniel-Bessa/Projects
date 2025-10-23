@@ -1577,22 +1577,35 @@ let tmpl = document.createElement('template');
       }
     </style>`;
 
-    // Attach click handler to toggle menu
-    if (menuElement && nineDotMenu) {
-      menuElement.addEventListener("click", (evt) => {
-        // Toggle nine-dot menu visibility
-        const isVisible = nineDotMenu.style.display === DISPLAY_STATES.FLEX;
-        nineDotMenu.style.display = isVisible ? DISPLAY_STATES.NONE : DISPLAY_STATES.FLEX;
+    // Traverse DOM to find the root element to append menu to
+    if (thatParent && nineDotMenu) {
+      const rootElement = thatParent.parentNode?.parentNode?.parentNode;
 
-        // Hide other menus when opening nine-dot menu
-        if (!isVisible) {
-          toggleDisplay(clipBoardMenu, false);
-          toggleDisplay(clipBoardSuccess, false);
-          toggleDisplay(userMenuPanel, false);
+      if (rootElement) {
+        // Append menu and styles to DOM (outside shadow DOM for proper positioning)
+        $(rootElement).append(nineDotMenu, nineDotStyle);
+
+        // Attach click handler to toggle menu
+        if (menuElement) {
+          menuElement.addEventListener("click", (evt) => {
+            // Verify nineDotMenu still exists before accessing
+            if (nineDotMenu && nineDotMenu.style) {
+              // Toggle nine-dot menu visibility
+              const isVisible = nineDotMenu.style.display === DISPLAY_STATES.FLEX;
+              nineDotMenu.style.display = isVisible ? DISPLAY_STATES.NONE : DISPLAY_STATES.FLEX;
+
+              // Hide other menus when opening nine-dot menu
+              if (!isVisible) {
+                toggleDisplay(clipBoardMenu, false);
+                toggleDisplay(clipBoardSuccess, false);
+                toggleDisplay(userMenuPanel, false);
+              }
+            }
+
+            evt.stopPropagation();
+          });
         }
-
-        evt.stopPropagation();
-      });
+      }
     }
   }
 
@@ -1701,35 +1714,48 @@ let tmpl = document.createElement('template');
       }
     </style>`;
 
-    // Attach click handler to clipboard button
-    if (clipBoardElement && clipBoardMenu && clipBoardSuccess) {
-      clipBoardElement.addEventListener("click", (evnt) => {
-        // Check if either menu or success message is visible
-        const isMenuVisible = clipBoardMenu.style.display === DISPLAY_STATES.FLEX ||
-                              clipBoardSuccess.style.display === DISPLAY_STATES.FLEX;
+    // Traverse DOM to find root element
+    if (thatParent && clipBoardMenu && clipBoardSuccess) {
+      const rootElement = thatParent.parentNode?.parentNode?.parentNode;
 
-        if (isMenuVisible) {
-          // Hide both clipboard menu and success message
-          toggleDisplay(clipBoardMenu, false);
-          toggleDisplay(clipBoardSuccess, false);
-        } else {
-          // Show clipboard menu and hide other menus
-          toggleDisplay(clipBoardMenu, true);
-          toggleDisplay(nineDotMenu, false);
-          toggleDisplay(userMenuPanel, false);
-          toggleDisplay(clipBoardSuccess, false);
+      if (rootElement) {
+        // Append menu elements and styles to DOM (outside shadow DOM for proper positioning)
+        $(rootElement).append(clipBoardMenu, clipBoardSuccess, clipBoardStyle);
+
+        // Attach click handler to clipboard button
+        if (clipBoardElement) {
+          clipBoardElement.addEventListener("click", (evnt) => {
+            // Verify elements still exist before accessing
+            if (clipBoardMenu && clipBoardMenu.style && clipBoardSuccess && clipBoardSuccess.style) {
+              // Check if either menu or success message is visible
+              const isMenuVisible = clipBoardMenu.style.display === DISPLAY_STATES.FLEX ||
+                                    clipBoardSuccess.style.display === DISPLAY_STATES.FLEX;
+
+              if (isMenuVisible) {
+                // Hide both clipboard menu and success message
+                toggleDisplay(clipBoardMenu, false);
+                toggleDisplay(clipBoardSuccess, false);
+              } else {
+                // Show clipboard menu and hide other menus
+                toggleDisplay(clipBoardMenu, true);
+                toggleDisplay(nineDotMenu, false);
+                toggleDisplay(userMenuPanel, false);
+                toggleDisplay(clipBoardSuccess, false);
+              }
+            }
+
+            evnt.stopPropagation();
+          });
         }
 
-        evnt.stopPropagation();
-      });
-    }
-
-    // Attach click handler to copy link button
-    if (copyLinkButton) {
-      copyLinkButton.addEventListener("click", () => {
-        // Trigger clipboard copy with debounce logic
-        handleClipboardCopy();
-      });
+        // Attach click handler to copy link button
+        if (copyLinkButton) {
+          copyLinkButton.addEventListener("click", () => {
+            // Trigger clipboard copy with debounce logic
+            handleClipboardCopy();
+          });
+        }
+      }
     }
   }
 
@@ -1892,22 +1918,35 @@ let tmpl = document.createElement('template');
       }
     </style>`;
 
-    // Attach click handler to user button
-    if (userElement && userMenuPanel) {
-      userElement.addEventListener("click", (evnt) => {
-        // Toggle user menu visibility
-        const isVisible = userMenuPanel.style.display === DISPLAY_STATES.FLEX;
-        userMenuPanel.style.display = isVisible ? DISPLAY_STATES.NONE : DISPLAY_STATES.FLEX;
+    // Traverse DOM to find root element
+    if (thatParent && userMenuPanel) {
+      const rootElement = thatParent.parentNode?.parentNode?.parentNode;
 
-        // Hide other menus when opening user menu
-        if (!isVisible) {
-          toggleDisplay(clipBoardMenu, false);
-          toggleDisplay(nineDotMenu, false);
-          toggleDisplay(clipBoardSuccess, false);
+      if (rootElement) {
+        // Append menu and styles to DOM (outside shadow DOM for proper positioning)
+        $(rootElement).append(userMenuPanel, userMenuPanelStyle);
+
+        // Attach click handler to user button
+        if (userElement) {
+          userElement.addEventListener("click", (evnt) => {
+            // Verify userMenuPanel still exists before accessing
+            if (userMenuPanel && userMenuPanel.style) {
+              // Toggle user menu visibility
+              const isVisible = userMenuPanel.style.display === DISPLAY_STATES.FLEX;
+              userMenuPanel.style.display = isVisible ? DISPLAY_STATES.NONE : DISPLAY_STATES.FLEX;
+
+              // Hide other menus when opening user menu
+              if (!isVisible) {
+                toggleDisplay(clipBoardMenu, false);
+                toggleDisplay(nineDotMenu, false);
+                toggleDisplay(clipBoardSuccess, false);
+              }
+            }
+
+            evnt.stopPropagation();
+          });
         }
-
-        evnt.stopPropagation();
-      });
+      }
     }
   }
 
