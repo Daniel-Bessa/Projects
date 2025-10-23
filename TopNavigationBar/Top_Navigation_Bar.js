@@ -1588,9 +1588,6 @@ let tmpl = document.createElement('template');
         // Attach click handler to toggle menu
         if (menuElement && nineDotMenu) {
           menuElement.addEventListener("click", (evt) => {
-            // Safety check: ensure nineDotMenu still exists
-            if (!nineDotMenu) return;
-
             // Toggle nine-dot menu visibility
             const isVisible = nineDotMenu.style.display === DISPLAY_STATES.FLEX;
             nineDotMenu.style.display = isVisible ? DISPLAY_STATES.NONE : DISPLAY_STATES.FLEX;
@@ -1723,11 +1720,8 @@ let tmpl = document.createElement('template');
         $(rootElement).append(clipBoardMenu, clipBoardSuccess, clipBoardStyle);
 
         // Attach click handler to clipboard button
-        if (clipBoardElement && clipBoardMenu) {
+        if (clipBoardElement && clipBoardMenu && clipBoardSuccess) {
           clipBoardElement.addEventListener("click", (evnt) => {
-            // Safety check: ensure elements still exist
-            if (!clipBoardMenu || !clipBoardSuccess) return;
-
             // Check if either menu or success message is visible
             const isMenuVisible = clipBoardMenu.style.display === DISPLAY_STATES.FLEX ||
                                   clipBoardSuccess.style.display === DISPLAY_STATES.FLEX;
@@ -1929,9 +1923,6 @@ let tmpl = document.createElement('template');
         // Attach click handler to user button
         if (userElement && userMenuPanel) {
           userElement.addEventListener("click", (evnt) => {
-            // Safety check: ensure userMenuPanel still exists
-            if (!userMenuPanel) return;
-
             // Toggle user menu visibility
             const isVisible = userMenuPanel.style.display === DISPLAY_STATES.FLEX;
             userMenuPanel.style.display = isVisible ? DISPLAY_STATES.NONE : DISPLAY_STATES.FLEX;
