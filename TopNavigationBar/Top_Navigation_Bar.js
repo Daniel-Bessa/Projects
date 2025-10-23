@@ -540,7 +540,7 @@ const CONFIG = {
           </a>
         </span>
         <span class="dotNav-ideas">
-          <a href="https://novartis.imaginatik.com/novartisidc9.nsf/idcintroVisual?openform" target="_Blank">
+          <a href="${MENU_LINKS.IDEAS}" target="_Blank">
             <svg width="61" height="80" viewBox="0 0 61 80" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="60" height="80" transform="translate(0.5)" fill="white"/>
             <path d="M30.5012 37.3322C33.9049 37.3322 36.6641 34.5715 36.6641 31.1661C36.6641 27.7607 33.9049 25 30.5012 25H30.4966C27.093 25 24.3338 27.7607 24.3338 31.1661C24.3338 34.5715 27.093 37.3322 30.4966 37.3322H30.5012Z" fill="#002068"/>
