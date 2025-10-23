@@ -1577,32 +1577,22 @@ let tmpl = document.createElement('template');
       }
     </style>`;
 
-    // Traverse DOM to find the root element to append menu to
-    if (thatParent) {
-      const rootElement = thatParent.parentNode?.parentNode?.parentNode;
+    // Attach click handler to toggle menu
+    if (menuElement && nineDotMenu) {
+      menuElement.addEventListener("click", (evt) => {
+        // Toggle nine-dot menu visibility
+        const isVisible = nineDotMenu.style.display === DISPLAY_STATES.FLEX;
+        nineDotMenu.style.display = isVisible ? DISPLAY_STATES.NONE : DISPLAY_STATES.FLEX;
 
-      if (rootElement) {
-        // Append menu and styles to DOM
-        $(rootElement).append(nineDotMenu, nineDotStyle);
-
-        // Attach click handler to toggle menu
-        if (menuElement && nineDotMenu) {
-          menuElement.addEventListener("click", (evt) => {
-            // Toggle nine-dot menu visibility
-            const isVisible = nineDotMenu.style.display === DISPLAY_STATES.FLEX;
-            nineDotMenu.style.display = isVisible ? DISPLAY_STATES.NONE : DISPLAY_STATES.FLEX;
-
-            // Hide other menus when opening nine-dot menu
-            if (!isVisible) {
-              toggleDisplay(clipBoardMenu, false);
-              toggleDisplay(clipBoardSuccess, false);
-              toggleDisplay(userMenuPanel, false);
-            }
-
-            evt.stopPropagation();
-          });
+        // Hide other menus when opening nine-dot menu
+        if (!isVisible) {
+          toggleDisplay(clipBoardMenu, false);
+          toggleDisplay(clipBoardSuccess, false);
+          toggleDisplay(userMenuPanel, false);
         }
-      }
+
+        evt.stopPropagation();
+      });
     }
   }
 
