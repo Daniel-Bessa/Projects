@@ -521,7 +521,7 @@ const CONFIG = {
           </a>
         </span>
         <span class="dotNav-digFin">
-          <a href="https://go/digfin" target="_Blank">
+          <a href="${MENU_LINKS.DIG_FIN}" target="_Blank">
             <svg width="61" height="80" viewBox="0 0 61 80" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="60" height="80" transform="translate(0.5)" fill="white"/>
             <path d="M42.8326 0H18.1674C14.7626 0 12 2.7595 12 6.16611V18.4983C12 21.905 14.7626 24.6645 18.1674 24.6645H42.8326C46.2374 24.6645 49 21.905 49 18.4983V6.16611C49 2.7595 46.2374 0 42.8326 0Z" fill="url(#paint0_linear_4897_76232)"/>
