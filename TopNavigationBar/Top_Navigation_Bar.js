@@ -1926,6 +1926,9 @@ let tmpl = document.createElement('template');
         // Attach click handler to user button
         if (userElement && userMenuPanel) {
           userElement.addEventListener("click", (evnt) => {
+            // Safety check: ensure userMenuPanel still exists
+            if (!userMenuPanel) return;
+
             // Toggle user menu visibility
             const isVisible = userMenuPanel.style.display === DISPLAY_STATES.FLEX;
             userMenuPanel.style.display = isVisible ? DISPLAY_STATES.NONE : DISPLAY_STATES.FLEX;
