@@ -1588,6 +1588,9 @@ let tmpl = document.createElement('template');
         // Attach click handler to toggle menu
         if (menuElement && nineDotMenu) {
           menuElement.addEventListener("click", (evt) => {
+            // Safety check: ensure nineDotMenu still exists
+            if (!nineDotMenu) return;
+
             // Toggle nine-dot menu visibility
             const isVisible = nineDotMenu.style.display === DISPLAY_STATES.FLEX;
             nineDotMenu.style.display = isVisible ? DISPLAY_STATES.NONE : DISPLAY_STATES.FLEX;
