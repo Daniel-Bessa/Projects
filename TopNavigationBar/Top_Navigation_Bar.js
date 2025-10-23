@@ -1725,6 +1725,9 @@ let tmpl = document.createElement('template');
         // Attach click handler to clipboard button
         if (clipBoardElement && clipBoardMenu) {
           clipBoardElement.addEventListener("click", (evnt) => {
+            // Safety check: ensure elements still exist
+            if (!clipBoardMenu || !clipBoardSuccess) return;
+
             // Check if either menu or success message is visible
             const isMenuVisible = clipBoardMenu.style.display === DISPLAY_STATES.FLEX ||
                                   clipBoardSuccess.style.display === DISPLAY_STATES.FLEX;
