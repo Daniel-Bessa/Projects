@@ -1701,45 +1701,35 @@ let tmpl = document.createElement('template');
       }
     </style>`;
 
-    // Traverse DOM to find root element
-    if (thatParent) {
-      const rootElement = thatParent.parentNode?.parentNode?.parentNode;
+    // Attach click handler to clipboard button
+    if (clipBoardElement && clipBoardMenu && clipBoardSuccess) {
+      clipBoardElement.addEventListener("click", (evnt) => {
+        // Check if either menu or success message is visible
+        const isMenuVisible = clipBoardMenu.style.display === DISPLAY_STATES.FLEX ||
+                              clipBoardSuccess.style.display === DISPLAY_STATES.FLEX;
 
-      if (rootElement) {
-        // Append menu elements and styles to DOM
-        $(rootElement).append(clipBoardMenu, clipBoardSuccess, clipBoardStyle);
-
-        // Attach click handler to clipboard button
-        if (clipBoardElement && clipBoardMenu && clipBoardSuccess) {
-          clipBoardElement.addEventListener("click", (evnt) => {
-            // Check if either menu or success message is visible
-            const isMenuVisible = clipBoardMenu.style.display === DISPLAY_STATES.FLEX ||
-                                  clipBoardSuccess.style.display === DISPLAY_STATES.FLEX;
-
-            if (isMenuVisible) {
-              // Hide both clipboard menu and success message
-              toggleDisplay(clipBoardMenu, false);
-              toggleDisplay(clipBoardSuccess, false);
-            } else {
-              // Show clipboard menu and hide other menus
-              toggleDisplay(clipBoardMenu, true);
-              toggleDisplay(nineDotMenu, false);
-              toggleDisplay(userMenuPanel, false);
-              toggleDisplay(clipBoardSuccess, false);
-            }
-
-            evnt.stopPropagation();
-          });
+        if (isMenuVisible) {
+          // Hide both clipboard menu and success message
+          toggleDisplay(clipBoardMenu, false);
+          toggleDisplay(clipBoardSuccess, false);
+        } else {
+          // Show clipboard menu and hide other menus
+          toggleDisplay(clipBoardMenu, true);
+          toggleDisplay(nineDotMenu, false);
+          toggleDisplay(userMenuPanel, false);
+          toggleDisplay(clipBoardSuccess, false);
         }
 
-        // Attach click handler to copy link button
-        if (copyLinkButton) {
-          copyLinkButton.addEventListener("click", () => {
-            // Trigger clipboard copy with debounce logic
-            handleClipboardCopy();
-          });
-        }
-      }
+        evnt.stopPropagation();
+      });
+    }
+
+    // Attach click handler to copy link button
+    if (copyLinkButton) {
+      copyLinkButton.addEventListener("click", () => {
+        // Trigger clipboard copy with debounce logic
+        handleClipboardCopy();
+      });
     }
   }
 
