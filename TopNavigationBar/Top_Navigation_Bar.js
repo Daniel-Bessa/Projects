@@ -1892,32 +1892,22 @@ let tmpl = document.createElement('template');
       }
     </style>`;
 
-    // Traverse DOM to find root element
-    if (thatParent) {
-      const rootElement = thatParent.parentNode?.parentNode?.parentNode;
+    // Attach click handler to user button
+    if (userElement && userMenuPanel) {
+      userElement.addEventListener("click", (evnt) => {
+        // Toggle user menu visibility
+        const isVisible = userMenuPanel.style.display === DISPLAY_STATES.FLEX;
+        userMenuPanel.style.display = isVisible ? DISPLAY_STATES.NONE : DISPLAY_STATES.FLEX;
 
-      if (rootElement) {
-        // Append menu and styles to DOM
-        $(rootElement).append(userMenuPanel, userMenuPanelStyle);
-
-        // Attach click handler to user button
-        if (userElement && userMenuPanel) {
-          userElement.addEventListener("click", (evnt) => {
-            // Toggle user menu visibility
-            const isVisible = userMenuPanel.style.display === DISPLAY_STATES.FLEX;
-            userMenuPanel.style.display = isVisible ? DISPLAY_STATES.NONE : DISPLAY_STATES.FLEX;
-
-            // Hide other menus when opening user menu
-            if (!isVisible) {
-              toggleDisplay(clipBoardMenu, false);
-              toggleDisplay(nineDotMenu, false);
-              toggleDisplay(clipBoardSuccess, false);
-            }
-
-            evnt.stopPropagation();
-          });
+        // Hide other menus when opening user menu
+        if (!isVisible) {
+          toggleDisplay(clipBoardMenu, false);
+          toggleDisplay(nineDotMenu, false);
+          toggleDisplay(clipBoardSuccess, false);
         }
-      }
+
+        evnt.stopPropagation();
+      });
     }
   }
 
