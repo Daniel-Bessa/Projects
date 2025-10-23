@@ -146,7 +146,66 @@ const SVG_ICONS = {
             </svg>`
 };
 
-// MENU LINKS - Easy access to URLs attached to each menu item
+// ===================================================================
+// MENU CONFIGURATION - Easy access to configure menu items
+// ===================================================================
+// IMPORTANT: Edit this section to change menu links and icons
+// The MENU_CONFIG array defines all nine-dot menu items
+// Each item has: name, url, and svg icon
+// ===================================================================
+
+const MENU_CONFIG = [
+  {
+    name: 'GENIE_HOME',
+    label: 'Genie+',
+    url: 'https://go/genieplus',
+    svg: SVG_ICONS.GENIE_HOME
+  },
+  {
+    name: 'GENIE',
+    label: 'Genie',
+    url: 'https://go/genie',
+    svg: SVG_ICONS.GENIE
+  },
+  {
+    name: 'SOFIA',
+    label: 'Sofia',
+    url: 'https://go/sofia',
+    svg: SVG_ICONS.SOFIA
+  },
+  {
+    name: 'RADAR',
+    label: 'Radar',
+    url: 'https://radarscreen.novartis.net/',
+    svg: SVG_ICONS.RADAR
+  },
+  {
+    name: 'COST_INSIGHT',
+    label: 'Cost Insight',
+    url: 'https://testnovartis.eu10.sapanalytics.cloud/sap/fpa/ui/app.html#/analyticapp&/aa/9E48A6079A04B51F119A9098225AE966/?mode=present',
+    svg: SVG_ICONS.COST_INSIGHT
+  },
+  {
+    name: 'DOST',
+    label: 'DOST',
+    url: 'https://share.novartis.net/sites/BPABI',
+    svg: SVG_ICONS.DOST
+  },
+  {
+    name: 'DIG_FIN',
+    label: 'Digital Finance',
+    url: 'https://go/digfin',
+    svg: SVG_ICONS.DIG_FIN
+  },
+  {
+    name: 'IDEAS',
+    label: 'Ideas',
+    url: 'https://novartis.imaginatik.com/novartisidc9.nsf/idcintroVisual?openform',
+    svg: SVG_ICONS.IDEAS
+  }
+];
+
+// Legacy MENU_LINKS object (kept for backward compatibility)
 const MENU_LINKS = {
   GENIE_HOME: 'https://go/genieplus',
   GENIE: 'https://go/genie',
