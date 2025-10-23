@@ -499,46 +499,12 @@ let tmpl = document.createElement('template');
           </div>
       </nav>
             <div id="nineDotMenu" class="nineDotMenu" style="display: none;">
-        <span class="dotNav-genieHome">
-          <a href="${MENU_LINKS.GENIE_HOME}" target="_Blank">
-            ${SVG_ICONS.GENIE_HOME}
+        ${MENU_CONFIG.map(item => `
+        <span class="dotNav-${item.name.toLowerCase()}">
+          <a href="${item.url}" target="_Blank">
+            ${item.svg}
           </a>
-        </span>
-        <span class="dotNav-genie">
-          <a href="${MENU_LINKS.GENIE}" target="_Blank">
-            ${SVG_ICONS.GENIE}
-          </a>
-        </span>
-        <span class="dotNav-sofia">
-          <a href="${MENU_LINKS.SOFIA}" target="_Blank">
-            ${SVG_ICONS.SOFIA}
-          </a>
-        </span>
-        <span class="dotNav-radar">
-          <a href="${MENU_LINKS.RADAR}" target="_Blank">
-            ${SVG_ICONS.RADAR}
-          </a>
-        </span>
-        <span class="dotNav-costInsight">
-          <a href="${MENU_LINKS.COST_INSIGHT}" target="_Blank">
-            ${SVG_ICONS.COST_INSIGHT}
-          </a>
-        </span>
-        <span class="dotNav-dost">
-          <a href="${MENU_LINKS.DOST}" target="_Blank">
-            ${SVG_ICONS.DOST}
-          </a>
-        </span>
-        <span class="dotNav-digFin">
-          <a href="${MENU_LINKS.DIG_FIN}" target="_Blank">
-            ${SVG_ICONS.DIG_FIN}
-          </a>
-        </span>
-        <span class="dotNav-ideas">
-          <a href="${MENU_LINKS.IDEAS}" target="_Blank">
-            ${SVG_ICONS.IDEAS}
-          </a>
-        </span>
+        </span>`).join('')}
       </div>
       <div id="clipBoardMenu" class="clipBoardMenu" style="display: none;">
         <div class="titleDiv">
