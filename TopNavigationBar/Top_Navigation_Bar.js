@@ -1208,7 +1208,9 @@ let tmpl = document.createElement('template');
     // ===================================================================
     // PART 3: Determine Admin Status and Team Display
     // ===================================================================
-    const teamCodes = _setUserTeamInfo.map(team => team.name);
+    const teamCodes = Array.isArray(_setUserTeamInfo)
+      ? _setUserTeamInfo.map(team => team.name)
+      : [];
     updateAdminStatus(teamCodes);
     updateTeamDisplay(teamCodes);
 
