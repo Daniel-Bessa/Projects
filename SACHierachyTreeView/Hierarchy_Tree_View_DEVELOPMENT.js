@@ -1001,6 +1001,11 @@
                 return color.toString().replace(/\s/g, '').toLowerCase();
             };
 
+            const isWhite = (color) => {
+                const normalized = normalizeColor(color);
+                return normalized === 'rgb(255,255,255)' || normalized === '#ffffff' || normalized === '#fff' || normalized === 'white';
+            };
+
             const selectedBg = normalizeColor(SelectedNodes[3]); // Background color
             const selectedTextColor = normalizeColor(SelectedNodes[2]); // Text color
             const selectedIconColor = normalizeColor(IconStyling[1]); // Selected icon color
@@ -1013,6 +1018,7 @@
             let hasError = false;
             const errors = [];
             const warnings = [];
+            let autoFixed = false;
 
             // Check selected text vs background
             if (selectedTextColor && selectedBg && selectedTextColor === selectedBg) {
@@ -1023,13 +1029,21 @@
                 hasError = true;
             }
 
-            // Check selected icon vs background
+            // Check selected icon vs background - AUTO-FIX if white on white
             if (selectedIconColor && selectedBg && selectedIconColor === selectedBg) {
                 errors.push(`   ❌ Selected Icons will be INVISIBLE!
       Icon Color: ${IconStyling[1]}
       Background: ${SelectedNodes[3]}
       → Icons disappear when nodes are selected`);
                 hasError = true;
+
+                // AUTO-FIX: If white icons on white background, force to gray
+                if (isWhite(selectedBg) && isWhite(IconStyling[1])) {
+                    IconStyling[1] = 'rgb(113, 113, 113)';
+                    _IconStyling[that.widgetno] = IconStyling;
+                    autoFixed = true;
+                    errors.push(`   ✅ AUTO-FIXED: Icons changed to rgb(113, 113, 113) gray`);
+                }
             }
 
             // Check checkbox mark vs checkbox background (MultiSelect)
@@ -1050,7 +1064,7 @@
 
             // Display results
             if (hasError || warnings.length > 0) {
-                console.groupCollapsed(`%c🎨 [Hierarchy Tree Widget #${that.widgetno}] CONTRAST VALIDATION`, 'color: #ff6b6b; font-weight: bold; font-size: 12px;');
+                console.groupCollapsed(`%c[Hierarchy Tree Widget #${that.widgetno}] CONTRAST VALIDATION`, 'color: #ff6b6b; font-weight: bold; font-size: 12px;');
 
                 if (hasError) {
                     console.error(`%c🔴 CRITICAL CONTRAST ERRORS DETECTED`, 'color: #ff0000; font-weight: bold; font-size: 11px;');
@@ -1061,6 +1075,10 @@
                 if (warnings.length > 0) {
                     console.warn(`%c⚠️  CONTRAST WARNINGS`, 'color: #ffa500; font-weight: bold; font-size: 11px;');
                     warnings.forEach(warn => console.warn(warn));
+                }
+
+                if (autoFixed) {
+                    console.log(`%c✅ Widget has been auto-corrected to prevent invisible icons`, 'color: #51cf66; font-weight: bold;');
                 }
 
                 console.log(`%c💡 TIP: Ensure text/icon colors contrast with backgrounds for visibility`, 'color: #4dabf7; font-style: italic;');
