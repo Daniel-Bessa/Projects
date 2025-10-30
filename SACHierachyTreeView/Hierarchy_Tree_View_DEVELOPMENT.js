@@ -2105,6 +2105,7 @@
                                         requestAnimationFrame(() => {
                                         const isSingleSelect = (that.Selection_Type === "SingleSelectLeft" || that.Selection_Type === "SingleSelectMaster");
 
+                                        // First pass: Set visibility based on defaultLevel
                                         for (let i = 0; i < itemLis.length; i++) {
                                             const li  = itemLis[i];
                                             const lbl = labels[i];
@@ -2125,15 +2126,32 @@
                                             const show = lvl && lvl <= defaultLevel;
                                             li.classList.toggle("displayed", !!show);
                                             li.classList.toggle("disabled", !show);
+                                        }
 
-                                            // Icon state (skip for SingleSelect - it handles its own icons later)
-                                            if (!isSingleSelect && lbl) {
-                                                const opened = show && lvl < defaultLevel; // parents open, boundary collapsed
+                                        // Second pass: Set icons based on whether node has displayed children (skip for SingleSelect)
+                                        if (!isSingleSelect) {
+                                            for (let i = 0; i < itemLis.length; i++) {
+                                                const li  = itemLis[i];
+                                                const lbl = labels[i];
+                                                const id  = nodes[i]?.nodeUnique;
+
+                                                if (!lbl || !id) continue;
+
+                                                // Check if this node has any children that are displayed
+                                                const children = cache.childrenOf?.get(id) || [];
+                                                const hasDisplayedChildren = children.some(childId => {
+                                                    const childIdx = cache.indexById?.get(childId);
+                                                    return childIdx != null && itemLis[childIdx]?.classList.contains("displayed");
+                                                });
+
+                                                // Node is "opened" if it has visible children
+                                                const opened = hasDisplayedChildren;
                                                 lbl.setAttribute("data-sap-ui-icon-content", opened ? data_sap_icon_open : data_sap_icon_close);
                                                 lbl.classList.toggle("expanded", opened);
                                                 lbl.classList.toggle("collapsed", !opened);
                                             }
                                         }
+
                                         dynamicHeightCW?.();
                                         });
                                     })();
