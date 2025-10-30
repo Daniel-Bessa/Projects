@@ -994,7 +994,7 @@
         // ===================================================================================
         // ========== Contrast Validation - Check for visibility issues ===================
         // ===================================================================================
-        (function validateContrast() {
+        const validateContrast = () => {
             const normalizeColor = (color) => {
                 if (!color) return null;
                 // Remove spaces and convert to lowercase
