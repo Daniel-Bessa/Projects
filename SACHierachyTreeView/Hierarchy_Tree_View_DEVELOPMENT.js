@@ -3102,11 +3102,13 @@
 
                                         // Default Label
                                         sapMLIBLabel.find('label').css({
-                                            "color": iconStyling[0] // Color of the non selected Item Label
+                                            "color": iconStyling[0], // Color of the non selected Item Label
+                                            "border-color": iconStyling[0]// Color of the SELECTED Item Label
                                         });
                                         // Selected Label
                                         baseSelected.find('label').css({
-                                            "color": iconStyling[1]// Color of the SELECTED Item Label
+                                            "color": iconStyling[1],// Color of the SELECTED Item Label
+                                            "border-color": iconStyling[1]// Color of the SELECTED Item Label
                                         });
 
                                     }, "20")
@@ -3578,11 +3580,13 @@
                                 const baseSelected = this.byId("Tree").$().find('.sapMLIBSelected');
                                 // Default Label
                                 sapMLIBLabel.find('label').css({
-                                    "color": iconStyling[0] // Color of the non selected Item Label
+                                    "color": iconStyling[0], // Color of the non selected Item Label
+                                    "border-color": iconStyling[0]// Color of the SELECTED Item Label
                                 });
                                 // Selected Label
                                 baseSelected.find('label').css({
-                                    "color": iconStyling[1]// Color of the SELECTED Item Label
+                                    "color": iconStyling[1],// Color of the SELECTED Item Label
+                                    "border-color": iconStyling[1]// Color of the SELECTED Item Label
                                 });
 
 
@@ -3637,10 +3641,10 @@
                     .sapMCbNewClass { position: absolute !important; right: 5px !important; }
                     .unselectable { -moz-user-select: -moz-none; -khtml-user-select: none; -webkit-user-select: none; -ms-user-select: none; user-select: none; }
                     label.sapMTreeItemBaseExpander:before { font-family: "SAP-icons" !important; display: inline-block !important; }
-                    .sapMLIB label.sapMTreeItemBaseExpander.collapsed:before { content: "\\e1f6" !important; color: ${_IconStyling[0] ? _IconStyling[0][0] : '#717171'} !important; }
-                    .sapMLIB label.sapMTreeItemBaseExpander.expanded:before { content: "\\e1f7" !important; color: ${_IconStyling[0] ? _IconStyling[0][0] : '#717171'} !important; }
-                    .sapMLIBSelected label.sapMTreeItemBaseExpander.collapsed:before { content: "\\e1f6" !important; color: ${_IconStyling[0] ? _IconStyling[0][1] : '#ffffff'} !important; }
-                    .sapMLIBSelected label.sapMTreeItemBaseExpander.expanded:before { content: "\\e1f7" !important; color: ${_IconStyling[0] ? _IconStyling[0][1] : '#ffffff'} !important; }
+                    .sapMLIB label.sapMTreeItemBaseExpander.collapsed:before { content: "\\e1f6" !important; }
+                    .sapMLIB label.sapMTreeItemBaseExpander.expanded:before { content: "\\e1f7" !important; }
+                    .sapMLIBSelected label.sapMTreeItemBaseExpander.collapsed:before { content: "\\e1f6" !important; }
+                    .sapMLIBSelected label.sapMTreeItemBaseExpander.expanded:before { content: "\\e1f7" !important; }
                 `;
                 document.head.appendChild(baseStyleEl);
 
@@ -3654,11 +3658,11 @@
                                 const fallbackStyleEl = document.createElement('style');
                                 fallbackStyleEl.id = 'hierarchy-tree-fallback-styles';
                                 fallbackStyleEl.textContent = `
-                                    .sap-icon-fallback label.sapMTreeItemBaseExpander:before { width: 16px !important; height: 16px !important; line-height: 14px !important; text-align: center !important; border-radius: 50% !important; font-family: Arial, sans-serif !important; font-size: 14px !important; margin-right: 4px !important; }
-                                    .sap-icon-fallback .sapMLIB label.sapMTreeItemBaseExpander.collapsed:before { content: "+" !important; color: ${_IconStyling[0] ? _IconStyling[0][0] : '#717171'} !important; border: 1px solid ${_IconStyling[0] ? _IconStyling[0][0] : '#717171'} !important; }
-                                    .sap-icon-fallback .sapMLIB label.sapMTreeItemBaseExpander.expanded:before { content: "−" !important; color: ${_IconStyling[0] ? _IconStyling[0][0] : '#717171'} !important; border: 1px solid ${_IconStyling[0] ? _IconStyling[0][0] : '#717171'} !important; }
-                                    .sap-icon-fallback .sapMLIBSelected label.sapMTreeItemBaseExpander.collapsed:before { content: "+" !important; color: ${_IconStyling[0] ? _IconStyling[0][1] : '#ffffff'} !important; border: 1px solid ${_IconStyling[0] ? _IconStyling[0][1] : '#ffffff'} !important; }
-                                    .sap-icon-fallback .sapMLIBSelected label.sapMTreeItemBaseExpander.expanded:before { content: "−" !important; color: ${_IconStyling[0] ? _IconStyling[0][1] : '#ffffff'} !important; border: 1px solid ${_IconStyling[0] ? _IconStyling[0][1] : '#ffffff'} !important; }
+                                    .sap-icon-fallback label.sapMTreeItemBaseExpander:before { width: 16px !important; height: 16px !important; line-height: 14px !important; text-align: center !important; border-radius: 50% !important; font-family: Arial, sans-serif !important; font-size: 14px !important; margin-right: 4px !important; border: 1px solid}
+                                    .sap-icon-fallback .sapMLIB label.sapMTreeItemBaseExpander.collapsed:before { content: "+" !important; }
+                                    .sap-icon-fallback .sapMLIB label.sapMTreeItemBaseExpander.expanded:before { content: "−" !important; }
+                                    .sap-icon-fallback .sapMLIBSelected label.sapMTreeItemBaseExpander.collapsed:before { content: "+" !important; }
+                                    .sap-icon-fallback .sapMLIBSelected label.sapMTreeItemBaseExpander.expanded:before { content: "−" !important; }
                                 `;
                                 document.head.appendChild(fallbackStyleEl);
                                 document.body.classList.add('sap-icon-fallback');
