@@ -991,6 +991,85 @@
         _SelectedCBStyling[that.widgetno] = SelectedCBStyling;
         _iconSize[that.widgetno] = IconSize;
 
+        // ===================================================================================
+        // ========== Contrast Validation - Check for visibility issues ===================
+        // ===================================================================================
+        (function validateContrast() {
+            const normalizeColor = (color) => {
+                if (!color) return null;
+                // Remove spaces and convert to lowercase
+                return color.toString().replace(/\s/g, '').toLowerCase();
+            };
+
+            const selectedBg = normalizeColor(SelectedNodes[3]); // Background color
+            const selectedTextColor = normalizeColor(SelectedNodes[2]); // Text color
+            const selectedIconColor = normalizeColor(IconStyling[1]); // Selected icon color
+            const defaultIconColor = normalizeColor(IconStyling[0]); // Default icon color
+
+            // For MultiSelect checkbox colors
+            const checkboxBg = normalizeColor(SelectedCBStyling[1]); // Checkbox background
+            const checkboxMark = normalizeColor(SelectedCBStyling[2]); // Checkmark color
+
+            let hasError = false;
+            const errors = [];
+            const warnings = [];
+
+            // Check selected text vs background
+            if (selectedTextColor && selectedBg && selectedTextColor === selectedBg) {
+                errors.push(`   ❌ Selected Text will be INVISIBLE!
+      Text Color: ${SelectedNodes[2]}
+      Background: ${SelectedNodes[3]}
+      → Text disappears when nodes are selected`);
+                hasError = true;
+            }
+
+            // Check selected icon vs background
+            if (selectedIconColor && selectedBg && selectedIconColor === selectedBg) {
+                errors.push(`   ❌ Selected Icons will be INVISIBLE!
+      Icon Color: ${IconStyling[1]}
+      Background: ${SelectedNodes[3]}
+      → Icons disappear when nodes are selected`);
+                hasError = true;
+            }
+
+            // Check checkbox mark vs checkbox background (MultiSelect)
+            if (that.Selection_Type === "MultiSelect" && checkboxMark && checkboxBg && checkboxMark === checkboxBg) {
+                errors.push(`   ❌ Checkmarks will be INVISIBLE!
+      Checkmark Color: ${SelectedCBStyling[2]}
+      Checkbox Background: ${SelectedCBStyling[1]}
+      → Checked state won't be visible in MultiSelect`);
+                hasError = true;
+            }
+
+            // Warning: Check if default icon color might blend with common backgrounds
+            if (defaultIconColor === 'rgb(255,255,255)' || defaultIconColor === '#ffffff' || defaultIconColor === '#fff') {
+                warnings.push(`   ⚠️  Default icons are WHITE
+      Icon Color: ${IconStyling[0]}
+      → May not be visible on light backgrounds`);
+            }
+
+            // Display results
+            if (hasError || warnings.length > 0) {
+                console.groupCollapsed(`%c🎨 [Hierarchy Tree Widget #${that.widgetno}] CONTRAST VALIDATION`, 'color: #ff6b6b; font-weight: bold; font-size: 12px;');
+
+                if (hasError) {
+                    console.error(`%c🔴 CRITICAL CONTRAST ERRORS DETECTED`, 'color: #ff0000; font-weight: bold; font-size: 11px;');
+                    errors.forEach(err => console.error(err));
+                    console.log('%c━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'color: #ff6b6b;');
+                }
+
+                if (warnings.length > 0) {
+                    console.warn(`%c⚠️  CONTRAST WARNINGS`, 'color: #ffa500; font-weight: bold; font-size: 11px;');
+                    warnings.forEach(warn => console.warn(warn));
+                }
+
+                console.log(`%c💡 TIP: Ensure text/icon colors contrast with backgrounds for visibility`, 'color: #4dabf7; font-style: italic;');
+                console.log(`   Selection Type: ${that.Selection_Type}`);
+                console.log(`   Widget Instance: ${that.widgetno}`);
+                console.groupEnd();
+            }
+        })();
+
         /*-------------------------- Check and Set Separator  ------------------------------------- */
         if (that.Separator) {
             _BuilderPanel[that.widgetno] = { Separator: that.Separator, Display: that.Display, Show_Display: that.Show_Display, Show_Parent: that.Show_Parent };
