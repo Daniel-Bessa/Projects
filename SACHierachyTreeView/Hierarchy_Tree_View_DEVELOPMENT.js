@@ -2304,24 +2304,34 @@
                                                         // Then set icons with delay (to run after DefaultLevel)
                                             setTimeout(() => {
                                                 let collapsedCount = 0, expandedCount = 0;
-                                                // First, set ALL displayed nodes to collapsed (plus icon)
-                                                for (let i = 0; i < itemLis.length; i++) {
-                                                    if (itemLis[i]?.classList.contains("displayed") && labels[i]) {
-                                                        labels[i].classList.add("collapsed");
-                                                        labels[i].classList.remove("expanded");
-                                                        labels[i].setAttribute("data-sap-ui-icon-content", "");
-                                                        collapsedCount++;
-                                                    }
-                                                }
 
-                                                // Then override: ancestors get expanded (minus icon)
-                                                for (const aid of ancestors) {
-                                                    const idx = indexById.get(aid);
-                                                    if (idx != null && labels[idx]) {
-                                                        labels[idx].classList.add("expanded");
-                                                        labels[idx].classList.remove("collapsed");
-                                                        labels[idx].setAttribute("data-sap-ui-icon-content", "");
+                                                // Set icons based on whether node has displayed children
+                                                for (let i = 0; i < itemLis.length; i++) {
+                                                    const li = itemLis[i];
+                                                    const lbl = labels[i];
+                                                    const id = nodes[i]?.nodeUnique;
+
+                                                    // Only process displayed nodes
+                                                    if (!li?.classList.contains("displayed") || !lbl || !id) continue;
+
+                                                    // Check if this node has any children that are displayed
+                                                    const children = childrenOf.get(id) || [];
+                                                    const hasDisplayedChildren = children.some(childId => {
+                                                        const childIdx = indexById.get(childId);
+                                                        return childIdx != null && itemLis[childIdx]?.classList.contains("displayed");
+                                                    });
+
+                                                    // Node is "opened" if it has visible children
+                                                    if (hasDisplayedChildren) {
+                                                        lbl.classList.add("expanded");
+                                                        lbl.classList.remove("collapsed");
+                                                        lbl.setAttribute("data-sap-ui-icon-content", "");
                                                         expandedCount++;
+                                                    } else {
+                                                        lbl.classList.add("collapsed");
+                                                        lbl.classList.remove("expanded");
+                                                        lbl.setAttribute("data-sap-ui-icon-content", "");
+                                                        collapsedCount++;
                                                     }
                                                 }
                                                 console.log(`[SingleSelect Icons] Collapsed: ${collapsedCount}, Expanded: ${expandedCount}`);
