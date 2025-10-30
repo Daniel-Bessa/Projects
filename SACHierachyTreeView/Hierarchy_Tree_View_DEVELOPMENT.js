@@ -3621,15 +3621,37 @@
                 let displayedNode = '<style>.displayed{display:flex;padding-left:0rem!important;margin:0 1rem;}</style>';
                 let rightSideCBNewClass = '<style>.sapMCbNewClass{position:absolute!important;right:5px!important;}</style>';
                 let unselectable = '<style>.unselectable{-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none;}</style>';
-                // CSS-drawn circle icons with +/- as fallback (works without SAP-icons font)
-                let expanderBaseStyle = '<style>label.sapMTreeItemBaseExpander:before{display:inline-block!important;width:16px!important;height:16px!important;line-height:14px!important;text-align:center!important;border-radius:50%!important;font-family:Arial,sans-serif!important;font-size:14px!important;margin-right:4px!important;}</style>';
-                // Non-selected nodes: DefaultIconColor with +/- based on state
-                let defaultCollapsedIcon = '<style>.sapMLIB label.sapMTreeItemBaseExpander.collapsed:before{content:"+"!important;color: ' + (_IconStyling[0] ? _IconStyling[0][0] : '#717171') + ' !important;border: 1px solid ' + (_IconStyling[0] ? _IconStyling[0][0] : '#717171') + ' !important;}</style>';
-                let defaultExpandedIcon = '<style>.sapMLIB label.sapMTreeItemBaseExpander.expanded:before{content:"−"!important;color: ' + (_IconStyling[0] ? _IconStyling[0][0] : '#717171') + ' !important;border: 1px solid ' + (_IconStyling[0] ? _IconStyling[0][0] : '#717171') + ' !important;}</style>';
-                // Selected nodes: SelectedIconColor with +/- based on state
-                let selectedCollapsedIcon = '<style>.sapMLIBSelected label.sapMTreeItemBaseExpander.collapsed:before{content:"+"!important;color: ' + (_IconStyling[0] ? _IconStyling[0][1] : '#ffffff') + ' !important;border: 1px solid ' + (_IconStyling[0] ? _IconStyling[0][1] : '#ffffff') + ' !important;}</style>';
-                let selectedExpandedIcon = '<style>.sapMLIBSelected label.sapMTreeItemBaseExpander.expanded:before{content:"−"!important;color: ' + (_IconStyling[0] ? _IconStyling[0][1] : '#ffffff') + ' !important;border: 1px solid ' + (_IconStyling[0] ? _IconStyling[0][1] : '#ffffff') + ' !important;}</style>';
-                $('body').append(partiallyCheck, disabledNode, displayedNode, unselectable, rightSideCBNewClass, sapMCbMarkChecked, sapMCbMarkCheckedBackground, sapMCbBg, expanderBaseStyle, defaultCollapsedIcon, defaultExpandedIcon, selectedCollapsedIcon, selectedExpandedIcon);
+                // Primary: SAP UI5 icons (will work if SAP-icons font is loaded)
+                let sapIconBaseStyle = '<style>label.sapMTreeItemBaseExpander:before{font-family:"SAP-icons"!important;display:inline-block!important;}</style>';
+                // Non-selected nodes with SAP icons
+                let sapDefaultCollapsedIcon = '<style>.sapMLIB label.sapMTreeItemBaseExpander.collapsed:before{content:"\\e1f6"!important;color: ' + (_IconStyling[0] ? _IconStyling[0][0] : '#717171') + ' !important;}</style>';
+                let sapDefaultExpandedIcon = '<style>.sapMLIB label.sapMTreeItemBaseExpander.expanded:before{content:"\\e1f7"!important;color: ' + (_IconStyling[0] ? _IconStyling[0][0] : '#717171') + ' !important;}</style>';
+                // Selected nodes with SAP icons
+                let sapSelectedCollapsedIcon = '<style>.sapMLIBSelected label.sapMTreeItemBaseExpander.collapsed:before{content:"\\e1f6"!important;color: ' + (_IconStyling[0] ? _IconStyling[0][1] : '#ffffff') + ' !important;}</style>';
+                let sapSelectedExpandedIcon = '<style>.sapMLIBSelected label.sapMTreeItemBaseExpander.expanded:before{content:"\\e1f7"!important;color: ' + (_IconStyling[0] ? _IconStyling[0][1] : '#ffffff') + ' !important;}</style>';
+
+                $('body').append(partiallyCheck, disabledNode, displayedNode, unselectable, rightSideCBNewClass, sapMCbMarkChecked, sapMCbMarkCheckedBackground, sapMCbBg, sapIconBaseStyle, sapDefaultCollapsedIcon, sapDefaultExpandedIcon, sapSelectedCollapsedIcon, sapSelectedExpandedIcon);
+
+                // Fallback: Check if SAP-icons font loaded, if not, use CSS-drawn circles
+                setTimeout(() => {
+                    if (document.fonts && document.fonts.check) {
+                        document.fonts.ready.then(() => {
+                            const sapIconsLoaded = document.fonts.check('12px SAP-icons');
+                            if (!sapIconsLoaded) {
+                                console.warn('[Hierarchy Tree] SAP-icons font not loaded, using CSS fallback icons');
+                                // CSS-drawn circle icons as fallback
+                                let fallbackBaseStyle = '<style>.sap-icon-fallback label.sapMTreeItemBaseExpander:before{width:16px!important;height:16px!important;line-height:14px!important;text-align:center!important;border-radius:50%!important;font-family:Arial,sans-serif!important;font-size:14px!important;margin-right:4px!important;}</style>';
+                                let fallbackDefaultCollapsed = '<style>.sap-icon-fallback .sapMLIB label.sapMTreeItemBaseExpander.collapsed:before{content:"+"!important;border: 1px solid ' + (_IconStyling[0] ? _IconStyling[0][0] : '#717171') + ' !important;}</style>';
+                                let fallbackDefaultExpanded = '<style>.sap-icon-fallback .sapMLIB label.sapMTreeItemBaseExpander.expanded:before{content:"−"!important;border: 1px solid ' + (_IconStyling[0] ? _IconStyling[0][0] : '#717171') + ' !important;}</style>';
+                                let fallbackSelectedCollapsed = '<style>.sap-icon-fallback .sapMLIBSelected label.sapMTreeItemBaseExpander.collapsed:before{content:"+"!important;border: 1px solid ' + (_IconStyling[0] ? _IconStyling[0][1] : '#ffffff') + ' !important;}</style>';
+                                let fallbackSelectedExpanded = '<style>.sap-icon-fallback .sapMLIBSelected label.sapMTreeItemBaseExpander.expanded:before{content:"−"!important;border: 1px solid ' + (_IconStyling[0] ? _IconStyling[0][1] : '#ffffff') + ' !important;}</style>';
+                                $('body').append(fallbackBaseStyle, fallbackDefaultCollapsed, fallbackDefaultExpanded, fallbackSelectedCollapsed, fallbackSelectedExpanded);
+                                // Add fallback class to body to activate fallback styles
+                                document.body.classList.add('sap-icon-fallback');
+                            }
+                        });
+                    }
+                }, 1000); // Give fonts 1 second to load
                 executed = true; 
                 }
         };
