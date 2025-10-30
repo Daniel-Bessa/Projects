@@ -3623,13 +3623,13 @@
                 let unselectable = '<style>.unselectable{-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none;}</style>';
                 // CSS-drawn circle icons with +/- as fallback (works without SAP-icons font)
                 let expanderBaseStyle = '<style>label.sapMTreeItemBaseExpander:before{display:inline-block!important;width:16px!important;height:16px!important;line-height:14px!important;text-align:center!important;border-radius:50%!important;font-family:Arial,sans-serif!important;font-size:14px!important;margin-right:4px!important;}</style>';
-                let expandedIcon = '<style>label.sapMTreeItemBaseExpander.expanded:before{content:"−"!important;}</style>';
-                let collapsedIcon = '<style>label.sapMTreeItemBaseExpander.collapsed:before{content:"+"!important;}</style>';
-                // Non-selected nodes use DefaultIconColor
-                let defaultIconStyle = '<style>.sapMLIB label.sapMTreeItemBaseExpander:before{color: ' + (_IconStyling[0] ? _IconStyling[0][0] : '#717171') + ' !important;border: 1px solid ' + (_IconStyling[0] ? _IconStyling[0][0] : '#717171') + ' !important;}</style>';
-                // Selected nodes use SelectedIconColor
-                let selectedIconStyle = '<style>.sapMLIBSelected label.sapMTreeItemBaseExpander:before{color: ' + (_IconStyling[0] ? _IconStyling[0][1] : '#ffffff') + ' !important;border: 1px solid ' + (_IconStyling[0] ? _IconStyling[0][1] : '#ffffff') + ' !important;}</style>';
-                $('body').append(partiallyCheck, disabledNode, displayedNode, unselectable, rightSideCBNewClass, sapMCbMarkChecked, sapMCbMarkCheckedBackground, sapMCbBg, expanderBaseStyle, expandedIcon, collapsedIcon, defaultIconStyle, selectedIconStyle);
+                // Non-selected nodes: DefaultIconColor with +/- based on state
+                let defaultCollapsedIcon = '<style>.sapMLIB label.sapMTreeItemBaseExpander.collapsed:before{content:"+"!important;color: ' + (_IconStyling[0] ? _IconStyling[0][0] : '#717171') + ' !important;border: 1px solid ' + (_IconStyling[0] ? _IconStyling[0][0] : '#717171') + ' !important;}</style>';
+                let defaultExpandedIcon = '<style>.sapMLIB label.sapMTreeItemBaseExpander.expanded:before{content:"−"!important;color: ' + (_IconStyling[0] ? _IconStyling[0][0] : '#717171') + ' !important;border: 1px solid ' + (_IconStyling[0] ? _IconStyling[0][0] : '#717171') + ' !important;}</style>';
+                // Selected nodes: SelectedIconColor with +/- based on state
+                let selectedCollapsedIcon = '<style>.sapMLIBSelected label.sapMTreeItemBaseExpander.collapsed:before{content:"+"!important;color: ' + (_IconStyling[0] ? _IconStyling[0][1] : '#ffffff') + ' !important;border: 1px solid ' + (_IconStyling[0] ? _IconStyling[0][1] : '#ffffff') + ' !important;}</style>';
+                let selectedExpandedIcon = '<style>.sapMLIBSelected label.sapMTreeItemBaseExpander.expanded:before{content:"−"!important;color: ' + (_IconStyling[0] ? _IconStyling[0][1] : '#ffffff') + ' !important;border: 1px solid ' + (_IconStyling[0] ? _IconStyling[0][1] : '#ffffff') + ' !important;}</style>';
+                $('body').append(partiallyCheck, disabledNode, displayedNode, unselectable, rightSideCBNewClass, sapMCbMarkChecked, sapMCbMarkCheckedBackground, sapMCbBg, expanderBaseStyle, defaultCollapsedIcon, defaultExpandedIcon, selectedCollapsedIcon, selectedExpandedIcon);
                 executed = true; 
                 }
         };
