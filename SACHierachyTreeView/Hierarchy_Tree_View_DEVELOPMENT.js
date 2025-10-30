@@ -2204,14 +2204,16 @@
                                                 showIndex(selIndex);
                                             });
 
-                                            // Then set icons with delay (to run after DefaultLevel)
+                                                        // Then set icons with delay (to run after DefaultLevel)
                                             setTimeout(() => {
+                                                let collapsedCount = 0, expandedCount = 0;
                                                 // First, set ALL displayed nodes to collapsed (plus icon)
                                                 for (let i = 0; i < itemLis.length; i++) {
                                                     if (itemLis[i]?.classList.contains("displayed") && labels[i]) {
                                                         labels[i].classList.add("collapsed");
                                                         labels[i].classList.remove("expanded");
                                                         labels[i].setAttribute("data-sap-ui-icon-content", "");
+                                                        collapsedCount++;
                                                     }
                                                 }
 
@@ -2222,8 +2224,10 @@
                                                         labels[idx].classList.add("expanded");
                                                         labels[idx].classList.remove("collapsed");
                                                         labels[idx].setAttribute("data-sap-ui-icon-content", "");
+                                                        expandedCount++;
                                                     }
                                                 }
+                                                console.log(`[SingleSelect Icons] Collapsed: ${collapsedCount}, Expanded: ${expandedCount}`);
                                             }, 200); // Delayed to run after DefaultLevel
                                         }
                                     })();
@@ -3641,10 +3645,10 @@
                                 console.warn('[Hierarchy Tree] SAP-icons font not loaded, using CSS fallback icons');
                                 // CSS-drawn circle icons as fallback
                                 let fallbackBaseStyle = '<style>.sap-icon-fallback label.sapMTreeItemBaseExpander:before{width:16px!important;height:16px!important;line-height:14px!important;text-align:center!important;border-radius:50%!important;font-family:Arial,sans-serif!important;font-size:14px!important;margin-right:4px!important;}</style>';
-                                let fallbackDefaultCollapsed = '<style>.sap-icon-fallback .sapMLIB label.sapMTreeItemBaseExpander.collapsed:before{content:"+"!important;border: 1px solid ' + (_IconStyling[0] ? _IconStyling[0][0] : '#717171') + ' !important;}</style>';
-                                let fallbackDefaultExpanded = '<style>.sap-icon-fallback .sapMLIB label.sapMTreeItemBaseExpander.expanded:before{content:"−"!important;border: 1px solid ' + (_IconStyling[0] ? _IconStyling[0][0] : '#717171') + ' !important;}</style>';
-                                let fallbackSelectedCollapsed = '<style>.sap-icon-fallback .sapMLIBSelected label.sapMTreeItemBaseExpander.collapsed:before{content:"+"!important;border: 1px solid ' + (_IconStyling[0] ? _IconStyling[0][1] : '#ffffff') + ' !important;}</style>';
-                                let fallbackSelectedExpanded = '<style>.sap-icon-fallback .sapMLIBSelected label.sapMTreeItemBaseExpander.expanded:before{content:"−"!important;border: 1px solid ' + (_IconStyling[0] ? _IconStyling[0][1] : '#ffffff') + ' !important;}</style>';
+                                let fallbackDefaultCollapsed = '<style>.sap-icon-fallback .sapMLIB label.sapMTreeItemBaseExpander.collapsed:before{content:"+"!important;color: ' + (_IconStyling[0] ? _IconStyling[0][0] : '#717171') + ' !important;border: 1px solid ' + (_IconStyling[0] ? _IconStyling[0][0] : '#717171') + ' !important;}</style>';
+                                let fallbackDefaultExpanded = '<style>.sap-icon-fallback .sapMLIB label.sapMTreeItemBaseExpander.expanded:before{content:"−"!important;color: ' + (_IconStyling[0] ? _IconStyling[0][0] : '#717171') + ' !important;border: 1px solid ' + (_IconStyling[0] ? _IconStyling[0][0] : '#717171') + ' !important;}</style>';
+                                let fallbackSelectedCollapsed = '<style>.sap-icon-fallback .sapMLIBSelected label.sapMTreeItemBaseExpander.collapsed:before{content:"+"!important;color: ' + (_IconStyling[0] ? _IconStyling[0][1] : '#ffffff') + ' !important;border: 1px solid ' + (_IconStyling[0] ? _IconStyling[0][1] : '#ffffff') + ' !important;}</style>';
+                                let fallbackSelectedExpanded = '<style>.sap-icon-fallback .sapMLIBSelected label.sapMTreeItemBaseExpander.expanded:before{content:"−"!important;color: ' + (_IconStyling[0] ? _IconStyling[0][1] : '#ffffff') + ' !important;border: 1px solid ' + (_IconStyling[0] ? _IconStyling[0][1] : '#ffffff') + ' !important;}</style>';
                                 $('body').append(fallbackBaseStyle, fallbackDefaultCollapsed, fallbackDefaultExpanded, fallbackSelectedCollapsed, fallbackSelectedExpanded);
                                 // Add fallback class to body to activate fallback styles
                                 document.body.classList.add('sap-icon-fallback');
