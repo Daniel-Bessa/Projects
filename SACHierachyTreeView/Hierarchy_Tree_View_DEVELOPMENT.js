@@ -945,7 +945,7 @@
         let SelectedNodes = [that.SelectedNode_fStyle, that.fsize, that.SelectedNode_fColor, that.SelectedNode_bg]
         let Default_Level = [that.Default_Level];
         let IconStyling = [that.DefaultIconColor, that.SelectedIconColor];
-        if (IconStyling) {
+        if (!that.DefaultIconColor || !that.SelectedIconColor) {
             IconStyling = ["#717171", "#717171"]
         }
 
