@@ -1086,7 +1086,10 @@
                 console.log(`   Widget Instance: ${that.widgetno}`);
                 console.groupEnd();
             }
-        })();
+        };
+
+        // Call validation immediately
+        validateContrast();
 
         /*-------------------------- Check and Set Separator  ------------------------------------- */
         if (that.Separator) {
