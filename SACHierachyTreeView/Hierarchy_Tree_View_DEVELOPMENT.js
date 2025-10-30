@@ -3607,22 +3607,22 @@
         let executed = false;
         return function(){
             if (!executed){
-            let numberFontsize = parseInt(_iconSize[0]) - 2 + "px";
-            let sapMCbMarkCheckedBackground = '<style>.sapMCbMarkChecked{background-color: ' + (_SelectedCBStyling[0] ? _SelectedCBStyling[0][1] : '#ffffff') + ' !important;}</style>';
-            let sapMCbMarkChecked = '<style>.sapMCbMarkChecked:before{color: ' + (_SelectedCBStyling[0] ? _SelectedCBStyling[0][2] : '#0460A9') + ' !important;}</style>';
-            let partiallyCheck = '<style>.sapMCbMarkPartiallyChecked:before{content:"\\e17b"!important;font-family:"SAP-icons";display:inline-block;border:0!important;color:' + (_SelectedCBStyling[0] ? _SelectedCBStyling[0][2] : '#0460A9') + ' !important;}</style>';
-            let sapMCbBg = '<style>.sapMCbBg{ border:1px solid ' + (_DefaultCBStyling[0] ? _DefaultCBStyling[0][0] : '#9E9E9E') + ' !important;height:' + _iconSize[0] + ' !important;width:' + _iconSize[0] + ' !important;line-height:' + _iconSize[0] + ' !important;font-size:' + numberFontsize + ' !important;}</style>';
-            let disabledNode = '<style>.disabled{display:none!important;}</style>';
-            let displayedNode = '<style>.displayed{display:flex;padding-left:0rem!important;margin:0 1rem;}</style>';
-            let rightSideCBNewClass = '<style>.sapMCbNewClass{position:absolute!important;right:5px!important;}</style>';
-            let unselectable = '<style>.unselectable{-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none;}</style>';
-            // CSS-drawn circle icons with +/- as fallback (works without SAP-icons font)
-            let expanderBaseStyle = '<style>label.sapMTreeItemBaseExpander:before{display:inline-block!important;width:16px!important;height:16px!important;line-height:14px!important;text-align:center!important;border:2px solid #0854a0!important;border-radius:50%!important;font-family:Arial,sans-serif!important;font-size:14px!important;font-weight:bold!important;color:#0854a0!important;margin-right:4px!important;}</style>';
-            let expandedIcon = '<style>label.sapMTreeItemBaseExpander.expanded:before{content:"−"!important;}</style>';
-            let collapsedIcon = '<style>label.sapMTreeItemBaseExpander.collapsed:before{content:"+"!important;}</style>';
-            $('body').append(partiallyCheck, disabledNode, displayedNode, unselectable, rightSideCBNewClass, sapMCbMarkChecked, sapMCbMarkCheckedBackground, sapMCbBg, expanderBaseStyle, expandedIcon, collapsedIcon);
-            executed = true; 
-            }
+                let numberFontsize = parseInt(_iconSize[0]) - 2 + "px";
+                let sapMCbMarkCheckedBackground = '<style>.sapMCbMarkChecked{background-color: ' + (_SelectedCBStyling[0] ? _SelectedCBStyling[0][1] : '#ffffff') + ' !important;}</style>';
+                let sapMCbMarkChecked = '<style>.sapMCbMarkChecked:before{color: ' + (_SelectedCBStyling[0] ? _SelectedCBStyling[0][2] : '#0460A9') + ' !important;}</style>';
+                let partiallyCheck = '<style>.sapMCbMarkPartiallyChecked:before{content:"\\e17b"!important;font-family:"SAP-icons";display:inline-block;border:0!important;color:' + (_SelectedCBStyling[0] ? _SelectedCBStyling[0][2] : '#0460A9') + ' !important;}</style>';
+                let sapMCbBg = '<style>.sapMCbBg{ border:1px solid ' + (_DefaultCBStyling[0] ? _DefaultCBStyling[0][0] : '#9E9E9E') + ' !important;height:' + _iconSize[0] + ' !important;width:' + _iconSize[0] + ' !important;line-height:' + _iconSize[0] + ' !important;font-size:' + numberFontsize + ' !important;}</style>';
+                let disabledNode = '<style>.disabled{display:none!important;}</style>';
+                let displayedNode = '<style>.displayed{display:flex;padding-left:0rem!important;margin:0 1rem;}</style>';
+                let rightSideCBNewClass = '<style>.sapMCbNewClass{position:absolute!important;right:5px!important;}</style>';
+                let unselectable = '<style>.unselectable{-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none;}</style>';
+                // CSS-drawn circle icons with +/- as fallback (works without SAP-icons font)
+                let expanderBaseStyle = '<style>label.sapMTreeItemBaseExpander:before{display:inline-block!important;width:16px!important;height:16px!important;line-height:14px!important;text-align:center!important;border:1px solid rgb(113, 113, 113)!important;border-radius:50%!important;font-family:Arial,sans-serif!important;font-size:14px!important;color:rgb(113, 113, 113)!important;margin-right:4px!important;}</style>';
+                let expandedIcon = '<style>label.sapMTreeItemBaseExpander.expanded:before{content:"−"!important;color: ' + (_iconStyling[0] ? _iconStyling[0][0] : '#ffffff') + ' !important;border-color: '  + (_iconStyling[0] ? _iconStyling[0][1] : '#ffffff') + ' !important}</style>';
+                let collapsedIcon = '<style>label.sapMTreeItemBaseExpander.collapsed:before{content:"+"!important;color: ' + (_iconStyling[0] ? _iconStyling[0][0] : '#ffffff') + ' !important;border-color: ' + (_iconStyling[0] ? _iconStyling[0][1] : '#ffffff') + ' !important}</style>';
+                $('body').append(partiallyCheck, disabledNode, displayedNode, unselectable, rightSideCBNewClass, sapMCbMarkChecked, sapMCbMarkCheckedBackground, sapMCbBg, expanderBaseStyle, expandedIcon, collapsedIcon);
+                executed = true; 
+                }
         };
     })();
 
