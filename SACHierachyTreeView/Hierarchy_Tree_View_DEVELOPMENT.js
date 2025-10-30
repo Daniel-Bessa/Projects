@@ -3618,8 +3618,8 @@
                 let unselectable = '<style>.unselectable{-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none;}</style>';
                 // CSS-drawn circle icons with +/- as fallback (works without SAP-icons font)
                 let expanderBaseStyle = '<style>label.sapMTreeItemBaseExpander:before{display:inline-block!important;width:16px!important;height:16px!important;line-height:14px!important;text-align:center!important;border:1px solid rgb(113, 113, 113)!important;border-radius:50%!important;font-family:Arial,sans-serif!important;font-size:14px!important;color:rgb(113, 113, 113)!important;margin-right:4px!important;}</style>';
-                let expandedIcon = '<style>label.sapMTreeItemBaseExpander.expanded:before{content:"−"!important;color: ' + (_iconStyling[0] ? _iconStyling[0][0] : '#ffffff') + ' !important;border-color: '  + (_iconStyling[0] ? _iconStyling[0][1] : '#ffffff') + ' !important}</style>';
-                let collapsedIcon = '<style>label.sapMTreeItemBaseExpander.collapsed:before{content:"+"!important;color: ' + (_iconStyling[0] ? _iconStyling[0][0] : '#ffffff') + ' !important;border-color: ' + (_iconStyling[0] ? _iconStyling[0][1] : '#ffffff') + ' !important}</style>';
+                let expandedIcon = '<style>label.sapMTreeItemBaseExpander.expanded:before{content:"−"!important;color: ' + (_IconStyling[0] ? _IconStyling[0][0] : '#ffffff') + ' !important;border-color: '  + (_IconStyling[0] ? _IconStyling[0][1] : '#ffffff') + ' !important}</style>';
+                let collapsedIcon = '<style>label.sapMTreeItemBaseExpander.collapsed:before{content:"+"!important;color: ' + (_IconStyling[0] ? _IconStyling[0][0] : '#ffffff') + ' !important;border-color: ' + (_IconStyling[0] ? _IconStyling[0][1] : '#ffffff') + ' !important}</style>';
                 $('body').append(partiallyCheck, disabledNode, displayedNode, unselectable, rightSideCBNewClass, sapMCbMarkChecked, sapMCbMarkCheckedBackground, sapMCbBg, expanderBaseStyle, expandedIcon, collapsedIcon);
                 executed = true; 
                 }
