@@ -3624,7 +3624,7 @@
                 let defaultIconStyle = '<style>.sapMLIB label.sapMTreeItemBaseExpander:before{color: ' + (_IconStyling[0] ? _IconStyling[0][0] : '#717171') + ' !important;border: 1px solid ' + (_IconStyling[0] ? _IconStyling[0][0] : '#717171') + ' !important;}</style>';
                 // Selected nodes use SelectedIconColor
                 let selectedIconStyle = '<style>.sapMLIBSelected label.sapMTreeItemBaseExpander:before{color: ' + (_IconStyling[0] ? _IconStyling[0][1] : '#ffffff') + ' !important;border: 1px solid ' + (_IconStyling[0] ? _IconStyling[0][1] : '#ffffff') + ' !important;}</style>';
-                $('body').append(partiallyCheck, disabledNode, displayedNode, unselectable, rightSideCBNewClass, sapMCbMarkChecked, sapMCbMarkCheckedBackground, sapMCbBg, expanderBaseStyle, expandedIcon, collapsedIcon);
+                $('body').append(partiallyCheck, disabledNode, displayedNode, unselectable, rightSideCBNewClass, sapMCbMarkChecked, sapMCbMarkCheckedBackground, sapMCbBg, expanderBaseStyle, expandedIcon, collapsedIcon, defaultIconStyle, selectedIconStyle);
                 executed = true; 
                 }
         };
