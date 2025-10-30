@@ -964,6 +964,11 @@
             IconStyling = ["#717171", "#ffffff"]
         }
 
+        // MultiSelect: both selected and non-selected icons use DefaultIconColor
+        if(that.Selection_Type == "MultiSelect"){
+            IconStyling = [that.DefaultIconColor || "#717171", that.DefaultIconColor || "#717171"]
+        }
+
         let IconSize = [Number(that.fsize) + 2 + "px"];
         if (!IconSize) {
             IconSize = ["16px"]
