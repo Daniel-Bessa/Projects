@@ -1042,8 +1042,23 @@
                     IconStyling[1] = 'rgb(113, 113, 113)';
                     _IconStyling[that.widgetno] = IconStyling;
                     autoFixed = true;
-                    errors.push(`   ✅ AUTO-FIXED: Icons changed to rgb(113, 113, 113) gray`);
+                    errors.push(`   ✅ AUTO-FIXED: Selected icon color changed to rgb(113, 113, 113) gray`);
                 }
+            }
+
+            // Check default icon color vs white background - AUTO-FIX
+            if (isWhite(selectedBg) && isWhite(defaultIconColor)) {
+                errors.push(`   ❌ Default Icons are WHITE on WHITE background!
+      Icon Color: ${IconStyling[0]}
+      Background: ${SelectedNodes[3]}
+      → Non-selected icons will be invisible`);
+                hasError = true;
+
+                // AUTO-FIX: Force default icons to gray
+                IconStyling[0] = 'rgb(113, 113, 113)';
+                _IconStyling[that.widgetno] = IconStyling;
+                autoFixed = true;
+                errors.push(`   ✅ AUTO-FIXED: Default icon color changed to rgb(113, 113, 113) gray`);
             }
 
             // Check checkbox mark vs checkbox background (MultiSelect)
